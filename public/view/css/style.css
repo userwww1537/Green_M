@@ -1904,6 +1904,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     position: absolute;
     top: 50%;
     left: 50%;
+    z-index: 899987481927;
     display: none;
     transform: translate(-50%);
     width: 500px;

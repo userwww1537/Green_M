@@ -1,7 +1,7 @@
 
       <div class="wrapper flex">
          <div class="projects-category">
-            <div class="card-header flex">
+            <div class="card-header flex flex-tinh2">
                <h3>Doanh thu</h3>
                <button>Xuất PDF<i class="uil uil-angle-right"></i></button>
             </div>
@@ -34,9 +34,14 @@
                      <td>50000</td>
                      <td>Chưa vận chuyển</td>
                      <td>12/2/2018</td>
-                     <td>
-                        <i class="fas fa-eye"></i>/
+                     <td class="kkk2">
+                        <button>
+                        <i class="fas fa-eye"></i>
+                        </button>
+                        <button>
                         <i class="fas fa-pen"></i></i>
+                        </button>
+                        
                      </td>
                   </tr>
                   <tr>
@@ -48,9 +53,14 @@
                      <td>50000</td>
                      <td>Chưa vận chuyển</td>
                      <td>12/2/2018</td>
-                     <td>
-                        <i class="fas fa-eye"></i>/
+                     <td class="kkk2">
+                        <button>
+                        <i class="fas fa-eye"></i>
+                        </button>
+                        <button>
                         <i class="fas fa-pen"></i></i>
+                        </button>
+                        
                      </td>
                   </tr>
 

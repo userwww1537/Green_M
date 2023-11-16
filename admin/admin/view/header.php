@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Quản Trị - Admin</title>
@@ -9,14 +10,15 @@
    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
    <link rel="stylesheet" href="view/layout/style.css?v=<?php echo time(); ?>">
 </head>
+
 <body>
    <div class="sidebar" id="sidebar">
       <div class="logo">
-            <img src="view/layout/Images/logo-1.webp" alt="">
+         <img src="view/layout/Images/logo-1.webp" alt="">
       </div>
-      <?php 
-         if(isset($act) && $act == 'user') {
-            echo '
+      <?php
+      if (isset($act) && $act == 'user') {
+         echo '
                <div class="sidebar-menu">
                   <ul>
                      <li>
@@ -46,8 +48,8 @@
                   </ul>
                </div>
             ';
-         } else if(isset($act) && $act == 'shop') {
-            echo '
+      } else if (isset($act) && $act == 'shop') {
+         echo '
                <div class="sidebar-menu">
                   <ul>
                      <li>
@@ -77,8 +79,8 @@
                   </ul>
                </div>
             ';
-         } else if(isset($act) && $act == 'cate') {
-            echo '
+      } else if (isset($act) && $act == 'cate') {
+         echo '
                <div class="sidebar-menu">
                   <ul>
                      <li>
@@ -108,8 +110,8 @@
                   </ul>
                </div>
             ';
-         } else if(isset($act) && $act == 'order') {
-            echo '
+      } else if (isset($act) && $act == 'order') {
+         echo '
                <div class="sidebar-menu">
                   <ul>
                      <li>
@@ -139,8 +141,8 @@
                   </ul>
                </div>
             ';
-         } else {
-            echo '
+      } else {
+         echo '
                <div class="sidebar-menu">
                   <ul>
                      <li class="active">
@@ -170,7 +172,7 @@
                   </ul>
                </div>
             ';
-         }
+      }
       ?>
    </div>
    <div class="main-content" id="main-content">
@@ -184,11 +186,17 @@
             <input type="text" placeholder="Search Here...">
          </div>
 
-         <div class="admin-box flex" >
-            <img src="view/layout/images/user.jpeg" width="30px" height="30px">
+         <div class="admin-box flex">
+            <img src="../../public/<?= $_SESSION['83x86']['account_avt'] ?>" width="30px" height="30px">
             <div>
-               <h4>Naseem Khan</h4>
-               <small>Admin</small>
+               <h4><?= $_SESSION['83x86']['account_name'] ?></h4>
+               <small><?= $_SESSION['83x86']['account_position'] ?></small>
             </div>
          </div>
       </header>
+      <div class="success_noti">
+         <span class="text_success_noti"></span>
+      </div>
+      <div class="error_noti">
+         <span class="text_error_noti"></span>
+      </div>
