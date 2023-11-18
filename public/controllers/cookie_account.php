@@ -16,4 +16,10 @@ if (isset($_SESSION['83x86']) && !isset($_COOKIE['accountsave'])) {
     $chua = $_SESSION['83x86']['account_id'];
     setcookie("accountsave", $chua, time() + (86400 * 7));
 }
+
+if (isset($_SESSION['83x86'])) {
+    include_once "model_dao/account.php";
+    $a = new account_lass();
+    $_SESSION['83x86'] = $a->update_cookie_ses($_SESSION['83x86']['account_id']);
+}
 ?>

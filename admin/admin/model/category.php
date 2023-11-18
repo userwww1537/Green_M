@@ -9,5 +9,15 @@
             $sql = "SELECT * FROM category ORDER BY category_id DESC";
             return self::conn_show_all($sql);
         }
+
+        public static function del_cate($a) {
+            $sql = "DELETE FROM category WHERE category_id = ?";
+            return self::conn_execute($sql, $a);
+        }
+        
+        public static function add_cate($a, $b, $c) {
+            $sql = "INSERT INTO category(category_name, category_img, category_status) VALUES(?, ?, ?)";
+            return self::conn_execute($sql, $a, $b, $c);
+        }
     }
 ?>

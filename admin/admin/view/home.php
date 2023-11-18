@@ -16,7 +16,7 @@
          foreach ($show_order as $items) {
             $count_order++;
             $time = strtotime($items['time_reg']);
-            $time_get = date("Y-m-d");
+            $time_get = date("Y-m-d", $time);
             if ($time_now == $time_get) {
                $count_revenue += $items['order_total'];
             }

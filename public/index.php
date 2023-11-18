@@ -96,6 +96,12 @@
             case 'forgot_pass':
                 include_once "view/forgot_pass.php";
                 break;
+            case 'noti':
+                include_once "view/noti.php";
+                break;
+            case 'lock':
+                include_once "view/lock.php";
+                break;
             default:
                 $show_product_home = $product->show_product_home();
                 $show_product_top = $product->show_product_top();

@@ -1,3 +1,16 @@
+<?php
+    if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_notify'] != "" ) {
+        if($_SESSION['83x86']['account_status'] == "Khóa") {
+            if(!isset($act) && $act != 'lock' || isset($act) && $act != 'lock') {
+                header('location: ?act=lock');
+            }
+        } else {
+            if(!isset($act) && $act != 'noti' || isset($act) && $act != 'noti') {
+                header('location: ?act=noti');
+            }
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
