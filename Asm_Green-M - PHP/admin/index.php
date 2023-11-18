@@ -4,9 +4,17 @@
     ob_start();
     extract($_REQUEST);
     if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] == "Quản trị viên") {
-        header('location: admin/index.php');
+        echo '
+            <script>
+                window.location.href = "admin/index.php";
+            </script>
+        ';
     } else if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] == "Shop") {
-        header('location: shop/index.php');
+        echo '
+            <script>
+                window.location.href = "shop/index.php";
+            </script>
+        ';
     } else {
         echo '
             <script>

@@ -703,6 +703,17 @@ select {
   background-color: #0056b3;
 }
 
+.box-category .calcel-add {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: red;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
 #product_id {
   text-transform: uppercase;
 }

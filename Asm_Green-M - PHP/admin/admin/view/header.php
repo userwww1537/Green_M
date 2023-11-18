@@ -183,7 +183,7 @@
 
          <div class="search-box">
             <i class="uil uil-search"></i>
-            <input type="text" placeholder="Search Here...">
+            <input type="text" placeholder="Tìm kiếm...">
          </div>
 
          <div class="admin-box flex">

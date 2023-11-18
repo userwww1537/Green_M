@@ -16,7 +16,7 @@
          foreach ($show_order as $items) {
             $count_order++;
             $time = strtotime($items['time_reg']);
-            $time_get = date("Y-m-d");
+            $time_get = date("Y-m-d", $time);
             if ($time_now == $time_get) {
                $count_revenue += $items['order_total'];
             }
@@ -116,7 +116,7 @@
                if ($i == 6) {
                   break;
                }
-               $name_product = substr($product_name, 0, 15) . '...';
+               $name_product = substr($product_name, 0, 9) . '...';
                echo '
                   <tr class="flex">
                      <td class="flex">

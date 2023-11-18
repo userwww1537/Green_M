@@ -15,13 +15,25 @@
         }
 
         public function update_status($a, $b) {
-            $sql_update_status = "UPDATE account SET account_status = ? WHERE account_id = ?";
-            return $this->conn_execute($sql_update_status, $a, $b);
+            if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_status'] == "Khóa") {
+                $a = "Khóa";
+                $sql_update_status = "UPDATE account SET account_status = ? WHERE account_id = ?";
+                return $this->conn_execute($sql_update_status, $a, $b);
+            } else {
+                $sql_update_status = "UPDATE account SET account_status = ? WHERE account_id = ?";
+                return $this->conn_execute($sql_update_status, $a, $b);
+            }
         }
 
         public function update_cookie_ses($a) {
             $sql = "SELECT * FROM account WHERE account_id = ?";
             return $this->conn_show_one($sql, $a);
+        }
+
+        public function update_noti() {
+            $a = "";
+            $sql = "UPDATE account SET account_notify = ? WHERE account_id = ?";
+            return $this->conn_execute($sql, $a, $_SESSION['83x86']['account_id']);
         }
 
         public function update_info_account($a, $b, $c, $d, $e, $f, $g, $h, $i, $check) {

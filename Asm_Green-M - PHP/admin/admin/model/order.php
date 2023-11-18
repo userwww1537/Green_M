@@ -5,7 +5,7 @@
     }
     class order_lass extends dao_con {
         public static function show_order() {
-            $sql = "SELECT orders.*, account.*
+            $sql = "SELECT orders.*, account.account_name
                     FROM orders
                     JOIN account ON orders.shop_id = account.account_id
                     ORDER BY orders.order_id DESC

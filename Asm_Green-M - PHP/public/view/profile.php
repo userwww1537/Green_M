@@ -2,7 +2,7 @@
 if (isset($_SESSION['83x86'])) {
 ?>
     <script>
-        setInterval(function() {
+        function load() {
             $.ajax({
                 url: "controllers/xuly_login.php",
                 method: "POST",
@@ -10,7 +10,8 @@ if (isset($_SESSION['83x86'])) {
                     account_id_up_auto: "id"
                 }
             });
-        }, 1);
+        }
+        setInterval(load, 30);
     </script>
 <?php
 }
