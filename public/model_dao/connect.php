@@ -1,7 +1,7 @@
 <?php
     class dao_con {
         function conn_db() {
-            $sqlServer = "mysql:host=localhost; dbname=green_m8683";
+            $sqlServer = "mysql:host=localhost; dbname=asm-green-new";
             $username = "root";
             $password = "";
     
