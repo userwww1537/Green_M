@@ -12,6 +12,9 @@
     $mail = new Mailer();
     extract($_REQUEST);
     $account = new account_lass();
+    if(isset($account_id_up_auto)) {
+        $_SESSION['83x86'] = $account->update_cookie_ses($_SESSION['83x86']['account_id']);
+    }
     if(isset($reg_account)) {
         $account->add_account($fullName, $username, $email, $password);
     } else if(isset($log_account)) {    
@@ -57,8 +60,6 @@
                 </script>
             ';
         }
-    } else if(isset($account_id_up_auto)) {
-        $_SESSION['83x86'] = $account->update_cookie_ses($_COOKIE['accountsave']);
     } else if(isset($saveinfoPay)) {
         $account_number_pay = $account_number_pay_one . $account_number_pay_two . $account_number_pay_three . $account_number_pay_four;
         if($account_pay_other != "") {

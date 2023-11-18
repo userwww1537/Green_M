@@ -116,7 +116,7 @@
                if ($i == 6) {
                   break;
                }
-               $name_product = substr($product_name, 0, 15) . '...';
+               $name_product = substr($product_name, 0, 9) . '...';
                echo '
                   <tr class="flex">
                      <td class="flex">
