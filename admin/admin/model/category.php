@@ -19,5 +19,10 @@
             $sql = "INSERT INTO category(category_name, category_img, category_status) VALUES(?, ?, ?)";
             return self::conn_execute($sql, $a, $b, $c);
         }
+
+        public static function up_cate($a, $b, $c, $d) {
+            $sql = "UPDATE category SET category_name = ?, category_img = ?, category_status = ? WHERE category_id = ?";
+            return self::conn_execute($sql, $a, $b, $c, $d);
+        }
     }
 ?>

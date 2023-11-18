@@ -25,7 +25,8 @@
                 include_once 'view/cate.php';
                 break;
             case 'order':
-                $show = $order->show_order();
+                $count = $order->show_order();
+                $show = $order->show_doanhthu();
                 include_once 'view/order.php';
                 break;
             case 'logout':

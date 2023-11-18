@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 18, 2023 lúc 11:56 AM
+-- Thời gian đã tạo: Th10 18, 2023 lúc 01:26 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -51,7 +51,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `account_name`, `account_sex`, `account_address`, `account_number_pay`, `account_pay`, `account_avt`, `account_username`, `account_email`, `account_verified_mail`, `account_phone`, `account_pass`, `account_position`, `account_notify`, `account_status`, `time_reg`) VALUES
-(1, 0x4e677579e1bb856e2054e1baa56e20c39d, 'Nam', '56a Cống Lỡ, Phường 15, Quận Tân Bình, TP Hồ Chí Minh', '1111222233334444', 'MBBank', 'view/images/account/Ý 30k$.jpg', 'nguyentany', 'nguyentany.tricker@gmail.com', 'Đã xác thực', '0345123856', '000', 'Shop', 'Buff đánh giá', 'Khóa', '2023-11-05 10:00:11'),
+(1, 0x4e677579e1bb856e2054e1baa56e20c39d, 'Nam', '56a Cống Lỡ, Phường 15, Quận Tân Bình, TP Hồ Chí Minh', '1111222233334444', 'MBBank', 'view/images/account/Ý 30k$.jpg', 'nguyentany', 'nguyentany.tricker@gmail.com', 'Đã xác thực', '0345123856', '000', 'Shop', 'Bạn sử dụng bug tăng lượt đánh giá', 'Khóa', '2023-11-05 10:00:11'),
 (7, 0xc490e1baad752056c4836e2044c5a96e67, '', '199 Đông Bắc, Phường Tân Chánh Hiệp, Quận 12, TP, Hồ Chí Minh', '', '', 'view/images/account/user.png', 'dauvandung', 'vandungdau583@gmail.com', 'Đã xác thực', '0358676293', '123', 'Khách hàng', '', 'Offline', '2023-11-13 06:14:55'),
 (8, 0x4e677579e1bb856e205468616e68205475e1baa56e, '', '3d Tân Chánh Hiệp 17, Quận 12, TP. Hồ Chí Minh', '', '', 'view/images/account/user.png', 'nguyenthanhtuan', 'tuanxelu12@gmail.com', 'Đã xác thực', '0363156469', '123', 'Khách hàng', '', 'Offline', '2023-11-13 06:25:31'),
 (9, 0x43c3b4204e616d, '', '', '', '', 'view/images/account/user.png', 'conam', 'Conam@gmail.com', 'Chưa xác thực', '', '123', 'Khách hàng', '', 'Offline', '2023-11-17 05:27:27'),
@@ -585,6 +585,57 @@ ALTER TABLE `product`
 --
 ALTER TABLE `rate`
   MODIFY `rate_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `image_product`
+--
+ALTER TABLE `image_product`
+  ADD CONSTRAINT `image_product_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`account_from`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`account_to`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`shop_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `order_details`
+--
+ALTER TABLE `order_details`
+  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
+  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `rate`
+--
+ALTER TABLE `rate`
+  ADD CONSTRAINT `rate_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rate_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

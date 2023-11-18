@@ -134,6 +134,47 @@
    </form>
    <span class="calcel-add">Hủy</span>
 </div>
+
+<div class="container">
+   <h2>Update Danh Muc</h2>
+   <form action="controllers/xuly_cate.php" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="cate_id_up" class="cate-id-up">
+      <div class="form-group">
+         <label for="category_name">Tên Danh Mục:</label>
+         <div class="group-ten_cate">
+            <div><small class="name-cate-temple">Trái Cây</small></div>
+            <input type="text" id="category_name" name="category_name" required placeholder="Tên danh mục...">
+         </div>
+         
+      </div>
+      <div class="form-group">
+         <label for="category_price">Hình ảnh: </label>
+         <div class="group-img_cate">
+            <div><img class="img-cate-temple" src="../../public/view/" width="50px" alt=""></div>
+         
+         <input type="file" id="category_image" name="category_image">
+         </div>
+         
+      </div>
+      <div class="form-group">
+         <label for="category_image">Trạng thái</label>
+         <div class="group-trangthai_cate">
+            <div>
+               <small class="status-cate-temple">review</small>
+            </div>
+            <select name="category_status">
+               <option value="Đang hoạt động">Đang hoạt động</option>
+               <option value="Ngưng hoạt động">Ngưng hoạt động</option>
+            </select>
+         </div>         
+      </div>
+      <div class="form-group">
+         <input type="submit" name="upcategory_submit" value="Sửa Danh Mục">
+      </div>
+   </form>
+   <span class="calcel-up">Hủy</span>
+</div>
+
 <main>
    <div class="wrapper flex">
       <div class="projects-category">
@@ -184,12 +225,30 @@
 </main>
 
 <script>
+   $(".up-cate").on('click', function() {
+      $(".container").css("right", "1%");
+      var name = $(this).data("cate-name");
+      var id = $(this).data("cate-id");
+      var status = $(this).data("cate-status");
+      var img = '../../public/' + $(this).data("cate-img");
+      $(".cate-id-up").val(id);
+      $(".status-cate-temple").text(status);
+      $(".img-cate-temple").attr("src", img);
+      $(".name-cate-temple").text(name);
+   });
+
+   $(".calcel-up").on('click', function() {
+      $(".container").css("right", "-100%");
+   });
+
    $(".add-cate").on('click', function() {
       $(".box-category").css("right", "0px");
    });
+
    $(".calcel-add").on('click', function() {
       $(".box-category").css("right", "-100%");
    });
+
    $(".del-cate").on('click', function() {
       var cate_id = $(this).data("cate-id");
       var cate_name = $(this).data("cate-name");
