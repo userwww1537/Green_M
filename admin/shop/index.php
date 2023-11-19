@@ -22,16 +22,18 @@
                 $show = $account->show_shop();
                 include_once 'view/shop.php';
                 break;
-            case 'cate':
+            case 'review':
                 $show = $cate->show_cate();
                 include_once 'view/cate.php';
                 break;
             case 'order':
-                $count = $order->show_order();
-                $show = $order->show_doanhthu();
+                $show = $order->show__order();
                 include_once 'view/order.php';
                 break;
-            case 'logout':
+            case 'doanhthu':
+                $count = $order->show_order();
+                $show = $order->show_doanhthu();
+                include_once 'view/doanhthu.php';
                 break;
             default:
                 $show_product = $product->show_product();

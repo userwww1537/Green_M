@@ -817,3 +817,125 @@ select {
   height: 200px;
   background: white;
 }
+.details-order {
+  position: fixed;
+  z-index: 9999999;
+  top: -50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  height: 80%;
+  background-color: white;
+  text-align: center;
+  overflow: auto;
+  border: 1px solid rgba(251, 163, 163, 0.495);
+  transition: all .5s ease;
+}
+
+.details-order .close-order {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 700;
+  transition: all .5s ease;
+}
+
+.details-order .close-order:hover {
+  color: gray;
+}
+
+.details-order::-webkit-scrollbar {
+  width: 10px;
+}
+
+.details-order::-webkit-scrollbar-track {
+background-color: #f1f1f1;
+}
+
+.details-order::-webkit-scrollbar-thumb {
+background-color: #888;
+}
+
+.details-order .title-order h3 {
+  line-height: 50px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.details-order .table-order {
+  display: flex;
+  justify-content: center;
+}
+
+.details-order .table-order table thead tr th,
+.details-order .table-order table tbody tr td {
+  padding: 30px;
+}
+
+.details-order .table-order table tbody tr:hover {
+  background: rgba(128, 128, 128, 0.101);
+}
+
+.details-order .bill-order {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details-order .bill-order .total-order h6 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.details-order .bill-order .total-order span {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.details-order .bill-order .option-order {
+  display: grid;
+}
+
+.details-order .bill-order .option-order #del-order {
+  font-size: 18px;
+  /* opacity: 0.1; */
+  color: red;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: all .5s ease;
+}
+
+.edit-order {
+  position: fixed;
+  top: -100%;
+  left: 53%;
+  transform: translate(-50%);
+  background: white;
+  width: 300px;
+  border: 1px solid rgb(192, 187, 187);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all .9s ease;
+}
+
+.edit-order span {
+  float: right;
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.edit-order span:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.more-up-order {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  color: #0056b3;
+}
+
+.more-cancel-up {
+  display: none;
+}

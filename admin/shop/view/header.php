@@ -39,7 +39,7 @@
                      </li>
                      <li>
                         <i class="fas fa-folder-minus"></i>
-                        <a href="index.php?act="doanhthu"><span>Quản lý doanh thu</span></a>
+                        <a href="index.php?act=doanhthu"><span>Quản lý doanh thu</span></a>
                      </li>
 
                      <li>
@@ -71,7 +71,7 @@
                      </li>
                      <li>
                         <i class="fas fa-folder-minus"></i>
-                        <a href="index.php?act="doanhthu"><span>Quản lý doanh thu</span></a>
+                        <a href="index.php?act=doanhthu"><span>Quản lý doanh thu</span></a>
                      </li>
 
                      <li>
@@ -103,7 +103,7 @@
                      </li>
                      <li>
                         <i class="fas fa-folder-minus"></i>
-                        <a href="index.php?act="doanhthu"><span>Quản lý doanh thu</span></a>
+                        <a href="index.php?act=doanhthu"><span>Quản lý doanh thu</span></a>
                      </li>
 
                      <li>
@@ -135,7 +135,7 @@
                      </li>
                      <li class="active">
                         <i class="fas fa-folder-minus"></i>
-                        <a href="index.php?act="doanhthu"><span>Quản lý doanh thu</span></a>
+                        <a href="index.php?act=doanhthu"><span>Quản lý doanh thu</span></a>
                      </li>
 
                      <li>
@@ -167,7 +167,7 @@
                      </li>
                      <li>
                         <i class="fas fa-folder-minus"></i>
-                        <a href="index.php?act="doanhthu"><span>Quản lý doanh thu</span></a>
+                        <a href="index.php?act=doanhthu"><span>Quản lý doanh thu</span></a>
                      </li>
 
                      <li>
