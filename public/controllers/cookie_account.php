@@ -1,6 +1,6 @@
 <?php
 if(isset($_SESSION['delCookie']) && $_SESSION['delCookie'] == True) {
-    setcookie("accountsave", "True", 0);
+    setcookie("accountsave", "True", time() - 3600);
     unset($_COOKIE['accountsave']);
     unset($_SESSION['83x86']);
     unset($_SESSION['delCookie']);

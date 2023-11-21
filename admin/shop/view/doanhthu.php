@@ -20,10 +20,10 @@
                   <th>
                      <tr>
                         <td>STT</td>
-                        <td>Tên cửa hàng</td>
+                        <td>Người mua</td>
                         <td>Địa chỉ</td>
                         <td>Số điện thoại</td>
-                        <td>Tiền chiết khấu(3%/Đơn)</td>
+                        <td>Tiền chiết khấu(-3%/Đơn)</td>
                         <td>Số đơn</td>
                         <td>Thao tác</td>
                      </tr>

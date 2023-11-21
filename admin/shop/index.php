@@ -5,6 +5,7 @@
     include_once "model/account.php";
     include_once "model/message.php";
     include_once "model/order.php";
+    include_once "model/rate.php";
     include_once "model/product.php";
     include_once "model/category.php";
     $product = new product_lass();
@@ -12,6 +13,7 @@
     $account = new account_lass();
     $order = new order_lass();
     $cate = new cate_lass();
+    $rate = new rate_lass();
     if(isset($act)){
         switch ($act){
             case 'product':
@@ -23,7 +25,7 @@
                 include_once 'view/shop.php';
                 break;
             case 'review':
-                $show = $cate->show_cate();
+                $show = $rate->show_rate();
                 include_once 'view/cate.php';
                 break;
             case 'order':

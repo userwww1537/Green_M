@@ -179,7 +179,7 @@
    <div class="wrapper flex">
       <div class="projects-category">
          <div class="card-header flex flex-tinh2">
-            <h3>Quản lý danh mục</h3>
+            <h3>Quản lý bình luận</h3>
             <button class="add-cate">Thêm danh mục <i class="fas fa-plus"></i></button>
          </div>
 
@@ -188,9 +188,10 @@
                <th>
                   <tr>
                      <td>STT</td>
-                     <td>Tên danh mục</td>
-                     <td>Hình ảnh</td>
-                     <td>Trạng thái</td>
+                     <td>Người đánh giá</td>
+                     <td>Nội dung</td>
+                     <td>Số sao</td>
+                     <td>Thời gian</td>
                      <td>Thao tác</td>
                   </tr>
                </th>
@@ -201,18 +202,23 @@
                   $i = 0;
                   foreach($show as $items) {
                      extract($items);
+                     $date = new DateTime($time_reg);
+                     $formattedDate = $date->format('d-m-Y');
                      $i++;
                      echo '
                         <tr>
                            <td>'. $i .'</td>
-                           <td>'. $category_name .'</td>
-                           <td><img src="../../public/'. $category_img .'" alt="" width="70px"></td>
+                           <td>'. $account_name .'</td>
+                           <td>'. $rate_comment .'</td>
                            <td>
-                              '. $category_status .'
+                              '. $rate_star .'🌟
+                           </td>
+                           <td>
+                              '. $formattedDate .'
                            </td>
                            <td class="kkk">
-                                 <button class="del-cate" data-cate-id="'. $category_id .'" data-cate-name="'. $category_name .'">Xóa</button> 
-                                 <button class="up-cate" data-cate-id="'. $category_id .'" data-cate-name="'. $category_name .'" data-cate-img="'. $category_img .'" data-cate-status="'. $category_status .'">Sửa</button>
+                                 <a href="../../public/index.php?act=detail&product_id=' . $product_id . '&category='. $category_id .'"><i class="fad fa-eye"></i></a> |
+                                 <a href="../../public/index.php?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$account_id.'"><i class="fas fa-comment"></i></a>
                            </td>
                         </tr>
                      ';
