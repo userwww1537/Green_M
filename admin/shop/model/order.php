@@ -13,6 +13,15 @@
             return self::conn_show_all($sql, $_SESSION['83x86']['account_id']);
         }
 
+        public static function show_order_home() {
+            $sql = "SELECT orders.*, account.account_name, account.account_id
+                    FROM orders
+                    JOIN account ON orders.account_id = account.account_id
+                    WHERE orders.shop_id = ? ORDER BY orders.order_id DESC
+            ";
+            return self::conn_show_all($sql, $_SESSION['83x86']['account_id']);
+        }
+
         public static function show__order() {
             $sql = "SELECT orders.*, account.account_name, account.account_id, account.account_phone, account.account_address
                     FROM orders

@@ -13,7 +13,7 @@
                         <div class="box">
                             <div class="check">
                                 <i class="fas fa-caret-right"></i>
-                                <a href="#">'. $category_name .'</a> 
+                                <a href="?act=shop&check=cate&cate_id='. $category_id .'&page=1&start=0">'. $category_name .'</a> 
                             </div>
                         </div>
                     ';
@@ -60,15 +60,17 @@
                         }
                         $image = explode(',', $image_files);
                         echo '
-                            <div class="box">
-                                <div class="image">
-                                    <img src="'. $image[0] .'" alt="">
-                                    <div class="content">
-                                        <h3>'. $product_name .'</h3>
-                                        <p><span>$'. $product_price .'</span>$'. $product_del .'</p>
+                            <a href="?act=detail&product_id=' . $product_id . '&category='. $category_id .'">
+                                <div class="box">
+                                    <div class="image">
+                                        <img src="'. $image[0] .'" alt="">
+                                        <div class="content">
+                                            <h3>'. $product_name .'</h3>
+                                            <p><span>$'. $product_price .'</span>$'. $product_del .'</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         ';
                         $i++;
                     }
@@ -81,13 +83,12 @@
 
     <div class="right-col">
         <div class="logo">
-            <a href="#"><img src="view/images/shop-1.webp" alt=""></a>
+            <a href="index.php"><img src="view/images/shop-1.webp" alt=""></a>
         </div>
 
         <div class="right-col-1">
             <div class="icons">
                 <i class="fas fa-th-large"></i>
-                <i class="fas fa-th-list"></i>
             </div>
             <div class="select">
                 <td>
@@ -101,137 +102,210 @@
                   </td>
             </div>
         </div>
-
-        <div class="right-col-3">
-            <section class="product">
-                <div class="box-container fullProductShop">
         
+
+        <?php
+            if(isset($check) && $check == "product") {
+        ?>
+            <div class="right-col-3">
+                <section class="product">
+                    <div class="box-container fullProductShop">
+            
+                    <?php
+                        $i = 1;
+                        foreach($show_product_shop as $items) {
+                            extract($items);
+                            if($product_del == 0.00) {
+                                $giamgia = 0;
+                            } else {
+                                $giamgia = (($product_price - $product_del) / $product_price) * 100;
+                            }
+                            if($i == 10) {
+                                break;
+                            }
+                            $image = explode(',', $image_files);
+                            echo '
+                                <div class="box">
+                                    <span class="discount">-'. intval($giamgia) .'%</span>
+                                    <div class="corner-box"><span><a href="?act=detail&product_id=' . $product_id . '&category='. $category_id .'" class="loadkkk"><i class="fas fa-eye"></i></a></span></div>
+                                    <div class="box-img-product"><img src="'. $image[0] .'" alt=""></div>
+                                    <h3>'. $product_name .'</h3>
+                                    <p>Số lượng còn lại- <span>'. $product_qty .'</span>kg</p>
+                                    '; if($giamgia == 0.00) {
+                                        echo '<div class="price">$'. $product_price .'</div>';
+                                    } else {
+                                        echo '<div class="price"><span>$'. $product_price .'</span>$'. $product_del .'</div>';
+                                    }
+                                    echo '
+                                    <button type="button" class="btn addtocart" data-shop-id="'. $account_id .'" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-img="'. $image[0] .'" data-product-del="'. $product_del .'" data-product-price="'. $product_price .'" data-product-qty="1">Thêm giỏ hàng</button>
+                                </div>
+                            ';
+                            $i++;
+                        }
+                    ?>
+            
+                    </div>
+            
+                </section>
+            </div>
+
+            
+            <div class="next-page">
                 <?php
-                    $i = 1;
-                    foreach($show_product_shop as $items) {
-                        extract($items);
-                        if($product_del == 0.00) {
-                            $giamgia = 0;
-                        } else {
-                            $giamgia = (($product_price - $product_del) / $product_price) * 100;
-                        }
-                        if($i == 10) {
-                            break;
-                        }
-                        $image = explode(',', $image_files);
-                        echo '
-                            <div class="box">
-                                <span class="discount">-'. intval($giamgia) .'%</span>
-                                <div class="corner-box"><span><a href="?act=detail&product_id=' . $product_id . '&category='. $category_id .'" class="loadkkk"><i class="fas fa-eye"></i></a></span></div>
-                                <div class="box-img-product"><img src="'. $image[0] .'" alt=""></div>
-                                <h3>'. $product_name .'</h3>
-                                <p>Số lượng còn lại- <span>'. $product_qty .'</span>kg</p>
-                                '; if($giamgia == 0.00) {
-                                    echo '<div class="price">$'. $product_price .'</div>';
-                                } else {
-                                    echo '<div class="price"><span>$'. $product_price .'</span>$'. $product_del .'</div>';
-                                }
-                                echo '
-                                <button type="button" class="btn addtocart" data-shop-id="'. $account_id .'" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-img="'. $image[0] .'" data-product-del="'. $product_del .'" data-product-price="'. $product_price .'" data-product-qty="1">Thêm giỏ hàng</button>
-                            </div>
-                        ';
-                        $i++;
+                    $trang = 0;
+                    foreach ($phantrang as $items) {
+                        $trang++;
                     }
+                    $chiatrang = $trang / 9;
+                    $page = ceil($chiatrang);
+                    $start = 0;
+                    $show_offset = "";
+                    $current_page = $_GET['page'];
+
+                    for ($i = 1; $i <= $page; $i++) {
+                        if ($i == $current_page) {
+                            $show_offset .= '<a href="index.php?act=shop&check=product&page='. $i .'&start=' . $start . '" class="page loadkkk" id="active-page">' . $i . '</a>';
+                        } else {
+                            $show_offset .= '<a href="index.php?act=shop&check=product&page='. $i .'&start=' . $start . '" class="page loadkkk">' . $i . '</a>';
+                        }
+                        $start += 9;
+                    }
+
+                    echo $show_offset;
                 ?>
-        
-                </div>
-        
-            </section>
-        </div>
+            </div>
+        <?php
+            } else if(isset($check) && $check == "cate") {
+        ?>
+            <div class="right-col-3">
+                <section class="product">
+                    <div class="box-container fullProductShop">
+            
+                    <?php
+                        $cate_id = $_GET['cate_id'];
+                        $i = 1;
+                        foreach($show_product_shop as $items) {
+                            extract($items);
+                            if($product_del == 0.00) {
+                                $giamgia = 0;
+                            } else {
+                                $giamgia = (($product_price - $product_del) / $product_price) * 100;
+                            }
+                            if($i == 10) {
+                                break;
+                            }
+                            $image = explode(',', $image_files);
+                            if($cate_id == $category_id) {
+                                echo '
+                                    <div class="box">
+                                        <span class="discount">-'. intval($giamgia) .'%</span>
+                                        <div class="corner-box"><span><a href="?act=detail&product_id=' . $product_id . '&category='. $category_id .'" class="loadkkk"><i class="fas fa-eye"></i></a></span></div>
+                                        <div class="box-img-product"><img src="'. $image[0] .'" alt=""></div>
+                                        <h3>'. $product_name .'</h3>
+                                        <p>Số lượng còn lại- <span>'. $product_qty .'</span>kg</p>
+                                        '; if($giamgia == 0.00) {
+                                            echo '<div class="price">$'. $product_price .'</div>';
+                                        } else {
+                                            echo '<div class="price"><span>$'. $product_price .'</span>$'. $product_del .'</div>';
+                                        }
+                                        echo '
+                                        <button type="button" class="btn addtocart" data-shop-id="'. $account_id .'" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-img="'. $image[0] .'" data-product-del="'. $product_del .'" data-product-price="'. $product_price .'" data-product-qty="1">Thêm giỏ hàng</button>
+                                    </div>
+                                ';
+                                $i++;
+                            }
+                        }
+                    ?>
+            
+                    </div>
+            
+                </section>
+            </div>
 
-        
-    <div class="next-page">
-    <?php
-        $trang = 0;
-        foreach ($phantrang as $items) {
-            $trang++;
-        }
-        $chiatrang = $trang / 9;
-        $page = ceil($chiatrang);
-        $start = 0;
-        $show_offset = "";
-        $current_page = $_GET['page'];
+            
+            <div class="next-page">
+                <?php
+                    $trang = 0;
+                    foreach ($phantrang as $items) {
+                        if($cate_id == $items['category_id']) {
+                            $trang++;
+                        }
+                    }
+                    $chiatrang = $trang / 9;
+                    $page = ceil($chiatrang);
+                    $start = 0;
+                    $show_offset = "";
+                    $current_page = $_GET['page'];
 
-        for ($i = 1; $i <= $page; $i++) {
-            if ($i == $current_page) {
-                $show_offset .= '<a href="index.php?act=shop&page='. $i .'&start=' . $start . '" class="page loadkkk" id="active-page">' . $i . '</a>';
-            } else {
-                $show_offset .= '<a href="index.php?act=shop&page='. $i .'&start=' . $start . '" class="page loadkkk">' . $i . '</a>';
+                    for ($i = 1; $i <= $page; $i++) {
+                        if ($i == $current_page) {
+                            $show_offset .= '<a href="index.php?act=shop&check=cate&cate_id='. $cate_id .'&page='. $i .'&start=' . $start . '" class="page loadkkk" id="active-page">' . $i . '</a>';
+                        } else {
+                            $show_offset .= '<a href="index.php?act=shop&check=cate&cate_id='. $cate_id .'&page='. $i .'&start=' . $start . '" class="page loadkkk">' . $i . '</a>';
+                        }
+                        $start += 9;
+                    }
+
+                    echo $show_offset;
+                ?>
+            </div>
+        <?php
             }
-            $start += 9;
-        }
-
-        echo $show_offset;
-    ?>
-    </div>
-
+        ?>
     </div>
 
 </div>
 </section>
 
 
-<?php
-    if(isset($_SESSION['83x86'])) {
-?>
-
-<?php
-    } else {
-?>
-    <script>
-        $(".addtocart").click(function() {
-            var product_id = $(this).data("product-id");
-            var product_name = $(this).data("product-name");
-            var product_img = $(this).data("product-img");
-            var product_del = $(this).data("product-del");
-            var product_price = $(this).data("product-price");
-            var product_qty = $(this).data("product-qty");
-            var shop_id = $(this).data("shop-id");
-            if(product_del == "0.00") {
-                $.ajax({
-                    url: "controllers/xuly_cart.php",
-                    method: "POST",
-                    data: {
-                        product_id: product_id,
-                        product_name: product_name,
-                        product_img: product_img,
-                        product_price: product_price,
-                        product_qty: product_qty,
-                        shop_id: shop_id,
-                        check_del: "del"
-                    },
-                    success: function(data) {
-                        $(".success_noti").text("Thêm vào giỏ hàng!");
-                        show_success();
-                    }
-                });
-            } else {
-                $.ajax({
-                    url: "controllers/xuly_cart.php",
-                    method: "POST",
-                    data: {
-                        product_id: product_id,
-                        product_name: product_name,
-                        product_img: product_img,
-                        product_price: product_del,
-                        product_qty: product_qty,
-                        shop_id: shop_id,
-                        check_del: "del"
-                    },
-                    success: function(data) {
-                        $(".success_noti").text("Thêm vào giỏ hàng!");
-                        show_success();
-                    }
-                });
-            }
-        });
-    </script>
-<?php } ?>
+<script>
+    $(".addtocart").click(function() {
+        var product_id = $(this).data("product-id");
+        var product_name = $(this).data("product-name");
+        var product_img = $(this).data("product-img");
+        var product_del = $(this).data("product-del");
+        var product_price = $(this).data("product-price");
+        var product_qty = $(this).data("product-qty");
+        var shop_id = $(this).data("shop-id");
+        if (product_del == "0.00") {
+            $.ajax({
+                url: "controllers/xuly_cart.php",
+                method: "POST",
+                data: {
+                    product_id: product_id,
+                    product_name: product_name,
+                    product_img: product_img,
+                    product_price: product_price,
+                    product_qty: product_qty,
+                    shop_id: shop_id,
+                    check_del: "del"
+                },
+                success: function(data) {
+                    $(".success_noti").text(data);
+                    show_success();
+                }
+            });
+        } else {
+            $.ajax({
+                url: "controllers/xuly_cart.php",
+                method: "POST",
+                data: {
+                    product_id: product_id,
+                    product_name: product_name,
+                    product_img: product_img,
+                    product_price: product_del,
+                    product_qty: product_qty,
+                    shop_id: shop_id,
+                    check_del: "del"
+                },
+                success: function(data) {
+                    $(".success_noti").text(data);
+                    show_success();
+                }
+            });
+        }
+    });
+</script>
 
 <script>
     $(document).ready(function() {

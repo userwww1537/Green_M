@@ -40,7 +40,7 @@
             default:
                 $show_product = $product->show_product();
                 $show_mess = $message->show_mess();
-                $show_order = $order->show_order();
+                $show_order = $order->show_order_home();
                 $show_shop = $account->show_shop();
                 $show_account = $account->show_account();
                 include_once 'view/home.php';
@@ -48,7 +48,7 @@
         }
     } else {
         $show_product = $product->show_product();
-        $show_order = $order->show_order();
+        $show_order = $order->show_order_home();
         $show_mess = $message->show_mess();
         $show_shop = $account->show_shop();
         $show_account = $account->show_account();

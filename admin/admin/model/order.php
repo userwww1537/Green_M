@@ -14,7 +14,7 @@
         }
 
         public static function show_doanhthu() {
-            $sql = "SELECT account.*, COUNT(orders.order_id) AS order_count
+            $sql = "SELECT account.*, COUNT(orders.order_id) AS order_count, orders.order_status
                     FROM account
                     INNER JOIN orders ON account.account_id = orders.shop_id
                     GROUP BY account.account_id

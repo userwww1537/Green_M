@@ -47,7 +47,7 @@
             <nav class="navbar">
                 <a href="index.php" class="loadkkk">Trang chủ</a>
                 <a href="index.php?act=about" class="loadkkk">Giới thiệu</a>
-                <a href="index.php?act=shop&page=1&start=0" class="loadkkk">Cửa hàng</a>
+                <a href="index.php?act=shop&check=product&page=1&start=0" class="loadkkk">Cửa hàng</a>
                 <a href="?act=blog&page=1&start=0" class="loadkkk">Tin tức</a>
                 <a href="?">FAQ</a>
                 <a href="index.php?act=contact" class="loadkkk">Liên hệ</a>
@@ -55,8 +55,11 @@
             <div class="icons">
                 <?php
                     if(isset($_SESSION['83x86'])) {
+                        include 'model_dao/message.php';
+                        $mess = new mess_lass();
+                        $seen = $mess->check_seen();
                         echo '
-                        <a href="?act=message" class="loadkkk"><i class="fas fa-comment-dots"></i>Tin nhắn</a>
+                        <a href="?act=message" class="loadkkk"><i class="fas fa-comment-dots"></i>Tin nhắn <b style="color: red;">'. $seen['message_count'] .'</b></a>
                         <ul class="btn-user account-father">
                             <button class="account-name"><i class="fad fa-user-alt"></i>'. $_SESSION['83x86']['account_name'] .'</button>
                             <ul class="account-con">
@@ -101,18 +104,22 @@
                                     <div class="input-field">
                                         <label for="username">Username</label>
                                         <input type="text" name="username" id="username_reg" required>
+                                        <div class="verified_username_reg"></div>
                                     </div>
                                     <div class="input-field">
                                         <label for="username">E-mail</label>
                                         <input type="email" name="email" id="email" required>
+                                        <div class="verified_email_reg"></div>
                                     </div>
                                     <div class="input-field">
                                         <label for="password">Mật khẩu của bạn</label>
                                         <input type="password" name="password" id="password_reg" required>
+                                        <div class="verified_password_reg"><div class="line-pass"></div>
                                     </div>
                                     <div class="input-field">
                                         <label for="password">Nhập lại mật khẩu</label>
                                         <input type="password" name="password" id="password_reg_again" required>
+                                        <div class="verified_again_reg" style="color: red;"></div>
                                     </div>
                                     <input type="submit" value="Đăng ký" name="reg" id="btn_reg_now">
                                 </form>
@@ -123,11 +130,25 @@
                         ';
                     }
                 ?>
-                <a href="index.php?act=cart" class="cart_demo_live loadkkk"><i class="fad fa-shopping-cart"></i>Giỏ hàng <span class="number_cart" style="background: red; border-radius: 40%; color: white;">0</span></a>
-                <div class="cart_box_live">
-                    <span class="tong_tien">Tổng tiền: <b>$0</b></span>
-                </div>
+                <?php
+                    if(isset($_SESSION['83x86'])) {
+                ?>
+                    <a href="index.php?act=cart" class="cart_demo_live loadkkk"><i class="fad fa-shopping-cart"></i>Giỏ hàng <span class="number_cart" style="background: red; border-radius: 40%; color: white;">0</span></a>
+                    <div class="cart_box_live">
+                        <span class="tong_tien">Tổng tiền: <b>$0</b></span>
+                    </div>
+                <?php } ?>
             </div>
+            <?php
+                if(!isset($_SESSION['83x86'])) {
+                    echo '
+                        <a href="index.php?act=cart" class="cart_demo_live loadkkk"><i class="fad fa-shopping-cart"></i>Giỏ hàng <span class="number_cart" style="background: red; border-radius: 40%; color: white;">0</span></a>
+                        <div class="cart_box_live">
+                            <span class="tong_tien">Tổng tiền: <b>$0</b></span>
+                        </div>
+                    ';
+                }
+            ?>
         </div>
 
     </header>
@@ -283,3 +304,68 @@
             </script>';
         }
     ?>
+
+    <script>
+        $(document).ready(function() {
+            $("#username_reg").keyup(function() {
+                if($(this).val() != ""){
+                    $.ajax({
+                        url: "controllers/xuly_login.php",
+                        method: "POST",
+                        data: {
+                            check: "checkUsernameReg",
+                            input: $(this).val()
+                        },
+                        success: function(data) {
+                            $(".verified_username_reg").html(data);
+                        }
+                    });
+                } else {
+                    $(".verified_username_reg").html("");
+                }
+            });
+
+            $("#email").keyup(function() {
+                if($(this).val() != ""){
+                    $.ajax({
+                        url: "controllers/xuly_login.php",
+                        method: "POST",
+                        data: {
+                            check: "checkEmailReg",
+                            input: $(this).val()
+                        },
+                        success: function(data) {
+                            $(".verified_email_reg").html(data);
+                        }
+                    });
+                } else {
+                    $(".verified_email_reg").html("");
+                }
+            });
+
+            $("#password_reg").keyup(function() {
+                var passwordLength = $(this).val().length;
+                
+                if (passwordLength == 0) {
+                    $(".line-pass").css({'background': '', 'width': ''});
+                    $(".verified_password_reg").html("");
+                } else if (passwordLength < 8) {
+                    $(".line-pass").css({'background': 'red', 'width': '30%'});
+                } else if (passwordLength >= 8 && passwordLength < 12) {
+                    $(".line-pass").css({'background': 'yellow', 'width': '60%'});
+                } else {
+                    $(".line-pass").css({'background': 'green', 'width': '100%'});
+                }
+            });
+
+            $("#password_reg_again").keyup(function() {
+                var value = $("#password_reg").val();
+                var value_now = $(this).val();
+                if(value_now != value) {
+                    $(".verified_again_reg").text('Mật khẩu không trùng khớp!');
+                } else {
+                    $(".verified_again_reg").text('');
+                }
+            });
+        });
+    </script>

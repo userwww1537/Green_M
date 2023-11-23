@@ -36,31 +36,30 @@
                         extract($items);
                         $total_revenue = 0;
                         $count_revenue = 0;
-                        foreach ($count as $jtems) {
-                           if ($account_id == $jtems['account_id']) {
-                              $count_revenue += $jtems['order_total'];
+                           foreach ($count as $jtems) {
+                              if($jtems['order_status'] == "Giao thành công") {
+                                 if ($account_id == $jtems['account_id']) {
+                                    $count_revenue += $jtems['order_total'];
+                                 }
+                              }
                            }
-                        }
-                        $total_revenue = $count_revenue * 0.03;
-                        $address = substr($account_address, 0, 18) . '...';
-                        echo '
-                           <tr>
-                              <td>1</td>
-                              <td>'. $account_name .'</td>
-                              <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
-                              <td>'. $account_phone .'</td>
-                              <td>$'. $total_revenue .'</td>
-                              <td>'. $order_count .'</td>
-                              <td class="kkk2">
-                                 <button>
-                                 <i class="fas fa-eye"></i>
-                                 </button>
-                                 <button>
-                                 <i class="fas fa-pen"></i></i>
-                                 </button>
-                              </td>
-                           </tr>
-                        ';
+                           $total_revenue = $count_revenue * 0.03;
+                           $address = substr($account_address, 0, 18) . '...';
+                           echo '
+                              <tr>
+                                 <td>1</td>
+                                 <td>'. $account_name .'</td>
+                                 <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
+                                 <td>'. $account_phone .'</td>
+                                 <td>$'. $total_revenue .'</td>
+                                 <td>'. $order_count .'</td>
+                                 <td class="kkk2">
+                                    <button>
+                                    <a href="../../public/index.php?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$account_id.'"><i class="fab fa-facebook-messenger"></i></a>
+                                    </button>
+                                 </td>
+                              </tr>
+                           ';
                      }
                   ?>
                </tbody>

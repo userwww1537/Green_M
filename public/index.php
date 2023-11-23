@@ -7,6 +7,7 @@
     include_once "model_dao/new.php";
     include_once "model_dao/product.php";
     include_once "model_dao/category.php";
+    include_once "model_dao/discount_code.php";
     $new = new new_lass();
     $product = new product_lass();
     $category = new category_lass();
@@ -48,13 +49,7 @@
             case 'cart':
                 if(isset($_SESSION['83x86'])) {
                     include_once "model_dao/cart.php";
-                    include_once "model_dao/discount_code.php";
                     $cart = new cart_lass();
-                    $code = new code_lass();
-                    
-                    if(isset($promo)) {
-                        $giamgia = $code->check_promo($textDiscount);
-                    }
                     $show_cart_log = $cart->show_cart($_SESSION['83x86']['account_id']);
                 }
                 include_once "view/cart.php";

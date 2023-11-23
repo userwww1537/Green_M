@@ -7,7 +7,7 @@
                 foreach ($show_category_home as $items) {
                     extract($items);
                     echo '
-                            <a href="#"><img src="' . $category_img . '" alt="">
+                            <a href="?act=shop&check=cate&cate_id='. $category_id .'&page=1&start=0"><img src="' . $category_img . '" alt="">
                                 <p>' . $category_name . '</p> <span>' . $so_luong_san_pham . '</span>
                             </a>
                         ';

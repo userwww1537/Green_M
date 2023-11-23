@@ -216,7 +216,7 @@ if (isset($_SESSION['83x86'])) {
                                         echo '<button type="submit" class="btn btn-primary" name="saveinfoAccount">Lưu thông tin</button>&nbsp;';
                                     }
                                 ?>
-                                <button type="submit" class="btn btn-default">Hủy</button>
+                                <button type="submit" class="btn btn-default" name="cancel_info">Hủy</button>
                             </div>
                         </form>
                     </div>
@@ -287,7 +287,7 @@ if (isset($_SESSION['83x86'])) {
                             </div>
                             <div class="text-right mt-3">
                                 <button type="submit" class="btn btn-primary" name="saveinfoPay">Lưu thông tin</button>&nbsp;
-                                <button type="submit" class="btn btn-default">Hủy</button>
+                                <button type="submit" class="btn btn-default" name="cancel_info">Hủy</button>
                             </div>
                         </form>
                     </div>
@@ -308,7 +308,7 @@ if (isset($_SESSION['83x86'])) {
                         </div>
                         <div class="text-right mt-3">
                             <button type="button" class="btn btn-primary" id="btn_change_pass">Đổi mật khẩu</button>&nbsp;
-                            <button type="button" class="btn btn-default">Hủy</button>
+                            <button type="button" class="btn btn-default" name="cancel_info">Hủy</button>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="order-me">

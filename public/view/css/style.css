@@ -63,10 +63,13 @@ body {
 .header-1 .search-box-container {
     position: relative;
     display: flex;
-    width: 50rem;
     height: 4rem;
     background: #fff;
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+}
+
+.header-1 .search-box-container #search-box:focus {
+    width: 50rem;
 }
 
 .header-1 .search-box-container #search-box {
@@ -79,6 +82,7 @@ body {
     background: none;
     text-transform: none;
     border-radius: .5rem;
+    transition: all .5s ease;
 }
 
 .header-1 .search-box-container label {
@@ -1687,6 +1691,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 .box-login-form,
 .box-reg-form {
     position: absolute;
+    z-index: 9999999999999;
     right: -100%;
     width: 300px;
     top: 45px;
@@ -2222,4 +2227,40 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.verified_password_reg {
+    position: relative;
+    height: 5px;
+    background: rgba(128, 128, 128, 0.446);
+    width: 210px;
+}
+
+.verified_password_reg .line-pass {
+    position: relative;
+    height: 5px;
+}
+
+.box-search-user-mess {
+    display: none;
+    position: absolute;
+    top: 22px;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.966);
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.user-mess-results {
+    border-bottom: 1px solid gray;
+}
+
+.user-mess-results:hover {
+    background-color: rgba(248, 176, 176, 0.392);
+}
+
+.user-mess-results a {
+    color: black;
 }

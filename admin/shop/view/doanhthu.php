@@ -37,8 +37,10 @@
                         $total_revenue = 0;
                         $count_revenue = 0;
                         foreach ($count as $jtems) {
-                           if ($account_id == $jtems['account_id']) {
-                              $count_revenue += $jtems['order_total'];
+                           if($jtems['order_status'] == "Giao thành công") {
+                              if ($account_id == $jtems['account_id']) {
+                                 $count_revenue += $jtems['order_total'];
+                              }
                            }
                         }
                         $total_revenue = $count_revenue * 0.03;

@@ -19,11 +19,13 @@
                 $total_revenue = 0;
                 $count_revenue = 0;
                 foreach ($count as $jtems) {
-                   if ($account_id == $jtems['account_id']) {
-                        $time = strtotime($jtems['time_reg']);
-                        $time_get = date("Y-m-d", $time);
-                        if ($time_now == $time_get) {
-                            $count_revenue += $jtems['order_total'];
+                    if($jtems['order_status'] == "Giao thành công") {
+                        if($account_id == $jtems['account_id']) {
+                            $time = strtotime($jtems['time_reg']);
+                            $time_get = date("Y-m-d", $time);
+                            if ($time_now == $time_get) {
+                                $count_revenue += $jtems['order_total'];
+                            }
                         }
                     }
                 }
@@ -55,11 +57,13 @@
                 $total_revenue = 0;
                 $count_revenue = 0;
                 foreach ($count as $jtems) {
-                   if ($account_id == $jtems['account_id']) {
-                        $time = strtotime($jtems['time_reg']);
-                        $time_get = date("Y-m", $time);
-                        if ($time_now == $time_get) {
-                            $count_revenue += $jtems['order_total'];
+                    if($jtems['order_status'] == "Giao thành công") {
+                        if($account_id == $jtems['account_id']) {
+                            $time = strtotime($jtems['time_reg']);
+                            $time_get = date("Y-m", $time);
+                            if ($time_now == $time_get) {
+                                $count_revenue += $jtems['order_total'];
+                            }
                         }
                     }
                 }
@@ -91,11 +95,13 @@
                 $total_revenue = 0;
                 $count_revenue = 0;
                 foreach ($count as $jtems) {
-                   if ($account_id == $jtems['account_id']) {
-                        $time = strtotime($jtems['time_reg']);
-                        $time_get = date("Y", $time);
-                        if ($time_now == $time_get) {
-                            $count_revenue += $jtems['order_total'];
+                    if($jtems['order_status'] == "Giao thành công") {
+                        if($account_id == $jtems['account_id']) {
+                            $time = strtotime($jtems['time_reg']);
+                            $time_get = date("Y", $time);
+                            if ($time_now == $time_get) {
+                                $count_revenue += $jtems['order_total'];
+                            }
                         }
                     }
                 }
@@ -126,8 +132,10 @@
                 $total_revenue = 0;
                 $count_revenue = 0;
                 foreach ($count as $jtems) {
-                   if ($account_id == $jtems['account_id']) {
-                        $count_revenue += $jtems['order_total'];
+                    if($jtems['order_status'] == "Giao thành công") {
+                        if($account_id == $jtems['account_id']) {
+                            $count_revenue += $jtems['order_total'];
+                        }
                     }
                 }
                 $total_revenue = $count_revenue * 0.03;

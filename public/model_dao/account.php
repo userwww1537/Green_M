@@ -70,5 +70,15 @@
             $sql = "UPDATE account SET account_verified_mail = ? WHERE account_email = ?";
             return $this->conn_execute($sql, $a, $b);
         }
+
+        public function check_username($a) {
+            $sql = "SELECT * FROM account WHERE account_username = ?";
+            return $this->conn_show_one($sql, $a);
+        }
+
+        public function check_email($a) {
+            $sql = "SELECT * FROM account WHERE account_email = ?";
+            return $this->conn_show_one($sql, $a);
+        }
     }
 ?>

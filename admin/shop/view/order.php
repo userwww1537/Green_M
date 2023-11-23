@@ -116,7 +116,7 @@
          <select name="status" id="status-edit">
             <option value="Đang xử lý">Đang xử lý</option>
             <option value="Đang giao hàng">Đang giao hàng</option>
-            <option value="Giao hàng thành công">Giao hàng thành công</option>
+            <option value="Giao thành công">Giao hàng thành công</option>
          </select>
          <input type="submit" value="Cập nhật" name="upOrder">
       </form>
