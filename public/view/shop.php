@@ -20,7 +20,6 @@
                 }
             ?>
         </div>
-
         <div id="col-2">
             <h2 class="title">Trạng thái sản phẩm</h2>
             <div class="box">
