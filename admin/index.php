@@ -14,7 +14,7 @@
             <script>
                 window.location.href = "shop/index.php";
             </script>
-        ';
+        '; 
     } else {
         echo '
             <style>
