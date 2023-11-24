@@ -55,11 +55,8 @@
             <div class="icons">
                 <?php
                     if(isset($_SESSION['83x86'])) {
-                        include 'model_dao/message.php';
-                        $mess = new mess_lass();
-                        $seen = $mess->check_seen();
                         echo '
-                        <a href="?act=message" class="loadkkk"><i class="fas fa-comment-dots"></i>Tin nhắn <b style="color: red;">'. $seen['message_count'] .'</b></a>
+                        <a href="?act=message" class="loadkkk"><i class="fas fa-comment-dots"></i>Tin nhắn <b style="color: red;" class="update-mess-seen"></b></a>
                         <ul class="btn-user account-father">
                             <button class="account-name"><i class="fad fa-user-alt"></i>'. $_SESSION['83x86']['account_name'] .'</button>
                             <ul class="account-con">
@@ -67,6 +64,27 @@
                                 <li><a class="loadkkk" href="index.php?act=logout&checkkkk=">Đăng xuất</a></li>
                             </ul>
                         </ul>
+                        ';
+                        echo '
+                        <script>
+                        function seenMess() {
+                            $.ajax({
+                                url: "controllers/xuly_mess.php",
+                                method: "POST",
+                                data: {
+                                    check: "updateSeen"
+                                },
+                                dataType: "JSON",
+                                success: function(data) {
+                                    $(".update-mess-seen").text(data.ketqua);
+                                    $("body").append(data.thongbao);
+                                }
+                            });
+                        }
+                    
+                        setInterval(seenMess, 1000);
+                    </script>
+                    
                         ';
                     } else {
                         echo '

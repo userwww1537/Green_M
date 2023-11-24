@@ -21,6 +21,7 @@
         $chua = $account->log_account($username, $username, $password);
         if ($chua > 0) {
             $_SESSION['83x86'] = $chua;
+            setcookie("accountsave", $_SESSION['83x86']['account_id'], time() + (86000*7));
             $account->update_status("Online", $chua['account_id']);
             $response = array(
             'success' => true,
