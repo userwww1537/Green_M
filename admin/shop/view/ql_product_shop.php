@@ -19,7 +19,6 @@
             </div>
          </div>
       </header>
-      
       <div class="wrapper flex">
          <div class="projects-category">
             <div class="card-header flex">
