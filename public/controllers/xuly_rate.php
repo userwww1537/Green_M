@@ -42,7 +42,7 @@
             }
         } else {
             echo '
-                    <h3>Hiện tại sản phẩm này chưa có bình luận, Hãy để lại 1 bình luận giúp Shop nhé!</h3>
+                    <h3>Hiện tại sản phẩm này chưa có đánh giá!</h3>
             ';
         }
     } else if(isset($demRate)) {

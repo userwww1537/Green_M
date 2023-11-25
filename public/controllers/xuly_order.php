@@ -92,6 +92,34 @@
     } else if(isset($check) && $check == "del_order") {
         $order->del_order($orderID);
         header('location: ?act=profile');
+    } else if(isset($check) && $check == "updateOrder") {
+        $ketqua = $order->check_order();
+        $thongbao = "";
+        if(isset($_SESSION['ting_order'])) {
+            if($_SESSION['ting_order'] != $ketqua['order_count']) {
+                $thongbao = '
+                    <audio autoplay src="view/music/DonHangMoi.m4a"></audio>
+                    <script>
+                        if ("Notification" in window) {
+                            Notification.requestPermission().then(function(permission) {
+                            if (permission === "granted") {
+                                var notification = new Notification("Thông báo từ Green-M!", {
+                                    body: "'. $_SESSION['83x86']['account_name'] .' ơi, bạn có đơn hàng mới.",
+                                });
+                                notification.addEventListener("click", function() {
+                                    window.open("http://localhost/DuAn1/Asm_Green-M%20-%20PHP/admin/shop/index.php?act=order", "_blank");
+                                });
+                            }
+                            });
+                        }
+                    </script>
+                ';
+                $_SESSION['ting_order'] = $ketqua['order_count'];
+            }
+        } else {
+            $_SESSION['ting_order'] = $ketqua['order_count'];
+        }
+        echo $thongbao;
     }
     if(isset($orderID)) {
         $show = $order->show_order_details($orderID);

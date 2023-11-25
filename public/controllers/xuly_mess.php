@@ -76,7 +76,10 @@
                             Notification.requestPermission().then(function(permission) {
                             if (permission === "granted") {
                                 var notification = new Notification("Thông báo từ Green-M!", {
-                                body: "'. $_SESSION['83x86']['account_name'] .' ơi, bạn có tin nhắn mới.",
+                                    body: "'. $_SESSION['83x86']['account_name'] .' ơi, bạn có tin nhắn mới.",
+                                });
+                                notification.addEventListener("click", function() {
+                                    window.open("http://localhost/DuAn1/Asm_Green-M%20-%20PHP/public/index.php?act=message", "_blank");
                                 });
                             }
                             });

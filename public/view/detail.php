@@ -71,21 +71,24 @@
                 addToCartLink.href = newURL;
             });
         </script>
-        <h4>Thông Tin Sản Phẩm</h4>
-        <span>
-            Không chỉ là một bộ sưu tập của năm 2022 mà Always Original
-            chính là thần thái vượt thời gian. Phong cách linh hoạt mà
-            trường tồn cùng những cá tính đích thực. <br> <br>
+        <h4 style="font-size: 18px;">Thông Tin Sản Phẩm</h4>
+        <span style="font-size: 16px;">
+            Tên sản phẩm: <b><?=$show['product_name']?></b> <br>
+            Danh mục: <b><?=$show['category_name']?></b> <br>
+            <?php
+                if($show['product_del'] != "0") {
+            ?>
+                Giá gốc: <b> $<?=$show['product_price']?></b> <br> Giảm còn: <b>$<?=$show['product_del']?></b><br> <br>
+            <?php
+                } else {
+            ?>
+                Giá gốc: $<?=$show['product_price']?><br> <br>
+            <?php  
+                }
+            ?>
+            Lượt tiếp cận sản phẩm: <b><?=$show['product_view']?> lượt xem</b>. <br> <br>
 
-            Đường kẻ nằm chính giữa phía trước trên chiếc áo sơ mi
-            Always Original ngoại cỡ này thu hút sự chú ý. Hàng khuy bấm
-            dọc thân táo bạo ở phía sau giúp bạn biến hóa tức thì để
-            khoe thêm một lớp áo khác — hoặc khoe nhẹ làn da. Cổ bẻ phù
-            hợp với kiểu áo truyền thống, cùng khóa kéo dọc thân phía
-            trước mang đến nét hiện đại. <br> <br>
-
-            Chiếc áo này không phân biệt số đo, cho bạn tự do làm chủ
-            phong cách. Thiết kế adidas, theo phong cách của bạn.
+            Ngày đăng bán chính thức: <b><?=$show['time_reg']?></b>
         </span>
     </div>
 </section>
@@ -108,6 +111,10 @@
 </script>
 <div class="comment">
     <h3>Bình luận</h3>
+    
+    <?php
+        if (isset($_SESSION['83x86'])) {
+            if(isset($checkIfOrderCompleteSameRate)) { ?>
     <div class="rate">
         <div class="star">
             <i class="far fa-star" data-value="1"></i>
@@ -119,14 +126,12 @@
         <div class="cmt">
             <input style="border: 1px solid black;" type="text" placeholder="Bình luận..." id="userCmt">
         </div>
-        <?php
-        if (isset($_SESSION['83x86'])) {
-            echo '<button class="btncmt" id="butCmt">Bình luận</button>';
-        } else {
-            echo '<button class="btncmt" id="butCmt" onclick="notLog()">Bình luận</button>';
+        <button class="btncmt" id="butCmt">Bình luận</button>
+    </div>
+    <?php
+            }
         }
         ?>
-    </div>
     <div class="filer">
         <label for="loc">Lọc bình luận:</label>
         <select name="loc" id="loc">
@@ -145,7 +150,7 @@
 <section class="product">
     <div class="heading">
         <h2>Sản phẩm tương tự <span>Danh mục</span></h2>
-        <a class="loadkkk" href="index.php?act=shop&page=1&start=0"> Xem thêm</a>
+        <a class="loadkkk" href="index.php?act=shop&check=cate&cate_id=<?=$_GET['category']?>&page=1&start=0"> Xem thêm</a>
     </div>
     <div class="box-container">
         <?php
@@ -174,10 +179,17 @@
                             } else {
                                 echo '<div class="price"><span>$'. $product_price .'</span>$'. $product_del .'</div>';
                             }
-                            echo '
-                            <button type="button" class="btn addtocart" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-img="'. $image[0] .'" data-product-del="'. $product_del .'" data-product-price="'. $product_price .'" data-product-qty="1">Thêm giỏ hàng</button>
-                        </div>
-                    ';
+                            if($product_qty != 0) {
+                                echo '
+                                        <button type="button" class="btn addtocart" data-shop-id="'. $account_id .'" data-product-id="' . $product_id . '" data-product-name="' . $product_name . '" data-product-img="' . $image[0] . '" data-product-del="' . $product_del . '" data-product-price="' . $product_price . '" data-product-qty="1">Thêm giỏ hàng</button>
+                                    </div>
+                                ';
+                            } else {
+                                echo '
+                                        <button type="button" style="background: red; font-size: 19px; color: whitesmoke;">Hết hàng</button>
+                                    </div>
+                                ';
+                            }
                     $i++;
                 }
             }

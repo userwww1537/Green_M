@@ -136,10 +136,17 @@
                                     } else {
                                         echo '<div class="price"><span>$'. $product_price .'</span>$'. $product_del .'</div>';
                                     }
-                                    echo '
-                                    <button type="button" class="btn addtocart" data-shop-id="'. $account_id .'" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-img="'. $image[0] .'" data-product-del="'. $product_del .'" data-product-price="'. $product_price .'" data-product-qty="1">Thêm giỏ hàng</button>
-                                </div>
-                            ';
+                                    if($product_qty != 0) {
+                                        echo '
+                                                <button type="button" class="btn addtocart" data-shop-id="'. $account_id .'" data-product-id="' . $product_id . '" data-product-name="' . $product_name . '" data-product-img="' . $image[0] . '" data-product-del="' . $product_del . '" data-product-price="' . $product_price . '" data-product-qty="1">Thêm giỏ hàng</button>
+                                            </div>
+                                        ';
+                                    } else {
+                                        echo '
+                                                <button type="button" style="background: red; font-size: 19px; color: whitesmoke;">Hết hàng</button>
+                                            </div>
+                                        ';
+                                    }
                             $i++;
                         }
                     ?>
@@ -208,10 +215,17 @@
                                         } else {
                                             echo '<div class="price"><span>$'. $product_price .'</span>$'. $product_del .'</div>';
                                         }
-                                        echo '
-                                        <button type="button" class="btn addtocart" data-shop-id="'. $account_id .'" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-img="'. $image[0] .'" data-product-del="'. $product_del .'" data-product-price="'. $product_price .'" data-product-qty="1">Thêm giỏ hàng</button>
-                                    </div>
-                                ';
+                                        if($product_qty != 0) {
+                                            echo '
+                                                    <button type="button" class="btn addtocart" data-shop-id="'. $account_id .'" data-product-id="' . $product_id . '" data-product-name="' . $product_name . '" data-product-img="' . $image[0] . '" data-product-del="' . $product_del . '" data-product-price="' . $product_price . '" data-product-qty="1">Thêm giỏ hàng</button>
+                                                </div>
+                                            ';
+                                        } else {
+                                            echo '
+                                                    <button type="button" style="background: red; font-size: 19px; color: whitesmoke;">Hết hàng</button>
+                                                </div>
+                                            ';
+                                        }
                                 $i++;
                             }
                         }

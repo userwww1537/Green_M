@@ -38,5 +38,10 @@
             $sql = "UPDATE orders SET order_status = ? WHERE order_id = ?";
             return $this->conn_execute($sql, $order_status, $a);
         }
+
+        public function check_order() {
+            $sql = "SELECT COUNT(*) as order_count FROM orders WHERE shop_id = ?";
+            return $this->conn_show_one($sql, $_SESSION['83x86']['account_id']);
+        }
     }
 ?>

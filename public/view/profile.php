@@ -65,8 +65,8 @@ if (isset($_SESSION['83x86'])) {
             </div>
             <div class="col-md-9">
                 <div class="tab-content">
-                    <div class="tab-pane fade active show" id="account-general">
-                        <form action="controllers/xuly_login.php" method="post" enctype="multipart/form-data">  <!-- FORM CHANGE INFO ACCOUNT -->
+                    <div class="tab-pane fade active show" id="account-general"> <!-- Thay đổi thông tin tài khoản -->
+                        <form action="controllers/xuly_login.php" method="post" enctype="multipart/form-data">
                             <div class="card-body media align-items-center">
                                 <?php
                                     if(isset($_SESSION['83x86'])) {
@@ -220,7 +220,7 @@ if (isset($_SESSION['83x86'])) {
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="account-pay-info">
+                    <div class="tab-pane fade" id="account-pay-info"> <!-- Thay đổi thông tin thanh toán -->
                         <form action="controllers/xuly_login.php" method="post">
                             <hr class="border-light m-0">
                             <div class="card-body">
@@ -291,7 +291,7 @@ if (isset($_SESSION['83x86'])) {
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="account-change-password">
+                    <div class="tab-pane fade" id="account-change-password"> <!-- Thay đổi mật khẩu -->
                         <div class="card-body pb-2">
                             <div class="form-group">
                                 <label class="form-label">Mật khẩu cũ</label>
@@ -311,7 +311,7 @@ if (isset($_SESSION['83x86'])) {
                             <button type="button" class="btn btn-default" name="cancel_info">Hủy</button>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="order-me">
+                    <div class="tab-pane fade" id="order-me"> <!-- Xem đơn hàng của Session -->
                         <div class="container">
                             <h1>Thông tin đơn hàng</h1>
 
@@ -347,7 +347,7 @@ if (isset($_SESSION['83x86'])) {
                                                     } else if($order_status == "Đã hủy") {
                                                         echo '<td style="color: red; font-weight: 900;">'. $order_status .'</td>';
                                                     } else {
-                                                        echo '<td style="color: green; font-weight: 900;">'. $order_status .'</td>';
+                                                        echo '<td style="color: green; font-weight: 900;">'. $order_status .' '; echo ($order_feedback == 0) ? '<br> <a href="">Đánh giá ngay!</a>' : '<br> <a href="">Đã đánh giá!</a>'; echo ' </td>';
                                                     } echo '
                                                     <td>'. $shop_name .'</td>
                                                     <td>'. $time_reg .'</td>

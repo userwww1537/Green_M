@@ -66,24 +66,24 @@
                         </ul>
                         ';
                         echo '
-                        <script>
-                        function seenMess() {
-                            $.ajax({
-                                url: "controllers/xuly_mess.php",
-                                method: "POST",
-                                data: {
-                                    check: "updateSeen"
-                                },
-                                dataType: "JSON",
-                                success: function(data) {
-                                    $(".update-mess-seen").text(data.ketqua);
-                                    $("body").append(data.thongbao);
+                            <script>
+                                function seenMess() {
+                                    $.ajax({
+                                        url: "controllers/xuly_mess.php",
+                                        method: "POST",
+                                        data: {
+                                            check: "updateSeen"
+                                        },
+                                        dataType: "JSON",
+                                        success: function(data) {
+                                            $(".update-mess-seen").text(data.ketqua);
+                                            $("body").append(data.thongbao);
+                                        }
+                                    });
                                 }
-                            });
-                        }
-                    
-                        setInterval(seenMess, 1000);
-                    </script>
+                            
+                                setInterval(seenMess, 1000);
+                            </script>
                     
                         ';
                     } else {
@@ -386,4 +386,20 @@
                 }
             });
         });
+
+
+        function seenOrder() {
+            $.ajax({
+                url: "controllers/xuly_order.php",
+                method: "POST",
+                data: {
+                    check: "updateOrder"
+                },
+                success: function(data) {
+                    $("body").append(data);
+                }
+            });
+        }
+
+        setInterval(seenOrder, 2000);
     </script>
