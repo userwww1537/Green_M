@@ -130,6 +130,6 @@
                 ';
         }
     } else if(isset($valueContent) && isset($valueStar)) {
-        $rate->add_rate($valueContent, $valueStar, $id_product);
+        $rate->add_rate($valueContent, $valueStar, $id_product, $idOrder);
     }
 ?>

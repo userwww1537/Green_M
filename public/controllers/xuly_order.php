@@ -25,9 +25,9 @@
     $promo = new code_lass();
     $product = new product_lass();
     extract($_REQUEST);
-    $show_cart_log = $cart->show_cart($_SESSION['83x86']['account_id']);
-
+if(isset($_SESSION['83x86'])) {
     if(isset($check_promo)) {
+        $show_cart_log = $cart->show_cart($_SESSION['83x86']['account_id']);
         $shops = [];
         if($check_promo != "") {
             $promo->update_promo($check_promo);
@@ -54,7 +54,7 @@
                 foreach($show_cart_log as $items) {
                     if($shop_id == $items['shop_id']) {
                         $product->update_qty_product($items['cart_qty'], $items['product_id']);
-                        $order->add_order_details($items['cart_name'], $items['cart_price'], $items['cart_img'], $items['cart_qty']);
+                        $order->add_order_details($items['cart_name'], $items['cart_price'], $items['cart_img'], $items['cart_qty'], $items['product_id']);
                         $cart->del_cart($items['cart_id']);
                     }
                 }
@@ -83,7 +83,7 @@
                 foreach($show_cart_log as $items) {
                     if($shop_id == $items['shop_id']) {
                         $product->update_qty_product($items['cart_qty'], $items['product_id']);
-                        $order->add_order_details($items['cart_name'], $items['cart_price'], $items['cart_img'], $items['cart_qty']);
+                        $order->add_order_details($items['cart_name'], $items['cart_price'], $items['cart_img'], $items['cart_qty'], $items['product_id']);
                         $cart->del_cart($items['cart_id']);
                     }
                 }
@@ -142,6 +142,7 @@
                                 <th>Số lượng</th>
                                 <th>Giá sản phẩm</th>
                                 <th>Tổng giá</th>
+                                <th>Đánh giá</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -159,6 +160,23 @@
                     <td>'. $details_qty .'</td>
                     <td>$'. $details_price .'</td>
                     <td>$'. $thanh_price .'</td>
+                    '; 
+                    if(isset($orderStatus) && $orderStatus == "Giao thành công") {
+                        if($details_feedback == 0) {
+                            $ketqua .= '
+                                <td><a style="font-weight: 600;" href="?act=detail&checkIfOrderCompleteSameRate=true&product_id='. $product_id .'&category='. $idDanhMuc .'&idOrder='. $order_id .'">Đánh giá ngay!</a></td>
+                            ';
+                        } else {
+                            $ketqua .= '
+                                <td><a>Đã đánh giá!</a></td>
+                            ';
+                        }
+                    } else {
+                        $ketqua .= '
+                            <td><a>Chưa thể đánh giá!</a></td>
+                        ';
+                    }
+                    $ketqua .= '
                 </tr>
             ';
         }
@@ -195,4 +213,5 @@
         ';
         echo $ketqua;
     }
+}
 ?>

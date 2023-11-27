@@ -45,7 +45,7 @@
                     }
                 }
                 unset($items);
-                if ($check_qty == "done") {
+                if (isset($check_qty) && $check_qty == "done") {
                     echo '
                         <script>
                             window.location.href = "../index.php?act=cart";
@@ -112,7 +112,7 @@
                     }
                 }
                 unset($items);
-                if ($check_qty == "done") {
+                if (isset($check_qty) && $check_qty == "done") {
                     echo 'Cập nhật số lượng giỏ hàng!';
                     return;
                 } else {

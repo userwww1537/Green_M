@@ -115,19 +115,20 @@
     <?php
         if (isset($_SESSION['83x86'])) {
             if(isset($checkIfOrderCompleteSameRate)) { ?>
-    <div class="rate">
-        <div class="star">
-            <i class="far fa-star" data-value="1"></i>
-            <i class="far fa-star" data-value="2"></i>
-            <i class="far fa-star" data-value="3"></i>
-            <i class="far fa-star" data-value="4"></i>
-            <i class="far fa-star" data-value="5"></i>
-        </div>
-        <div class="cmt">
-            <input style="border: 1px solid black;" type="text" placeholder="Bình luận..." id="userCmt">
-        </div>
-        <button class="btncmt" id="butCmt">Bình luận</button>
-    </div>
+                <div class="rate">
+                    <div class="star">
+                        <i class="far fa-star" data-value="1"></i>
+                        <i class="far fa-star" data-value="2"></i>
+                        <i class="far fa-star" data-value="3"></i>
+                        <i class="far fa-star" data-value="4"></i>
+                        <i class="far fa-star" data-value="5"></i>
+                    </div>
+                    <div class="cmt">
+                        <input style="border: 1px solid black;" type="text" placeholder="Bình luận..." id="userCmt">
+                    </div>
+                    <input type="hidden" value="<?=$_GET['idOrder']?>" class="idOrder-Rate">
+                    <button class="btncmt" id="butCmt">Bình luận</button>
+                </div>
     <?php
             }
         }
@@ -218,6 +219,7 @@
         var valueStar = $('#hiddenStarValue').val();
         var valueContent = $("#userCmt").val();
         var product_id = $("#product_id").val();
+        var idOrder = $(".idOrder-Rate").val();
 
         if(valueStar == 0) {
             $(".success_noti").text("Vui lòng vote sao!");
@@ -228,8 +230,12 @@
                 method: "POST",
                 data: {
                     valueStar: valueStar,            
-                    id_product: product_id,          
+                    id_product: product_id, 
+                    idOrder: idOrder,         
                     valueContent: valueContent          
+                },
+                success: function() {
+                    $('.rate').css('display', 'none');
                 }
             });
         }

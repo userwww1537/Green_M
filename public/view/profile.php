@@ -311,7 +311,7 @@ if (isset($_SESSION['83x86'])) {
                             <button type="button" class="btn btn-default" name="cancel_info">Hủy</button>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="order-me"> <!-- Xem đơn hàng của Session -->
+                    <div class="tab-pane fade" id="order-me"> <!-- Xem đơn hàng của me -->
                         <div class="container">
                             <h1>Thông tin đơn hàng</h1>
 
@@ -347,11 +347,11 @@ if (isset($_SESSION['83x86'])) {
                                                     } else if($order_status == "Đã hủy") {
                                                         echo '<td style="color: red; font-weight: 900;">'. $order_status .'</td>';
                                                     } else {
-                                                        echo '<td style="color: green; font-weight: 900;">'. $order_status .' '; echo ($order_feedback == 0) ? '<br> <a href="">Đánh giá ngay!</a>' : '<br> <a href="">Đã đánh giá!</a>'; echo ' </td>';
+                                                        echo '<td style="color: green; font-weight: 900;">'. $order_status .'</td>';
                                                     } echo '
                                                     <td>'. $shop_name .'</td>
                                                     <td>'. $time_reg .'</td>
-                                                    <td><button class="btn-check-details" data-order-id="' . $order_id . '">Xem chi tiết</button></td>
+                                                    <td><button class="btn-check-details" data-order-id="' . $order_id . '" data-order-status="'. $order_status .'">Xem chi tiết</button></td>
                                                 </tr>
                                             ';
                                         }
@@ -427,11 +427,13 @@ if (isset($_SESSION['83x86'])) {
     $(document).ready(function() {
         $(".btn-check-details").click(function() {
             var orderID = $(this).data("order-id");
+            var orderStatus = $(this).data("order-status");
             $.ajax({
                 url: "controllers/xuly_order.php",
                 method: "POST",
                 data: {
-                    orderID: orderID
+                    orderID: orderID,
+                    orderStatus: orderStatus
                 },
                 success: function(data) {
                     $(".details-order").html(data);
