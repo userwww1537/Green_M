@@ -502,4 +502,8 @@
             ';
         }
     }
+
+    if(isset($check) && $check == "update_qty_cart") {
+        $cart->up_qty_cart($value, $pro_id);
+    }
 ?>

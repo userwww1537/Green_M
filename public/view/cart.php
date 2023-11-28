@@ -44,10 +44,11 @@
                             <tr>
                                 <td><a href="index.php?act=xuly_Cart&delete_cart=true&id='. $cart_id .'"><i class="far fa-times-circle"></i></a></td>
                                 <input type="hidden" value='. $cart_id  .' id="cart_id">
+                                <input type="hidden" value='. $product_id  .' id="product_id">
                                 <td><img id="cart_img" src="'. $cart_img .'" alt=""></td>
                                 <td id="cart_name">'. $cart_name .'</td>
                                 <td id="cart_price">$'. $cart_price .'</td>
-                                <td id="cart_qty">'. $cart_qty .'</td>
+                                <td id="cart_qty"><input type="number" class="cart_qty_up" min="1" value="'. $cart_qty .'"></td>
                                 <td id="cart_qty">'. $shop_name .'</td>
                                 <td>$'. $tong_sl .'</td>
                             </tr>
@@ -210,6 +211,24 @@
 <input type="hidden" id="account-phone" value="<?=$_SESSION['83x86']['account_phone']?>">
 <div class="testbug" style="font-size: 16px; position: fixed; top: 0; left: 0;"></div>
 <script>
+
+    $(".cart_qty_up").on("change", function() {
+        var value = $(this).val();
+        var pro_id = $(this).closest('tr').find("#product_id").val();
+        $.ajax({
+            url: 'controllers/xuly_cart.php',
+            method: "POST",
+            data: {
+                check: "update_qty_cart",
+                value: value,
+                pro_id: pro_id
+            },
+            success: function() {
+                location.reload();
+            }
+        });
+    });
+
     $(".thanhtoan-nocart").click(function() {
         $(".error_noti").text("Vui lòng đặt để thanh toán!");
         show_error();

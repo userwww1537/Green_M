@@ -1503,6 +1503,12 @@ input.normal {
     justify-content: space-between;
 }
 
+#cart table tbody td .cart_qty_up {
+    position: relative;
+    left: 50%;
+    width: 30px;
+}
+
 #makhuyenmai {
     width: 50%;
     margin-bottom: 30px;
