@@ -10,9 +10,9 @@
             return $this->conn_execute($sql, $a, $b, $c, $_SESSION['83x86']['account_id'], $d);
         }
 
-        public function add_order_details($a, $b, $c, $d) {
-            $sql = "INSERT INTO order_details (details_name, details_price, details_img, details_qty, order_id) VALUES (?, ?, ? , ?, (SELECT order_id FROM orders ORDER BY order_id DESC LIMIT 1))";
-            return $this->conn_execute($sql, $a, $b, $c, $d);
+        public function add_order_details($a, $b, $c, $d, $e) {
+            $sql = "INSERT INTO order_details (details_name, details_price, details_img, details_qty, product_id, order_id) VALUES (?, ?, ? , ?, ?, (SELECT order_id FROM orders ORDER BY order_id DESC LIMIT 1))";
+            return $this->conn_execute($sql, $a, $b, $c, $d, $e);
         }
 
         public function show_order_me() {
@@ -26,9 +26,10 @@
         }
 
         public function show_order_details($a) {
-            $sql = "SELECT *
+            $sql = "SELECT order_details.*, product.category_id AS idDanhMuc
                     FROM order_details
-                    WHERE order_id = ?    
+                    JOIN product ON order_details.product_id = product.product_id
+                    WHERE order_details.order_id = ?    
             ";
             return $this->conn_show_all($sql, $a);
         }
@@ -37,6 +38,11 @@
             $order_status = "Đã hủy";
             $sql = "UPDATE orders SET order_status = ? WHERE order_id = ?";
             return $this->conn_execute($sql, $order_status, $a);
+        }
+
+        public function check_order() {
+            $sql = "SELECT COUNT(*) as order_count FROM orders WHERE shop_id = ?";
+            return $this->conn_show_one($sql, $_SESSION['83x86']['account_id']);
         }
     }
 ?>

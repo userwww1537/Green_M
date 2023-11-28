@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 15, 2023 lúc 11:23 AM
+-- Thời gian đã tạo: Th10 27, 2023 lúc 10:55 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -51,9 +51,12 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `account_name`, `account_sex`, `account_address`, `account_number_pay`, `account_pay`, `account_avt`, `account_username`, `account_email`, `account_verified_mail`, `account_phone`, `account_pass`, `account_position`, `account_notify`, `account_status`, `time_reg`) VALUES
-(1, 0x4e677579e1bb856e2054e1baa56e20c39d, 'Nam', '56a Cống Lỡ, Phường 15, Quận Tân Bình, TP Hồ Chí Minh', '1111222233334444', 'MBBank', 'view/images/account/Ý 30k$.jpg', 'nguyentany', 'nguyentany.tricker@gmail.com', 'Đã xác thực', '0345123856', '000', 'Quản trị viên', '', 'Online', '2023-11-05 10:00:11'),
-(7, 0xc490e1baad752056c4836e2044c5a96e67, '', '199 Đông Bắc, Phường Tân Chánh Hiệp, Quận 12, TP, Hồ Chí Minh', '', '', 'view/images/account/user.png', 'dauvandung', 'vandungdau583@gmail.com', 'Đã xác thực', '0358676293', '123', 'Khách hàng', '', 'Online', '2023-11-13 06:14:55'),
-(8, 0x4e677579e1bb856e205468616e68205475e1baa56e, '', '3d Tân Chánh Hiệp 17, Quận 12, TP. Hồ Chí Minh', '', '', 'view/images/account/user.png', 'nguyenthanhtuan', 'tuanxelu12@gmail.com', 'Đã xác thực', '0363156469', '123', 'Khách hàng', '', 'Offline', '2023-11-13 06:25:31');
+(1, 0x4e677579e1bb856e2054e1baa56e20c39d, 'Nam', '56a Cống Lỡ, Phường 15, Quận Tân Bình, TP Hồ Chí Minh', '1234999977774444', 'MBBank', 'view/images/account/Ý 30k$.jpg', 'nguyentany', 'nguyentany.tricker@gmail.com', 'Đã xác thực', '0345123856', '000', 'Shop', '', 'Online', '2023-11-05 10:00:11'),
+(7, 0xc490e1baad752056c4836e2044c5a96e67, '', '199 Đông Bắc, Phường Tân Chánh Hiệp, Quận 12, TP, Hồ Chí Minh', '1234123412341234', 'MBBank', 'view/images/account/user.png', 'dauvandung', 'vandungdau583@gmail.com', 'Đã xác thực', '0358676293', '123', 'Shop', '', 'Online', '2023-11-13 06:14:55'),
+(8, 0x4e677579e1bb856e205468616e68205475e1baa56e, '', '3d Tân Chánh Hiệp 17, Quận 12, TP. Hồ Chí Minh', '', '', 'view/images/account/user.png', 'nguyenthanhtuan', 'tuanxelu12@gmail.com', 'Đã xác thực', '0363156469', '123', 'Khách hàng', '', 'Offline', '2023-11-13 06:25:31'),
+(9, 0x43c3b4204e616d, '', '', '', '', 'view/images/account/user.png', 'conam', 'Conam@gmail.com', 'Chưa xác thực', '', '123', 'Khách hàng', '', 'Offline', '2023-11-17 05:27:27'),
+(10, 0x41646d696e20f09f9888, '', '148/3 Hùng vương easup đắk lắk', '', '', 'view/images/account/user.png', 'admin', 'admin@Green-m.Com', 'Đã xác thực', '0388322426', '123', 'Quản trị viên', '', 'Offline', '2023-11-17 08:29:37'),
+(11, 0x43c394206e616d, '', 'Hùng vương kakakakaka', '', '', 'view/images/account/user.png', 'conamkaka', 'Conamkaka@gmail.com', 'Đã xác thực', '0999999999', '123123123', 'Khách hàng', '', 'Offline', '2023-11-27 05:30:08');
 
 -- --------------------------------------------------------
 
@@ -73,6 +76,14 @@ CREATE TABLE `cart` (
   `time_reg` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `cart_name`, `cart_price`, `cart_img`, `cart_qty`, `product_id`, `account_id`, `shop_id`, `time_reg`) VALUES
+(130, 'Rau cải thảo (Kale)', 21.00, 'view/images/product/caithao1.png', 2, 29, 9, 1, '2023-11-17 05:27:35'),
+(131, 'Xà lách (Lettuce)', 21.00, 'view/images/product/xalach1.png', 2, 25, 9, 1, '2023-11-17 05:27:35');
+
 -- --------------------------------------------------------
 
 --
@@ -83,7 +94,7 @@ CREATE TABLE `category` (
   `category_id` int(123) NOT NULL,
   `category_name` varchar(20) NOT NULL,
   `category_img` varchar(100) NOT NULL DEFAULT 'https://upload.wikimedia.org/wikipedia/commons/3/30/%28none%29.png',
-  `category_status` varchar(20) NOT NULL DEFAULT 'Đang hoạt động',
+  `category_status` varchar(20) NOT NULL,
   `time_reg` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -92,9 +103,9 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`category_id`, `category_name`, `category_img`, `category_status`, `time_reg`) VALUES
-(1, 'rau', 'https://img.lovepik.com/free-png/20211104/lovepik-vegetables-png-image_400268939_wh1200.png', 'Đang hoạt động', '2023-11-05 09:39:37'),
-(2, 'củ', 'https://khothietke.net/wp-content/uploads/2021/03/PNG00124-thuc-pham-rau-cu-qua-1-tai-png-free.png', 'Đang hoạt động', '2023-11-05 09:39:37'),
-(3, 'quả', 'https://img.lovepik.com/free-png/20220109/lovepik-various-fruits-png-image_401320455_wh860.png', 'Đang hoạt động', '2023-11-05 09:40:55');
+(1, 'Rau', 'view/images/rau.jpg', 'Đang hoạt động', '2023-11-05 09:39:37'),
+(2, 'Củ', 'view/images/cu.jpg', 'Đang hoạt động', '2023-11-05 09:39:37'),
+(3, 'Quả', 'view/images/qua.jpg', 'Đang hoạt động', '2023-11-05 09:40:55');
 
 -- --------------------------------------------------------
 
@@ -116,7 +127,7 @@ CREATE TABLE `discount_code` (
 --
 
 INSERT INTO `discount_code` (`code_id`, `code_gift`, `code_reduced`, `code_qty`, `code_status`, `reg_time`) VALUES
-(1, 'GREEN-M-8386', 30, 14, 'On', '2023-11-08 11:24:46');
+(1, 'GREEN-M-8386', 30, 15, 'On', '2023-11-08 11:24:46');
 
 -- --------------------------------------------------------
 
@@ -139,7 +150,7 @@ INSERT INTO `image_product` (`image_id`, `image_file`, `product_id`) VALUES
 (77, 'view/images/product/thuviendohoa.vn_163.png', 1),
 (78, 'view/images/product/kisspng-camping-food-durio-zibethinus-tropical-fruit-5b21f3e7c83b54.5216137915289517838202.png', 1),
 (79, 'view/images/product/Lovepik_com-401551780-banana.png', 2),
-(80, 'view/images/product/Lovepik_com-401551780-banana', 2),
+(80, 'view/images/product/Lovepik_com-401551780-banana.png', 2),
 (81, 'view/images/product/green-banana-01.png', 2),
 (82, 'view/images/product/thuvienvector.com_1055.png', 3),
 (83, 'view/images/product/pngegg (2).png', 3),
@@ -195,9 +206,6 @@ INSERT INTO `image_product` (`image_id`, `image_file`, `product_id`) VALUES
 (133, 'view/images/product/cucaile1.png', 22),
 (134, 'view/images/product/cucaile2.png', 22),
 (135, 'view/images/product/cucaile3.png', 22),
-(136, 'view/images/product/caingot1.png', 23),
-(137, 'view/images/product/caingot2.png', 23),
-(138, 'view/images/product/caingot3.png', 23),
 (139, 'view/images/product/bapcai1.png', 24),
 (140, 'view/images/product/bapcai2.png', 24),
 (141, 'view/images/product/bapcai3.png', 24),
@@ -230,6 +238,7 @@ INSERT INTO `image_product` (`image_id`, `image_file`, `product_id`) VALUES
 CREATE TABLE `messages` (
   `mess_id` int(123) NOT NULL,
   `mess_content` longblob NOT NULL,
+  `mess_status` varchar(15) NOT NULL DEFAULT 'Chưa xem',
   `account_from` int(123) NOT NULL,
   `account_to` int(123) NOT NULL,
   `reg_time` timestamp NOT NULL DEFAULT current_timestamp()
@@ -239,10 +248,84 @@ CREATE TABLE `messages` (
 -- Đang đổ dữ liệu cho bảng `messages`
 --
 
-INSERT INTO `messages` (`mess_id`, `mess_content`, `account_from`, `account_to`, `reg_time`) VALUES
-(116, 0x48656c6c6f, 7, 1, '2023-11-15 07:42:39'),
-(117, 0x4368c3a06f, 1, 7, '2023-11-15 07:42:44'),
-(118, 0x52e1baa36e68206b, 7, 1, '2023-11-15 07:42:46');
+INSERT INTO `messages` (`mess_id`, `mess_content`, `mess_status`, `account_from`, `account_to`, `reg_time`) VALUES
+(119, 0x436861666f2062616e6a, 'Đã xem', 1, 10, '2023-11-21 17:35:39'),
+(120, 0x436f73206368757965656e6a20676966, 'Đã xem', 10, 1, '2023-11-21 17:35:47'),
+(121, 0x4b636a, 'Đã xem', 1, 10, '2023-11-21 17:35:50'),
+(127, 0x436861666f, 'Đã xem', 1, 10, '2023-11-23 18:24:07'),
+(128, 0x313233, 'Đã xem', 1, 10, '2023-11-23 18:24:55'),
+(129, 0xc490616e67206cc3a06d2067c3ac, 'Đã xem', 1, 10, '2023-11-24 07:14:22'),
+(130, 0x52e1baa36e68206b68c3b46e673f, 'Đã xem', 1, 10, '2023-11-24 07:14:29'),
+(131, 0x4b6b6b, 'Đã xem', 1, 10, '2023-11-24 07:15:25'),
+(132, 0x646a6173686461, 'Đã xem', 1, 10, '2023-11-24 07:15:34'),
+(133, 0x64616b736a6461, 'Đã xem', 1, 10, '2023-11-24 07:16:20'),
+(134, 0x4b6b6b, 'Đã xem', 10, 1, '2023-11-24 07:16:27'),
+(135, 0x4b6b6b, 'Đã xem', 10, 1, '2023-11-24 07:16:35'),
+(136, 0x68c3a1646a6173686b, 'Đã xem', 10, 1, '2023-11-24 07:16:44'),
+(137, 0x4368c3a06f, 'Đã xem', 10, 1, '2023-11-24 07:33:31'),
+(138, 0x436861666f, 'Đã xem', 10, 1, '2023-11-24 07:37:39'),
+(139, 0x43c3a070, 'Đã xem', 10, 1, '2023-11-24 07:40:08'),
+(140, 0x6468616a, 'Đã xem', 10, 1, '2023-11-24 07:47:07'),
+(141, 0x436861666f, 'Đã xem', 10, 1, '2023-11-24 07:53:55'),
+(142, 0x4368c3a06f2062e1baa16e, 'Đã xem', 10, 1, '2023-11-24 07:54:00'),
+(143, 0x4368c3a06f, 'Đã xem', 10, 1, '2023-11-24 07:54:16'),
+(144, 0x4368c3a06f, 'Đã xem', 10, 1, '2023-11-24 07:56:07'),
+(145, 0x434861666f, 'Đã xem', 10, 1, '2023-11-24 07:58:49'),
+(146, 0x4b616b6b61, 'Đã xem', 10, 1, '2023-11-24 07:58:54'),
+(147, 0x617364616173, 'Đã xem', 10, 1, '2023-11-24 07:58:56'),
+(148, 0x68666a6b61686164736b, 'Đã xem', 10, 1, '2023-11-24 07:59:02'),
+(149, 0x636861666f, 'Đã xem', 10, 1, '2023-11-24 08:00:05'),
+(150, 0x436861666f, 'Đã xem', 10, 1, '2023-11-24 08:00:11'),
+(151, 0x4368c3a06f, 'Đã xem', 10, 1, '2023-11-24 08:00:41'),
+(152, 0x4368c3a06f, 'Đã xem', 10, 1, '2023-11-24 08:01:32'),
+(153, 0x4348c3804f, 'Đã xem', 10, 1, '2023-11-24 08:02:21'),
+(154, 0x5343484441534a44414b53, 'Đã xem', 10, 1, '2023-11-24 08:02:28'),
+(155, 0x444a414b444153, 'Đã xem', 10, 1, '2023-11-24 08:02:35'),
+(156, 0x444841534a44474841534b4a, 'Đã xem', 10, 1, '2023-11-24 08:02:38'),
+(157, 0x4448414b4a53415348, 'Đã xem', 10, 1, '2023-11-24 08:03:05'),
+(158, 0x424441424441534b4a48444153, 'Đã xem', 10, 1, '2023-11-24 08:03:11'),
+(159, 0xc38144414153, 'Đã xem', 10, 1, '2023-11-24 08:03:15'),
+(160, 0x4448414b4a5348, 'Đã xem', 10, 1, '2023-11-24 08:03:24'),
+(161, 0x4348c3804f, 'Đã xem', 1, 10, '2023-11-24 08:03:35'),
+(162, 0xc490c38253, 'Đã xem', 1, 10, '2023-11-24 08:03:38'),
+(163, 0x6348c3804f, 'Đã xem', 10, 1, '2023-11-24 08:03:58'),
+(164, 0x6864736b6a6164686173, 'Đã xem', 10, 1, '2023-11-24 08:04:29'),
+(165, 0xc491c3a273, 'Đã xem', 10, 1, '2023-11-24 08:04:32'),
+(166, 0xc491e1baa5, 'Đã xem', 10, 1, '2023-11-24 08:04:55'),
+(167, '', 'Đã xem', 10, 1, '2023-11-24 08:04:57'),
+(168, 0xc491c3a27361, 'Đã xem', 10, 1, '2023-11-24 08:04:58'),
+(169, '', 'Đã xem', 10, 1, '2023-11-24 08:04:59'),
+(170, '', 'Đã xem', 10, 1, '2023-11-24 08:04:59'),
+(171, '', 'Đã xem', 10, 1, '2023-11-24 08:04:59'),
+(172, '', 'Đã xem', 10, 1, '2023-11-24 08:04:59'),
+(173, 0xc491c3a273, 'Đã xem', 10, 1, '2023-11-24 08:05:37'),
+(174, 0xc3a1646173, 'Đã xem', 10, 1, '2023-11-24 08:05:42'),
+(175, 0xc491e1baa5, 'Đã xem', 10, 1, '2023-11-24 08:06:22'),
+(176, 0x64617361, 'Đã xem', 10, 1, '2023-11-24 08:09:17'),
+(177, 0x4b6565, 'Đã xem', 10, 1, '2023-11-24 08:09:24'),
+(178, 0x676966207a, 'Đã xem', 1, 10, '2023-11-24 08:09:32'),
+(179, 0x73616f, 'Đã xem', 1, 10, '2023-11-24 08:09:37'),
+(180, 0x4c6f6f, 'Đã xem', 10, 1, '2023-11-24 08:10:23'),
+(181, 0x6c6f6f, 'Đã xem', 10, 1, '2023-11-24 08:10:29'),
+(182, 0x6b616b616b61, 'Đã xem', 10, 1, '2023-11-24 08:10:31'),
+(183, 0x6361686a646b6861736b6a6461, 'Đã xem', 10, 1, '2023-11-24 08:10:33'),
+(184, 0x7364686b6a646173, 'Chưa xem', 1, 10, '2023-11-24 08:10:41'),
+(185, 0x646168736a6164736b, 'Chưa xem', 1, 10, '2023-11-24 08:10:43'),
+(186, 0x4464616e67206c616d6620676966, 'Chưa xem', 1, 10, '2023-11-24 08:15:40'),
+(187, 0x52616e6872206b68, 'Chưa xem', 1, 10, '2023-11-24 08:15:51'),
+(188, 0x6461646173, 'Chưa xem', 1, 10, '2023-11-24 08:15:53'),
+(190, 0x4b686f6f6e6720636f7320676966, 'Chưa xem', 1, 10, '2023-11-24 08:19:25'),
+(257, 0x61646173, 'Đã xem', 7, 1, '2023-11-27 05:16:37'),
+(258, 0x646173647361, 'Đã xem', 7, 1, '2023-11-27 05:16:38'),
+(259, 0x617364617364, 'Đã xem', 7, 1, '2023-11-27 05:16:40'),
+(260, 0x6173646173647361, 'Đã xem', 7, 1, '2023-11-27 05:16:42'),
+(261, 0x64616461736473616173, 'Đã xem', 7, 1, '2023-11-27 05:16:50'),
+(262, 0x6461736461736b34, 'Đã xem', 7, 1, '2023-11-27 05:17:00'),
+(263, 0x6461736a6864736b6173, 'Đã xem', 7, 1, '2023-11-27 05:17:03'),
+(264, 0x6173646173, 'Đã xem', 7, 1, '2023-11-27 05:17:50'),
+(265, 0xc38168646173, 'Đã xem', 11, 1, '2023-11-27 05:33:54'),
+(266, 0x616864617364, 'Đã xem', 11, 1, '2023-11-27 05:33:56'),
+(267, 0x7a68647361736a, 'Đã xem', 1, 11, '2023-11-27 05:34:03');
 
 -- --------------------------------------------------------
 
@@ -288,17 +371,8 @@ CREATE TABLE `orders` (
   `order_status` varchar(30) NOT NULL DEFAULT 'Đang xử lý',
   `account_id` int(123) NOT NULL,
   `shop_id` int(123) NOT NULL,
-  `time_reg` timestamp NOT NULL DEFAULT current_timestamp()
+  `time_reg` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `orders`
---
-
-INSERT INTO `orders` (`order_id`, `order_total`, `order_pay`, `order_note`, `order_status`, `account_id`, `shop_id`, `time_reg`) VALUES
-(71, 26.00, 'Ngân hàng', '', 'Đang vận chuyển', 1, 1, '2023-11-12 09:04:33'),
-(75, 68.00, 'Tiền mặt', 'Anh cho vô túi dùm em', 'Đang xử lý', 8, 1, '2023-11-13 06:31:50'),
-(76, 114.00, 'Ngân hàng', 'Nhớ bỏ dưa chua', 'Đã hủy', 1, 1, '2023-11-13 06:43:58');
 
 -- --------------------------------------------------------
 
@@ -312,23 +386,10 @@ CREATE TABLE `order_details` (
   `details_price` double(10,2) NOT NULL,
   `details_img` varchar(299) NOT NULL,
   `details_qty` int(3) NOT NULL,
+  `details_feedback` int(1) NOT NULL DEFAULT 0,
+  `product_id` int(123) NOT NULL,
   `order_id` int(123) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `order_details`
---
-
-INSERT INTO `order_details` (`details_id`, `details_name`, `details_price`, `details_img`, `details_qty`, `order_id`) VALUES
-(64, 'Rau cải ngọt (Broccoli)', 26.00, 'view/images/product/caingot1.png', 1, 71),
-(68, 'Rau cải ngọt (Broccoli)', 26.00, 'view/images/product/caingot1.png', 1, 75),
-(69, 'Rau cải thảo (Kale)', 21.00, 'view/images/product/caithao1.png', 1, 75),
-(70, 'Xà lách (Lettuce)', 21.00, 'view/images/product/xalach1.png', 1, 75),
-(71, 'Rau cải ngọt (Broccoli)', 26.00, 'view/images/product/caingot1.png', 1, 76),
-(72, 'Rau cải thảo (Kale)', 21.00, 'view/images/product/caithao1.png', 1, 76),
-(73, 'Xà lách (Lettuce)', 21.00, 'view/images/product/xalach1.png', 1, 76),
-(74, 'Khoai tây (Potato', 16.00, 'view/images/product/khoai1.png', 1, 76),
-(75, 'Rau ngò (Parsley)', 30.00, 'view/images/product/raumui1.png', 1, 76);
 
 -- --------------------------------------------------------
 
@@ -342,48 +403,46 @@ CREATE TABLE `product` (
   `product_price` double(10,2) NOT NULL,
   `product_del` double(10,2) NOT NULL DEFAULT 0.00,
   `product_qty` int(3) NOT NULL,
-  `product_origin` varchar(29) NOT NULL,
   `product_view` int(123) NOT NULL,
   `category_id` int(123) NOT NULL,
   `account_id` int(123) NOT NULL,
-  `time_reg` timestamp NOT NULL DEFAULT current_timestamp()
+  `time_reg` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `product`
 --
 
-INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_del`, `product_qty`, `product_origin`, `product_view`, `category_id`, `account_id`, `time_reg`) VALUES
-(1, 'Quả sầu riêng', 21.00, 17.00, 0, 'Daklak', 11, 3, 1, '2023-11-05 09:50:15'),
-(2, 'Chuối', 15.00, 10.00, 200, 'Hà Tĩnh', 10, 3, 1, '2023-11-05 09:50:15'),
-(3, 'Dâu tây California', 30.00, 0.00, 100, 'califonia', 10, 3, 1, '2023-11-05 09:53:12'),
-(4, 'Cam Valencia', 37.00, 0.00, 200, 'Tây Ban Nha', 10, 3, 1, '2023-11-05 09:53:12'),
-(5, 'Nho xanh không hạt', 21.00, 0.00, 99, 'Đà Lạt', 15, 3, 1, '2023-11-05 09:54:40'),
-(6, 'Dừa xiêm', 19.00, 0.00, 200, 'Bến tre', 10, 3, 1, '2023-11-05 09:54:40'),
-(7, 'Táo Fuji', 39.00, 0.00, 297, 'Nhật Bản', 14, 3, 1, '2023-11-05 09:55:54'),
-(8, 'Dứa Cayenne', 32.00, 0.00, 200, 'Bình thuận', 10, 3, 1, '2023-11-05 09:55:54'),
-(11, 'Lê Anh Đào\r\n', 23.00, 0.00, 100, 'Tây nguyên', 10, 3, 1, '2023-11-05 09:58:52'),
-(12, 'Kiwi Hayward', 23.00, 0.00, 200, 'Hà Tĩnh', 10, 3, 1, '2023-11-05 09:58:52'),
-(13, 'Khoai tây (Potato', 18.00, 16.00, 94, 'Ireland ', 13, 2, 1, '2023-11-05 10:01:23'),
-(14, 'Cà rốt (Carrot)', 18.00, 0.00, 200, 'Trung quốc', 10, 2, 1, '2023-11-05 10:01:23'),
-(15, 'Đậu hà lan (Brussels sprouts)', 36.00, 30.00, 300, 'Bỉ', 10, 2, 1, '2023-11-05 10:03:39'),
-(16, 'Củ cải đường (Sugar beet)', 26.00, 0.00, 200, 'Nga', 10, 2, 1, '2023-11-05 10:03:39'),
-(17, 'Củ cải đỏ (Beetroot)', 37.00, 0.00, 200, 'Ấn Độ', 13, 2, 1, '2023-11-05 10:05:25'),
-(18, 'Củ hành (Onion)', 32.00, 0.00, 200, 'Trung Quốc', 10, 2, 1, '2023-11-05 10:05:25'),
-(19, 'Củ đậu tương (Garlic) ', 30.00, 0.00, 200, 'Ireland ', 11, 2, 1, '2023-11-05 10:07:36'),
-(20, 'Khoai lang (Sweet potato)', 28.00, 0.00, 200, 'Trung quốc', 10, 2, 1, '2023-11-05 10:07:36'),
-(21, 'Củ cải trắng (Turnip)', 24.00, 0.00, 100, 'Nhật Bản', 13, 2, 1, '2023-11-05 10:09:05'),
-(22, 'Củ cải lẻ (Radish)', 37.00, 0.00, 200, 'ÚC', 10, 2, 1, '2023-11-05 10:09:05'),
-(23, 'Rau cải ngọt (Broccoli)', 26.00, 0.00, 68, ' Trung Quốc', 157, 1, 1, '2023-11-05 10:12:10'),
-(24, 'Cải bắp (Cabbage)', 19.00, 0.00, 200, 'Bình thuận', 10, 1, 1, '2023-11-05 10:12:10'),
-(25, 'Xà lách (Lettuce)', 21.00, 0.00, 86, 'Tây nguyên', 99, 1, 1, '2023-11-05 10:13:47'),
-(26, 'Rau muống (Morning glory)', 19.00, 0.00, 200, 'Bến tre', 30, 1, 1, '2023-11-05 10:13:47'),
-(27, 'Cải xanh (Spinach)', 30.00, 0.00, 200, 'Daklak', 10, 1, 1, '2023-11-05 10:15:14'),
-(28, 'Rau mùi (Cilantro) ', 15.00, 0.00, 200, 'Bình thuận', 11, 1, 1, '2023-11-05 10:15:14'),
-(29, 'Rau cải thảo (Kale)', 21.00, 0.00, 192, 'Tây nguyên', 117, 1, 1, '2023-11-05 10:16:21'),
-(30, 'Rau diếp cá (Watercress)', 26.00, 0.00, 200, 'Bến tre', 11, 1, 1, '2023-11-05 10:16:21'),
-(31, 'Rau ngò (Parsley)', 30.00, 0.00, 191, 'Nhật Bản', 98, 1, 1, '2023-11-05 10:17:16'),
-(32, 'Rau dền (Amaranth)', 23.00, 0.00, 200, 'Trung quốc', 10, 1, 1, '2023-11-05 10:17:16');
+INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_del`, `product_qty`, `product_view`, `category_id`, `account_id`, `time_reg`) VALUES
+(1, 'Quả sầu riêng', 21.00, 17.00, 0, 27, 3, 1, '2023-11-05'),
+(2, 'Chuối', 15.00, 10.00, 0, 16, 3, 1, '2023-11-05'),
+(3, 'Dâu tây California', 30.00, 0.00, 95, 14, 3, 7, '2023-11-05'),
+(4, 'Cam Valencia', 37.00, 0.00, 200, 10, 3, 7, '2023-11-05'),
+(5, 'Nho xanh không hạt', 21.00, 0.00, 96, 15, 3, 7, '2023-11-05'),
+(6, 'Dừa xiêm', 19.00, 0.00, 200, 10, 3, 7, '2023-11-05'),
+(7, 'Táo Fuji', 39.00, 0.00, 296, 15, 3, 1, '2023-11-05'),
+(8, 'Dứa Cayenne', 32.00, 0.00, 200, 10, 3, 1, '2023-11-05'),
+(11, 'Lê Anh Đào\r\n', 23.00, 0.00, 100, 10, 3, 1, '2023-11-05'),
+(12, 'Kiwi Hayward', 23.00, 0.00, 200, 10, 3, 1, '2023-11-05'),
+(13, 'Khoai tây (Potato', 18.00, 16.00, 94, 14, 2, 1, '2023-11-05'),
+(14, 'Cà rốt (Carrot)', 18.00, 0.00, 200, 10, 2, 1, '2023-11-05'),
+(15, 'Đậu hà lan (Brussels sprouts)', 36.00, 30.00, 299, 10, 2, 1, '2023-11-05'),
+(16, 'Củ cải đường (Sugar beet)', 26.00, 0.00, 200, 10, 2, 1, '2023-11-05'),
+(17, 'Củ cải đỏ (Beetroot)', 37.00, 0.00, 200, 13, 2, 1, '2023-11-05'),
+(18, 'Củ hành (Onion)', 32.00, 0.00, 200, 10, 2, 1, '2023-11-05'),
+(19, 'Củ đậu tương (Garlic) ', 30.00, 0.00, 200, 11, 2, 1, '2023-11-05'),
+(20, 'Khoai lang (Sweet potato)', 28.00, 0.00, 200, 10, 2, 1, '2023-11-05'),
+(21, 'Củ cải trắng (Turnip)', 24.00, 0.00, 100, 13, 2, 1, '2023-11-05'),
+(22, 'Củ cải lẻ (Radish)', 37.00, 0.00, 200, 10, 2, 1, '2023-11-05'),
+(24, 'Cải bắp (Cabbage)', 19.00, 0.00, 200, 10, 1, 1, '2023-11-05'),
+(25, 'Xà lách (Lettuce)', 21.00, 0.00, 55, 111, 1, 1, '2023-11-05'),
+(26, 'Rau muống (Morning glory)', 19.00, 0.00, 191, 30, 1, 1, '2023-11-05'),
+(27, 'Cải xanh (Spinach)', 30.00, 0.00, 200, 10, 1, 1, '2023-11-05'),
+(28, 'Rau mùi (Cilantro) ', 15.00, 0.00, 200, 12, 1, 1, '2023-11-05'),
+(29, 'Rau cải thảo (Kale)', 21.00, 0.00, 171, 190, 1, 1, '2023-11-05'),
+(30, 'Rau diếp cá (Watercress)', 26.00, 0.00, 199, 12, 1, 1, '2023-11-05'),
+(31, 'Rau ngò (Parsley)', 30.00, 0.00, 181, 99, 1, 1, '2023-11-05'),
+(32, 'Rau dền (Amaranth)', 23.00, 0.00, 199, 10, 1, 1, '2023-11-05');
 
 -- --------------------------------------------------------
 
@@ -405,11 +464,10 @@ CREATE TABLE `rate` (
 --
 
 INSERT INTO `rate` (`rate_id`, `rate_comment`, `rate_star`, `product_id`, `account_id`, `time_reg`) VALUES
-(1, 'Hehe', 5, 23, 1, '2023-11-02 13:42:54'),
-(6, 'hàng đẹp', 5, 23, 1, '2023-11-07 16:05:17'),
-(7, 'Xấu đui', 3, 23, 1, '2023-11-08 05:10:19'),
-(8, 'Sản phẩm xấu vồn', 1, 23, 1, '2023-11-08 08:13:54'),
-(9, 'Ổn', 5, 1, 1, '2023-11-09 17:01:44');
+(13, 'asda', 5, 29, 7, '2023-11-27 06:40:15'),
+(14, 'asdasd', 5, 31, 7, '2023-11-27 06:41:31'),
+(15, 'adsasda', 4, 29, 7, '2023-11-27 06:42:06'),
+(16, 'asdas', 3, 29, 7, '2023-11-27 06:43:03');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -475,7 +533,8 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`details_id`),
-  ADD KEY `order_id` (`order_id`);
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Chỉ mục cho bảng `product`
@@ -501,19 +560,19 @@ ALTER TABLE `rate`
 -- AUTO_INCREMENT cho bảng `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `account_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `cart_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
 
 --
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `category_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `discount_code`
@@ -525,13 +584,13 @@ ALTER TABLE `discount_code`
 -- AUTO_INCREMENT cho bảng `image_product`
 --
 ALTER TABLE `image_product`
-  MODIFY `image_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
+  MODIFY `image_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT cho bảng `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `mess_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `mess_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=268;
 
 --
 -- AUTO_INCREMENT cho bảng `new`
@@ -543,25 +602,25 @@ ALTER TABLE `new`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `order_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `details_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `details_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `product_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT cho bảng `rate`
 --
 ALTER TABLE `rate`
-  MODIFY `rate_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `rate_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -571,8 +630,8 @@ ALTER TABLE `rate`
 -- Các ràng buộc cho bảng `cart`
 --
 ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `image_product`
@@ -598,13 +657,14 @@ ALTER TABLE `orders`
 -- Các ràng buộc cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`),
   ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

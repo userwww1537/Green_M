@@ -33,16 +33,91 @@
   color: #006eff;
 
 }
-
+.flex-tinh{
+  position: relative;
+}
+.flex-tinh .con{
+  position: absolute;
+  top: 9px;
+  right: 50px;
+}
 .flex-tinh h3 {
   background-color: #006eff;
   width: 100%;
-  padding: 10px 20px;
+  padding: 10px 40px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   border-radius: 10px;
   color: whitesmoke;
+}
+.search1 {
+  position: relative;
+  display: flex;
+  top: 0px;
+  /* width: 30%; */
+
+}
+.search1 .search-box1{ 
+position: relative;
+padding: 10px 12px;
+
+}
+
+.search-box1 input {
+width: 100%;
+
+transition: 0.6s;
+border: none;
+outline: none;
+padding: 10px 0;
+padding-left: 50px;
+border-radius: 30px;
+box-shadow: var(--shadow);
+}
+.search-box1 i {
+position: absolute;
+left: 20px;
+top: 40%;
+transform: translateY(-50%);
+}
+.search1 .select1 select{
+position: absolute;
+width: 100px;
+justify-content: left;
+text-align:  center;
+top: 14%; 
+padding: 10px; 
+border-radius: 30px;
+/* border: 30px; */
+/* display: flex; */
+border: none;
+/* padding: 10px 0; */
+
+box-shadow: var(--shadow);
+/* border-radius: 50%; */
+right: 0;
+/* float: right; */
+}
+
+.search-box input:focus {
+  width: 100%;
+  padding: 10px 0px;
+  text-align: center;
+}
+
+.search-box:focus-within i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+}
+
+
+.search1 .select1 select option{
+font-size: 14px;
+color: #333;
+background-color: #f2f2f1;
+
 }
 
 .sidebar {
@@ -518,13 +593,14 @@ thead :is(tr, td, th) {
 .container {
   position: fixed;
   top: 10%;
-  right: 1%;
+  right: -100%;
   max-width: 500px;
   margin: 50px auto;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all .5s ease;
 }
 
 h2 {
@@ -549,7 +625,7 @@ select {
   box-sizing: border-box;
   margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 50px;
 }
 
 input[type="submit"] {
@@ -703,6 +779,18 @@ select {
   background-color: #0056b3;
 }
 
+.box-category .calcel-add,
+.container .calcel-up {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: red;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
 #product_id {
   text-transform: uppercase;
 }
@@ -779,4 +867,9 @@ select {
   from {
     width: 100%;
   }
+}
+
+.fill-doanhthu {
+  display: grid;
+  margin-right: 100px;
 }

@@ -2,7 +2,7 @@
 if (isset($_SESSION['83x86'])) {
 ?>
     <script>
-        setInterval(function() {
+        function load() {
             $.ajax({
                 url: "controllers/xuly_login.php",
                 method: "POST",
@@ -10,7 +10,8 @@ if (isset($_SESSION['83x86'])) {
                     account_id_up_auto: "id"
                 }
             });
-        }, 1);
+        }
+        setInterval(load, 30);
     </script>
 <?php
 }
@@ -64,8 +65,8 @@ if (isset($_SESSION['83x86'])) {
             </div>
             <div class="col-md-9">
                 <div class="tab-content">
-                    <div class="tab-pane fade active show" id="account-general">
-                        <form action="controllers/xuly_login.php" method="post" enctype="multipart/form-data">  <!-- FORM CHANGE INFO ACCOUNT -->
+                    <div class="tab-pane fade active show" id="account-general"> <!-- Thay đổi thông tin tài khoản -->
+                        <form action="controllers/xuly_login.php" method="post" enctype="multipart/form-data">
                             <div class="card-body media align-items-center">
                                 <?php
                                     if(isset($_SESSION['83x86'])) {
@@ -215,11 +216,11 @@ if (isset($_SESSION['83x86'])) {
                                         echo '<button type="submit" class="btn btn-primary" name="saveinfoAccount">Lưu thông tin</button>&nbsp;';
                                     }
                                 ?>
-                                <button type="submit" class="btn btn-default">Hủy</button>
+                                <button type="submit" class="btn btn-default" name="cancel_info">Hủy</button>
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="account-pay-info">
+                    <div class="tab-pane fade" id="account-pay-info"> <!-- Thay đổi thông tin thanh toán -->
                         <form action="controllers/xuly_login.php" method="post">
                             <hr class="border-light m-0">
                             <div class="card-body">
@@ -286,11 +287,11 @@ if (isset($_SESSION['83x86'])) {
                             </div>
                             <div class="text-right mt-3">
                                 <button type="submit" class="btn btn-primary" name="saveinfoPay">Lưu thông tin</button>&nbsp;
-                                <button type="submit" class="btn btn-default">Hủy</button>
+                                <button type="submit" class="btn btn-default" name="cancel_info">Hủy</button>
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="account-change-password">
+                    <div class="tab-pane fade" id="account-change-password"> <!-- Thay đổi mật khẩu -->
                         <div class="card-body pb-2">
                             <div class="form-group">
                                 <label class="form-label">Mật khẩu cũ</label>
@@ -307,10 +308,10 @@ if (isset($_SESSION['83x86'])) {
                         </div>
                         <div class="text-right mt-3">
                             <button type="button" class="btn btn-primary" id="btn_change_pass">Đổi mật khẩu</button>&nbsp;
-                            <button type="button" class="btn btn-default">Hủy</button>
+                            <button type="button" class="btn btn-default" name="cancel_info">Hủy</button>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="order-me">
+                    <div class="tab-pane fade" id="order-me"> <!-- Xem đơn hàng của me -->
                         <div class="container">
                             <h1>Thông tin đơn hàng</h1>
 
@@ -350,7 +351,7 @@ if (isset($_SESSION['83x86'])) {
                                                     } echo '
                                                     <td>'. $shop_name .'</td>
                                                     <td>'. $time_reg .'</td>
-                                                    <td><button class="btn-check-details" data-order-id="' . $order_id . '">Xem chi tiết</button></td>
+                                                    <td><button class="btn-check-details" data-order-id="' . $order_id . '" data-order-status="'. $order_status .'">Xem chi tiết</button></td>
                                                 </tr>
                                             ';
                                         }
@@ -426,11 +427,13 @@ if (isset($_SESSION['83x86'])) {
     $(document).ready(function() {
         $(".btn-check-details").click(function() {
             var orderID = $(this).data("order-id");
+            var orderStatus = $(this).data("order-status");
             $.ajax({
                 url: "controllers/xuly_order.php",
                 method: "POST",
                 data: {
-                    orderID: orderID
+                    orderID: orderID,
+                    orderStatus: orderStatus
                 },
                 success: function(data) {
                     $(".details-order").html(data);

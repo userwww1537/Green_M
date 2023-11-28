@@ -3,10 +3,26 @@
 <main>
          <div class="wrapper flex">
             <div class="projects-category">
-               <div class="card-header flex flex-tinh">
-                  <h3>Quản lý shop</h3>
-                  <!-- <button>Thêm danh mục <i class="fas fa-plus"></i></button> -->
-               </div>
+            <div class="card-header flex flex-tinh">
+  <h3>Quản lý Shop</h3>
+  <div class="con">
+  <div class="search1">
+   
+         <div class="search-box1">
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder="Tìm kiếm...">
+         </div>
+         <div class="select1">
+                  <select name="search" id="" >
+                     <option value="hung">Tên shop</option>
+                     <option value="hung">Email</option>
+                     <option value="hung">SĐT</option>
+                     <option value="hung">Địa chỉ</option>
+                  </select>
+         </div>
+         </div>
+</div>
+</div>
 
                <table>
                   <thead>

@@ -258,9 +258,14 @@
             <div class="card mb-sm-3 mb-md-0 contacts_card">
                 <div class="card-header">
                     <div class="input-group">
-                        <input type="text" placeholder="Tìm người dùng.." name="" class="form-control search">
+                        <input type="text" placeholder="Tìm người dùng.." name="" class="form-control search-name-mess">
                         <div class="input-group-prepend">
                             <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+                        </div>
+                        <div class="box-search-user-mess">
+                            <!-- <div class="user-mess-results">
+                                <a href="">Nguyen tan y</a>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -339,5 +344,25 @@
         $('#action_menu_btn').click(function() {
             $('.action_menu').toggle();
         });
+    });
+
+    $(".search-name-mess").keyup(function() {
+        var value = $(this).val();
+        if(value != "") {
+            $.ajax({
+                url: "controllers/xuly_mess.php",
+                method: "POST",
+                data: {
+                    check: 'search_user',
+                    value: value
+                },
+                success: function(data) {
+                    $(".box-search-user-mess").css('display', 'block');
+                    $(".box-search-user-mess").html(data);
+                }
+            });
+        } else {
+            $(".box-search-user-mess").css('display', 'none');
+        }
     });
 </script>

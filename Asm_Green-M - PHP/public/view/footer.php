@@ -44,11 +44,14 @@ if (!isset($act) || $act == "home") {
                     <div class="box">
                         <h2>Danh Mục</h2>
                         <div class="icons">
-                            <a href="#">Rau</a>
-                            <a href="#">Rau</a>
-                            <a href="#">Rau</a>
-                            <a href="#">Rau</a>
-                            <a href="#">Rau</a>
+                            '; 
+                            foreach($show_category_home as $items) {
+                                extract($items);
+                                echo '
+                                    <a href="?act=shop&check=cate&cate_id='. $category_id .'&page=1&start=0">'. $category_name .'</a>
+                                ';
+                            }
+                            echo '
                         </div>
                     </div>
             
