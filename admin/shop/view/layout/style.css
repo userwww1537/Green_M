@@ -137,6 +137,22 @@ header h2 {
   position: relative;
 }
 
+.search-box .input-search {
+  position: relative;
+  width: 300px;
+}
+
+.search-box .input-search select {
+  position: absolute;
+  right: 0;
+  top: 1.5px;
+  width: 60px;
+  border-radius: 30px;
+  border: none;
+  box-shadow: var(--shadow);
+  transition: all .5s ease;
+}
+
 .flex-tinh2 h3 {
   background-color: #006eff;
   width: 30%;
@@ -590,7 +606,6 @@ input[type="submit"]:hover {
 }
 
 .search-box input {
-  width: 60%;
   transition: 0.6s;
   border: none;
   outline: none;

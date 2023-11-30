@@ -10,7 +10,7 @@
    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
    <link rel="stylesheet" href="view/layout/style.css?v=<?php echo time(); ?>">
 </head>
-
+ 
 <body>
    <div class="sidebar" id="sidebar">
       <div class="logo">
@@ -187,8 +187,14 @@
          </h2>
 
          <div class="search-box">
-            <i class="uil uil-search"></i>
-            <input type="text" placeholder="Tìm kiếm...">
+            <div class="input-search">
+               <input type="text" placeholder="Tìm kiếm..." class="value-search">
+               <select id="style">
+                  <option value="id">Id</option>
+                  <option value="name">Tên</option>
+                  <option value="cate">Danh mục</option>
+               </select>
+            </div>
          </div>
 
          <div class="admin-box flex">
