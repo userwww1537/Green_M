@@ -4,7 +4,14 @@
     if(session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+    if (file_exists('../model/category.php')) {
+        require "../model/category.php";
+    }
 
+    if(isset($check) && $check == "del-cate") {
+        $cate = new cate_lass();
+        $cate->del_cate($id_cate);
+    }
 
     if(isset($addcategory_submit)) {
         $cate = new cate_lass();
