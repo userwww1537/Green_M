@@ -4,6 +4,8 @@ if(isset($_SESSION['delCookie']) && $_SESSION['delCookie'] == True) {
     unset($_COOKIE['accountsave']);
     unset($_SESSION['83x86']);
     unset($_SESSION['delCookie']);
+    unset($_SESSION['ting_order']);
+    unset($_SESSION['ting_mess']);
 }
 
 if (isset($_COOKIE['accountsave']) && $_COOKIE['accountsave'] != "true" && !isset($_SESSION['83x86'])) {

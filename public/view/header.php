@@ -60,7 +60,7 @@
                         <ul class="btn-user account-father">
                             <button class="account-name"><i class="fad fa-user-alt"></i>'. $_SESSION['83x86']['account_name'] .'</button>
                             <ul class="account-con">
-                                <li><a class="loadkkk" href="?act=profile">Hồ sơ cá nhân</a></li>
+                                <li><a class="loadkkk" href="profile/index.php">Hồ sơ cá nhân</a></li>
                                 <li><a class="loadkkk" href="index.php?act=logout&checkkkk=">Đăng xuất</a></li>
                             </ul>
                         </ul>
@@ -180,6 +180,7 @@
     </div>
 
     <script>
+        var checkEmail = true, checkUsername = true, checkPass = true;
         $("#search-box").keyup(function() {
             var value = $(this).val();
             if(value == "") {
@@ -202,7 +203,7 @@
 
         $("#form_action_reg").submit(function(e) {
             e.preventDefault();
-            if($("#password_reg").val() == $("#password_reg_again").val()) {
+            if($("#password_reg").val() == $("#password_reg_again").val() && checkEmail == true && checkUsername == true && checkPass == true) {
                 $.ajax({
                     url: "controllers/xuly_login.php",
                     method: "POST",
@@ -220,6 +221,15 @@
                         $(".box-reg-form").css("right", "-100%");
                     }
                 });
+            } else if(checkEmail == false) {
+                $(".error_noti").text("Email đã tồn tại!");
+                show_error();
+            } else if(checkUsername == false) {
+                $(".error_noti").text("Username đã tồn tại!");
+                show_error();
+            } else if(checkPass == false) {
+                $(".error_noti").text("Mật khẩu quá ngắn!");
+                show_error();
             } else {
                 $(".error_noti").text("Mật khẩu không trùng khớp!");
                 show_error();
@@ -336,6 +346,11 @@
                         },
                         success: function(data) {
                             $(".verified_username_reg").html(data);
+                            if(data != '') {
+                                checkUsername = false;
+                            } else {
+                                checkUsername = true;
+                            }
                         }
                     });
                 } else {
@@ -354,6 +369,11 @@
                         },
                         success: function(data) {
                             $(".verified_email_reg").html(data);
+                            if(data != '') {
+                                checkEmail = false;
+                            } else {
+                                checkEmail = true;
+                            }
                         }
                     });
                 } else {
@@ -365,13 +385,17 @@
                 var passwordLength = $(this).val().length;
                 
                 if (passwordLength == 0) {
+                    checkPass = false;
                     $(".line-pass").css({'background': '', 'width': ''});
                     $(".verified_password_reg").html("");
                 } else if (passwordLength < 8) {
+                    checkPass = false;
                     $(".line-pass").css({'background': 'red', 'width': '30%'});
                 } else if (passwordLength >= 8 && passwordLength < 12) {
+                    checkPass = true;
                     $(".line-pass").css({'background': 'yellow', 'width': '60%'});
                 } else {
+                    checkPass = true;
                     $(".line-pass").css({'background': 'green', 'width': '100%'});
                 }
             });

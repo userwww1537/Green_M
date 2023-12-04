@@ -1257,11 +1257,15 @@
         $ketqua = $account->check_username($input);
         if($ketqua > 0) {
             echo '<div class="verified_username_reg" style="color: red;">Username đã tồn tại!</div>';
+        } else {
+            echo '';
         }
     } else if(isset($check) && $check == "checkEmailReg") {
         $ketqua = $account->check_email($input);
         if($ketqua > 0) {
             echo '<div class="verified_email_reg" style="color: red;">Email đã tồn tại!</div>';
+        } else {
+            echo '';
         }
     }
 

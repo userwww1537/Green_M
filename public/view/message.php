@@ -1,3 +1,12 @@
+<?php
+    if(!isset($_SESSION['83x86'])) {
+        echo '
+            <script>
+                window.location.href = "index.php";
+            </script>
+        ';
+    }
+?>
 <br> <br>
 <style>
     .chat {

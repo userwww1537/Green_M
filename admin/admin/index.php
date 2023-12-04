@@ -10,6 +10,13 @@
     $account = new account_lass();
     $order = new order_lass();
     $cate = new cate_lass();
+    if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] != 'Quản trị viên') {
+        echo '
+            <script>
+                window.location.href = "../../public/";
+            </script>
+        ';
+    }
     if(isset($act)){
         switch ($act){
             case 'user':

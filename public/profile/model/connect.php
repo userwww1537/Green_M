@@ -1,18 +1,20 @@
 <?php
-    class dao_con {
+    class dao_profile {
         function conn_db() {
             $sqlServer = "mysql:host=localhost; dbname=green_m8683;charset=utf8;collation=utf8_unicode_ci";
             $username = "root";
             $password = "";
-    
+        
             try {
                 $conn = new PDO($sqlServer, $username, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch(PDOException $e) {
                 echo 'Ket noi database that bai do ' . $e->getMessage();
             }
+        
             return $conn;
         }
+        
     
         //Them Sua Xoa
         function conn_execute($sql) {

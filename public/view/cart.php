@@ -48,7 +48,7 @@
                                 <td><img id="cart_img" src="'. $cart_img .'" alt=""></td>
                                 <td id="cart_name">'. $cart_name .'</td>
                                 <td id="cart_price">$'. $cart_price .'</td>
-                                <td id="cart_qty"><input type="number" class="cart_qty_up" min="1" value="'. $cart_qty .'"></td>
+                                <td id="cart_qty"><input type="number" class="cart_qty_up" min="0" value="'. $cart_qty .'"></td>
                                 <td id="cart_qty">'. $shop_name .'</td>
                                 <td>$'. $tong_sl .'</td>
                             </tr>
@@ -215,13 +215,15 @@
     $(".cart_qty_up").on("change", function() {
         var value = $(this).val();
         var pro_id = $(this).closest('tr').find("#product_id").val();
+        var cart_id = $(this).closest('tr').find("#cart_id").val();
         $.ajax({
             url: 'controllers/xuly_cart.php',
             method: "POST",
             data: {
                 check: "update_qty_cart",
                 value: value,
-                pro_id: pro_id
+                pro_id: pro_id,
+                cart_id: cart_id
             },
             success: function() {
                 location.reload();

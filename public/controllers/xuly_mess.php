@@ -67,32 +67,34 @@
     } else if(isset($check) && $check == "updateSeen") {
         $reponsive = array();
         $ketqua = $mess->check_seen();
-        if(isset($_SESSION['ting_mess'])) {
-            if($_SESSION['ting_mess'] != $ketqua['message_count']) {
-                $reponsive['thongbao'] = '
-                    <audio autoplay src="view/music/mp3.m4a"></audio>
-                    <script>
-                        if ("Notification" in window) {
-                            Notification.requestPermission().then(function(permission) {
-                            if (permission === "granted") {
-                                var notification = new Notification("Thông báo từ Green-M!", {
-                                    body: "'. $_SESSION['83x86']['account_name'] .' ơi, bạn có tin nhắn mới.",
-                                });
-                                notification.addEventListener("click", function() {
-                                    window.open("http://localhost/DuAn1/Asm_Green-M%20-%20PHP/public/index.php?act=message", "_blank");
+        if(isset($_SESSION['83x86'])) {
+            if(isset($_SESSION['ting_mess'])) {
+                if($_SESSION['ting_mess'] != $ketqua['message_count']) {
+                    $reponsive['thongbao'] = '
+                        <audio autoplay src="view/music/mp3.m4a"></audio>
+                        <script>
+                            if ("Notification" in window) {
+                                Notification.requestPermission().then(function(permission) {
+                                if (permission === "granted") {
+                                    var notification = new Notification("Thông báo từ Green-M!", {
+                                        body: "'. $_SESSION['83x86']['account_name'] .' ơi, bạn có tin nhắn mới.",
+                                    });
+                                    notification.addEventListener("click", function() {
+                                        window.open("http://localhost/DuAn1/Asm_Green-M%20-%20PHP/public/index.php?act=message", "_blank");
+                                    });
+                                }
                                 });
                             }
-                            });
-                        }
-                    </script>
-                ';
-                $_SESSION['ting_mess'] = $ketqua['message_count'];
+                        </script>
+                    ';
+                    $_SESSION['ting_mess'] = $ketqua['message_count'];
+                } else {
+                    $reponsive['ketqua'] = $ketqua['message_count'];
+                }
             } else {
+                $_SESSION['ting_mess'] = $ketqua['message_count'];
                 $reponsive['ketqua'] = $ketqua['message_count'];
             }
-        } else {
-            $_SESSION['ting_mess'] = $ketqua['message_count'];
-            $reponsive['ketqua'] = $ketqua['message_count'];
         }
         echo json_encode($reponsive);
     }
