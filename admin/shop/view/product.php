@@ -270,6 +270,68 @@
 <div class="test-bug" style="font-size: 100px;"></div>
 
 <script>
+   $(document).ready(function() {
+      $("#proDmSearch").on('change', function() {
+         var value = $(this).val();
+         if(value === '') {
+            $('.value-search-pro').prop('readonly', true);
+            $('.value-search-pro').attr('placeholder', 'Chọn chế độ tìm...');
+         } else {
+            if(value == 'name') {
+            $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền tên sản phẩm cần tìm...');
+            } else {
+            $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền danh mục cần tìm...');
+            }
+         }
+      });
+
+      $(".value-search-pro").on('keyup', function() {
+         var value = $(this).val();
+         var check = $("#proDmSearch").val();
+         if(value != '') {   
+            if(check == "name") {
+               $.ajax({
+                  url: "controllers/xuly_product.php",
+                  method: "POST",
+                  data: {
+                     check: "searchNameProduct",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            } else {
+               $.ajax({
+                  url: "controllers/xuly_product.php",
+                  method: "POST",
+                  data: {
+                     check: "searchCateProduct",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            }
+         } else {
+            $.ajax({
+               url: "controllers/xuly_product.php",
+               method: "POST",
+               data: {
+                  check: "searchAllProduct",
+                  value: value
+               },
+               success: function(data) {
+                  $('tbody').html(data);
+               }
+            });
+         }
+      });
+   });
+
    $(".up-pro").on('click', function() {
       $(".box-up-category").css('right', '0px');
       var name = $(this).data("product-name");

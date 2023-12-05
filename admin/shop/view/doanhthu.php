@@ -39,11 +39,11 @@
                         foreach ($count as $jtems) {
                            if($jtems['order_status'] == "Giao thành công") {
                               if ($account_id == $jtems['account_id']) {
-                                 $count_revenue += $jtems['order_total'];
+                                 $count_revenue += $jtems['order_total_shop'];
                               }
                            }
                         }
-                        $total_revenue = $count_revenue * 0.03;
+                        $total_revenue = $count_revenue * 0.97;
                         $address = substr($account_address, 0, 18) . '...';
                         echo '
                            <tr>
@@ -51,7 +51,7 @@
                               <td>'. $account_name .'</td>
                               <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
                               <td>'. $account_phone .'</td>
-                              <td>$'. $total_revenue .'</td>
+                              <td>$'. $count_revenue .'</td>
                               <td>'. $order_count .'</td>
                               <td class="kkk2">
                                  <button>

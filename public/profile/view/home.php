@@ -72,6 +72,19 @@
                         <td>:</td>
                         <td>Có <?=$countOrder['total_orders']?> đơn hàng</td>
                     </tr>
+                    <?php
+                        if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] == 'Shop') {
+                            $oldDate = strtotime($_SESSION['83x86']['time_store']);
+                            $newDate = date('\N\g\à\y\ d \T\h\á\n\g\ m \N\ă\m\ Y', $oldDate);
+                            echo '
+                                <tr>
+                                    <td>Trở thành nhà bán hàng từ: </td>
+                                    <td>:</td>
+                                    <td>'. $newDate .'</td>
+                                </tr>
+                            ';
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>

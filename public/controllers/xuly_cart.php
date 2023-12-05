@@ -503,7 +503,7 @@
         }
     }
 
-    if(isset($check) && $check == "update_qty_cart") {
+    if(isset($checkQTY) && $checkQTY == "update_qty_cart") {
         if($value == 0) {
             $cart->del_cart($cart_id);
         } else {

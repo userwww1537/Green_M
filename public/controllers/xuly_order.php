@@ -43,14 +43,16 @@ if(isset($_SESSION['83x86'])) {
                 $tempTotal = 0;
                 foreach($show_cart_log as $items) {
                     if($shop_id == $items['shop_id']) {
-                        $tempTotal += $items['cart_price'];
+                        $tempTotal += $items['cart_price'] * $items['cart_qty'];
                     }
                 }
                 $total[$shop_id] = $tempTotal;
             }
             
             foreach($shops as $shop_id) {
-                $order->add_order($total[$shop_id], $thanhtoan, $order_note, $shop_id);
+                $phantramgiam = intval($code_reduced);
+                $tongTienAdd = $total[$shop_id] - ($total[$shop_id] * $phantramgiam / 100);
+                $order->add_order($tongTienAdd, $thanhtoan, $order_note, $shop_id, $code_reduced);
                 foreach($show_cart_log as $items) {
                     if($shop_id == $items['shop_id']) {
                         $product->update_qty_product($items['cart_qty'], $items['product_id']);
@@ -72,14 +74,16 @@ if(isset($_SESSION['83x86'])) {
                 $tempTotal = 0;
                 foreach($show_cart_log as $items) {
                     if($shop_id == $items['shop_id']) {
-                        $tempTotal += $items['cart_price'];
+                        $tempTotal += $items['cart_price'] * $items['cart_qty'];
                     }
                 }
                 $total[$shop_id] = $tempTotal;
             }
             
             foreach($shops as $shop_id) {
-                $order->add_order($total[$shop_id], $thanhtoan, $order_note, $shop_id);
+                $phantramgiam = intval($code_reduced);
+                $tongTienAdd = $total[$shop_id] - ($total[$shop_id] * $phantramgiam / 100);
+                $order->add_order($tongTienAdd, $thanhtoan, $order_note, $shop_id, $code_reduced);
                 foreach($show_cart_log as $items) {
                     if($shop_id == $items['shop_id']) {
                         $product->update_qty_product($items['cart_qty'], $items['product_id']);

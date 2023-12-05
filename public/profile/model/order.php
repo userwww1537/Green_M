@@ -6,7 +6,7 @@
                     FROM orders
                     JOIN account ON orders.shop_id = account.account_id
                     WHERE orders.account_id = ?
-                    ORDER BY orders.time_reg DESC
+                    ORDER BY orders.order_id DESC
             ";
             return $this->conn_show_all($sql, $_SESSION['83x86']['account_id']);
         }
@@ -70,6 +70,21 @@
                 ";
             }
             return $this->conn_show_one($sql, $_SESSION['83x86']['account_id']);
+        }
+
+        public function cancelOrder($a) {
+            $sql = "UPDATE orders SET order_status = 'Đã hủy', order_cancel = '1' WHERE order_id = ?";
+            return $this->conn_execute($sql, $a);
+        }
+
+        public function showSearch($a) {
+            $a = '%' . $a . '%';
+            $sql = "SELECT orders.*, account.account_name
+                    FROM orders
+                    JOIN account ON orders.shop_id = account.account_id
+                    WHERE account.account_name LIKE '$a' AND orders.account_id = ?
+                    ORDER BY orders.order_id DESC";
+            return $this->conn_show_all($sql, $_SESSION['83x86']['account_id']);
         }
     }
 ?>

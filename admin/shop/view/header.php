@@ -186,16 +186,39 @@
             <i class="uil uil-bars" id="menu-icon"></i>
          </h2>
 
-         <div class="search-box">
-            <div class="input-search">
-               <input type="text" placeholder="Tìm kiếm..." class="value-search">
-               <select id="style">
-                  <option value="id">Id</option>
-                  <option value="name">Tên</option>
-                  <option value="cate">Danh mục</option>
-               </select>
-            </div>
-         </div>
+         <?php
+            if(isset($act)) {
+               if($act == 'product') {
+                  echo '
+                     <div class="search-box">
+                        <div class="input-search">
+                           <input type="text" placeholder="Chọn chế độ tìm..." class="value-search-pro" readonly>
+                           <select id="proDmSearch">
+                              <option value="">...</option>
+                              <option value="name">Tên</option>
+                              <option value="cate">Danh mục</option>
+                           </select>
+                        </div>
+                     </div>
+                  ';
+               } else if($act == 'order') {
+                  echo '
+                     <div class="search-box">
+                        <div class="input-search">
+                           <input type="text" placeholder="Chọn chế độ tìm..." class="value-search-pro" readonly>
+                           <select id="proDmSearch">
+                              <option value="">...</option>
+                              <option value="id">Id đơn hàng</option>
+                              <option value="name">Tên KH</option>
+                              <option value="status">Trạng thái</option>
+                              <option value="phone">Số điện thoại</option>
+                           </select>
+                        </div>
+                     </div>
+                  ';
+               }
+            }
+         ?>
 
          <div class="admin-box flex">
             <img src="../../public/<?= $_SESSION['83x86']['account_avt'] ?>" width="30px" height="30px">

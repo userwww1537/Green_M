@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 04, 2023 lúc 03:16 PM
+-- Thời gian đã tạo: Th12 05, 2023 lúc 11:03 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -42,6 +42,7 @@ CREATE TABLE `account` (
   `account_position` varchar(20) NOT NULL DEFAULT 'Khách hàng',
   `account_notify` varchar(100) NOT NULL,
   `account_status` varchar(30) NOT NULL DEFAULT 'Offline',
+  `time_store` date NOT NULL DEFAULT current_timestamp(),
   `time_reg` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -49,11 +50,13 @@ CREATE TABLE `account` (
 -- Đang đổ dữ liệu cho bảng `account`
 --
 
-INSERT INTO `account` (`account_id`, `account_name`, `account_address`, `account_number_pay`, `account_pay`, `account_avt`, `account_username`, `account_email`, `account_verified_mail`, `account_phone`, `account_pass`, `account_position`, `account_notify`, `account_status`, `time_reg`) VALUES
-(1, 0x4e677579e1bb856e2054e1baa56e20c39d, '56a Cống Lỡ, Phường 15, Quận Tân Bình, TP Hồ Chí Minh', '2204049999', 'MBBank', 'view/images/account/Ý 30k$.jpg', 'nguyentany', 'nguyentany.tricker@gmail.com', 'Đã xác thực', '0345123856', '123', 'Shop', '', 'Online', '2023-11-05 10:00:11'),
-(7, 0xc490e1baad752056c4836e2044c5a96e67, '199 Đông Bắc, Phường Tân Chánh Hiệp, Quận 12, TP, Hồ Chí Minh', '', '', 'view/images/account/user.png', 'dauvandung', 'vandungdau583@gmail.com', 'Đã xác thực', '0358676293', '123', 'Shop', '', 'Offline', '2023-11-13 06:14:55'),
-(8, 0x4e677579e1bb856e205468616e68205475e1baa56e, '3d Tân Chánh Hiệp 17, Quận 12, TP. Hồ Chí Minh', '', '', 'view/images/account/user.png', 'nguyenthanhtuan', 'tuanxelu12@gmail.com', 'Đã xác thực', '0363156469', '123', 'Khách hàng', '', 'Offline', '2023-11-13 06:25:31'),
-(10, 0x41646d696e20f09f9888, '148/3 Hùng vương easup đắk lắk', '1234567', 'Techcombank', 'view/images/account/user.png', 'admin', 'hotro.greenm@gmail.com\n', 'Đã xác thực', '0388322426', '123', 'Quản trị viên', '', 'Online', '2023-11-17 08:29:37');
+INSERT INTO `account` (`account_id`, `account_name`, `account_address`, `account_number_pay`, `account_pay`, `account_avt`, `account_username`, `account_email`, `account_verified_mail`, `account_phone`, `account_pass`, `account_position`, `account_notify`, `account_status`, `time_store`, `time_reg`) VALUES
+(1, 0x4e677579e1bb856e2054e1baa56e20c39d, '56a Cống Lỡ, Phường 15, Quận Tân Bình, TP Hồ Chí Minh', '2204049999', 'MBBank', 'view/images/account/Ý 30k$.jpg', 'nguyentany', 'nguyentany.tricker@gmail.com', 'Đã xác thực', '0345123856', '123', 'Shop', '', 'Online', '2022-10-05', '2023-11-05 10:00:11'),
+(7, 0xc490e1baad752056c4836e2044c5a96e67, '199 Đông Bắc, Phường Tân Chánh Hiệp, Quận 12, TP, Hồ Chí Minh', '', '', 'view/images/account/user.png', 'dauvandung', 'vandungdau583@gmail.com', 'Đã xác thực', '0358676293', '123', 'Shop', '', 'Offline', '2023-05-01', '2023-11-13 06:14:55'),
+(8, 0x4e677579e1bb856e205468616e68205475e1baa56e, '3d Tân Chánh Hiệp 17, Quận 12, TP. Hồ Chí Minh', '', '', 'view/images/account/user.png', 'nguyenthanhtuan', 'tuanxelu12@gmail.com', 'Đã xác thực', '0363156469', '123', 'Khách hàng', '', 'Offline', '2023-12-05', '2023-11-13 06:25:31'),
+(10, 0x41646d696e20f09f9888, '148/3 Hùng vương easup đắk lắk', '1234567', 'Techcombank', 'view/images/account/user.png', 'admin', 'hotro.greenm@gmail.com\n', 'Đã xác thực', '0388322426', '123', 'Quản trị viên', '', 'Offline', '2023-12-05', '2023-11-17 08:29:37'),
+(23, 0x56c3b52056c4836e2048c3b96e67, '', '', '', 'view/images/account/user.png', 'vovanhung', 'hungvvps31551@fpt.edu.vn', 'Chưa xác thực', '', '123123123', 'Khách hàng', '', 'Offline', '2023-12-05', '2023-12-04 15:18:40'),
+(24, 0x4cc6b0c6a16e672052e1baad6e2054c3ad6e68, '132 cộng hòa', '', '', 'view/images/account/user.png', 'luongrantinh', 'luongrantinh@gmail.com', 'Chưa xác thực', '0333123345', '123123123', 'Shop', '', 'Online', '0000-00-00', '2023-12-05 07:36:11');
 
 -- --------------------------------------------------------
 
@@ -72,6 +75,15 @@ CREATE TABLE `cart` (
   `shop_id` int(123) NOT NULL,
   `time_reg` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `cart_name`, `cart_price`, `cart_img`, `cart_qty`, `product_id`, `account_id`, `shop_id`, `time_reg`) VALUES
+(235, 'Rau cải thảo (Kale)', 21.00, 'view/images/product/caithao1.png', 2, 29, 23, 1, '2023-12-04 15:19:00'),
+(236, 'Xà lách (Lettuce)', 21.00, 'view/images/product/xalach1.png', 3, 25, 23, 1, '2023-12-04 15:19:01'),
+(237, 'Nho xanh không hạt', 21.00, 'view/images/product/nho1.png', 1, 5, 23, 7, '2023-12-04 15:19:03');
 
 -- --------------------------------------------------------
 
@@ -116,7 +128,7 @@ CREATE TABLE `discount_code` (
 --
 
 INSERT INTO `discount_code` (`code_id`, `code_gift`, `code_reduced`, `code_qty`, `code_status`, `reg_time`) VALUES
-(1, 'GREEN-M-8386', 30, 14, 'On', '2023-11-08 11:24:46');
+(1, 'GREEN-M-8386', 30, 0, 'On', '2023-11-08 11:24:46');
 
 -- --------------------------------------------------------
 
@@ -314,21 +326,24 @@ INSERT INTO `messages` (`mess_id`, `mess_content`, `mess_status`, `account_from`
 (264, 0x6173646173, 'Đã xem', 7, 1, '2023-11-27 05:17:50'),
 (268, 0x686a6b686b6a, 'Đã xem', 1, 10, '2023-11-28 08:05:37'),
 (269, 0x6a6b686a6b68, 'Đã xem', 1, 10, '2023-11-28 08:05:50'),
-(270, 0x68646b6a6173, 'Chưa xem', 10, 1, '2023-11-28 14:05:56'),
-(271, 0x6a6b617364676861736b6a, 'Chưa xem', 10, 1, '2023-11-28 14:05:57'),
-(272, 0x6861736b6a646861736b6a, 'Chưa xem', 10, 1, '2023-11-28 14:05:58'),
-(273, 0x686b6a646861736b646173, 'Chưa xem', 10, 1, '2023-11-28 14:06:01'),
-(274, 0x6e6861, 'Chưa xem', 10, 1, '2023-11-28 15:33:57'),
-(275, 0x6473, 'Chưa xem', 10, 1, '2023-11-28 15:34:03'),
-(276, 0x7364, 'Chưa xem', 10, 1, '2023-11-28 15:34:04'),
-(277, 0x73, 'Chưa xem', 10, 1, '2023-11-28 15:34:04'),
-(278, 0x73, 'Chưa xem', 10, 1, '2023-11-28 15:34:04'),
-(279, 0x64, 'Chưa xem', 10, 1, '2023-11-28 15:34:04'),
-(280, 0x7364736473, 'Chưa xem', 10, 1, '2023-11-28 15:34:05'),
-(281, 0x64, 'Chưa xem', 10, 1, '2023-11-28 15:34:05'),
-(282, 0x7364, 'Chưa xem', 10, 1, '2023-11-28 15:34:05'),
-(283, 0x73, 'Chưa xem', 10, 1, '2023-11-28 15:34:05'),
-(284, 0x6461206d61207465, 'Chưa xem', 10, 1, '2023-11-28 15:34:12');
+(270, 0x68646b6a6173, 'Đã xem', 10, 1, '2023-11-28 14:05:56'),
+(271, 0x6a6b617364676861736b6a, 'Đã xem', 10, 1, '2023-11-28 14:05:57'),
+(272, 0x6861736b6a646861736b6a, 'Đã xem', 10, 1, '2023-11-28 14:05:58'),
+(273, 0x686b6a646861736b646173, 'Đã xem', 10, 1, '2023-11-28 14:06:01'),
+(274, 0x6e6861, 'Đã xem', 10, 1, '2023-11-28 15:33:57'),
+(275, 0x6473, 'Đã xem', 10, 1, '2023-11-28 15:34:03'),
+(276, 0x7364, 'Đã xem', 10, 1, '2023-11-28 15:34:04'),
+(277, 0x73, 'Đã xem', 10, 1, '2023-11-28 15:34:04'),
+(278, 0x73, 'Đã xem', 10, 1, '2023-11-28 15:34:04'),
+(279, 0x64, 'Đã xem', 10, 1, '2023-11-28 15:34:04'),
+(280, 0x7364736473, 'Đã xem', 10, 1, '2023-11-28 15:34:05'),
+(281, 0x64, 'Đã xem', 10, 1, '2023-11-28 15:34:05'),
+(282, 0x7364, 'Đã xem', 10, 1, '2023-11-28 15:34:05'),
+(283, 0x73, 'Đã xem', 10, 1, '2023-11-28 15:34:05'),
+(284, 0x6461206d61207465, 'Đã xem', 10, 1, '2023-11-28 15:34:12'),
+(285, 0x4cc3b4, 'Đã xem', 1, 23, '2023-12-04 15:19:18'),
+(286, 0x4cc3b4, 'Đã xem', 1, 23, '2023-12-04 15:19:21'),
+(287, 0x48e1baa3, 'Chưa xem', 23, 1, '2023-12-04 15:19:29');
 
 -- --------------------------------------------------------
 
@@ -369,6 +384,7 @@ INSERT INTO `new` (`new_id`, `new_title`, `news_content`, `news_img`, `reg_time`
 CREATE TABLE `orders` (
   `order_id` int(123) NOT NULL,
   `order_total` double(10,2) NOT NULL,
+  `order_total_shop` double(10,2) NOT NULL,
   `order_pay` varchar(15) NOT NULL,
   `order_note` varchar(299) NOT NULL DEFAULT 'Không có ghi chú',
   `order_promo` int(2) NOT NULL DEFAULT 0,
@@ -378,15 +394,6 @@ CREATE TABLE `orders` (
   `shop_id` int(123) NOT NULL,
   `time_reg` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `orders`
---
-
-INSERT INTO `orders` (`order_id`, `order_total`, `order_pay`, `order_note`, `order_promo`, `order_status`, `order_cancel`, `account_id`, `shop_id`, `time_reg`) VALUES
-(130, 21.00, 'Ngân hàng', 'Nhớ đóng gói cho em', 0, 'Đã hủy', 1, 10, 1, '2023-12-04'),
-(131, 49.00, 'Tiền mặt', 'Nhớ', 0, 'Giao thành công', 0, 10, 1, '2023-12-04'),
-(132, 21.00, 'Tiền mặt', 'Nhớ', 0, 'Đang chờ duyệt', 0, 10, 7, '2023-12-04');
 
 -- --------------------------------------------------------
 
@@ -404,16 +411,6 @@ CREATE TABLE `order_details` (
   `product_id` int(123) NOT NULL,
   `order_id` int(123) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `order_details`
---
-
-INSERT INTO `order_details` (`details_id`, `details_name`, `details_price`, `details_img`, `details_qty`, `details_feedback`, `product_id`, `order_id`) VALUES
-(158, 'Rau cải thảo (Kale)', 21.00, 'view/images/product/caithao1.png', 1, 0, 29, 130),
-(159, 'Rau ngò (Parsley)', 30.00, 'view/images/product/raumui1.png', 1, 0, 31, 131),
-(160, 'Rau muống (Morning glory)', 19.00, 'view/images/product/raumuong1.png', 1, 0, 26, 131),
-(161, 'Nho xanh không hạt', 21.00, 'view/images/product/nho1.png', 1, 0, 5, 132);
 
 -- --------------------------------------------------------
 
@@ -441,17 +438,17 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_del`, `product_qty`, `product_view`, `product_des`, `category_id`, `account_id`, `time_reg`) VALUES
 (1, 'Quả sầu riêng', 21.00, 17.00, 0, 29, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 1, '2023-11-05'),
 (2, 'Chuối', 15.00, 10.00, 0, 17, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 1, '2023-11-05'),
-(3, 'Dâu tây California', 30.00, 0.00, 95, 14, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 7, '2023-11-05'),
+(3, 'Dâu tây California', 30.00, 0.00, 94, 14, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 7, '2023-11-05'),
 (4, 'Cam Valencia', 37.00, 0.00, 200, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 7, '2023-11-05'),
-(5, 'Nho xanh không hạt', 21.00, 0.00, 95, 15, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 7, '2023-11-05'),
+(5, 'Nho xanh không hạt', 21.00, 0.00, 93, 16, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 7, '2023-11-05'),
 (6, 'Dừa xiêm', 19.00, 0.00, 200, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 7, '2023-11-05'),
-(7, 'Táo Fuji', 39.00, 0.00, 296, 15, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 1, '2023-11-05'),
+(7, 'Táo Fuji', 39.00, 0.00, 295, 15, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 1, '2023-11-05'),
 (8, 'Dứa Cayenne', 32.00, 0.00, 200, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 1, '2023-11-05'),
 (11, 'Lê Anh Đào\r\n', 23.00, 0.00, 100, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 1, '2023-11-05'),
 (12, 'Kiwi Hayward', 23.00, 0.00, 200, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 3, 1, '2023-11-05'),
-(13, 'Khoai tây (Potato', 18.00, 16.00, 94, 14, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 2, 1, '2023-11-05'),
+(13, 'Khoai tây (Potato', 18.00, 16.00, 93, 14, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 2, 1, '2023-11-05'),
 (14, 'Cà rốt (Carrot)', 18.00, 0.00, 200, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 2, 1, '2023-11-05'),
-(15, 'Đậu hà lan (Brussels sprouts)', 36.00, 30.00, 299, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 2, 1, '2023-11-05'),
+(15, 'Đậu hà lan (Brussels sprouts)', 36.00, 30.00, 298, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 2, 1, '2023-11-05'),
 (16, 'Củ cải đường (Sugar beet)', 26.00, 0.00, 200, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 2, 1, '2023-11-05'),
 (17, 'Củ cải đỏ (Beetroot)', 37.00, 0.00, 200, 13, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 2, 1, '2023-11-05'),
 (18, 'Củ hành (Onion)', 32.00, 0.00, 200, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 2, 1, '2023-11-05'),
@@ -460,13 +457,13 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_d
 (21, 'Củ cải trắng (Turnip)', 24.00, 0.00, 100, 14, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 2, 1, '2023-11-05'),
 (22, 'Củ cải lẻ (Radish)', 37.00, 0.00, 200, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 2, 1, '2023-11-05'),
 (24, 'Cải bắp (Cabbage)', 19.00, 0.00, 200, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05'),
-(25, 'Xà lách (Lettuce)', 21.00, 0.00, 53, 112, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05'),
-(26, 'Rau muống (Morning glory)', 19.00, 0.00, 190, 33, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05'),
+(25, 'Xà lách (Lettuce)', 21.00, 0.00, 36, 112, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05'),
+(26, 'Rau muống (Morning glory)', 19.00, 0.00, 189, 33, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05'),
 (27, 'Cải xanh (Spinach)', 30.00, 0.00, 200, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05'),
 (28, 'Rau mùi (Cilantro) ', 15.00, 0.00, 200, 13, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05'),
-(29, 'Rau cải thảo (Kale)', 21.00, 0.00, 168, 194, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05'),
+(29, 'Rau cải thảo (Kale)', 21.00, 0.00, 152, 195, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05'),
 (30, 'Rau diếp cá (Watercress)', 26.00, 0.00, 199, 12, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05'),
-(31, 'Rau ngò (Parsley)', 30.00, 0.00, 179, 100, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05'),
+(31, 'Rau ngò (Parsley)', 30.00, 0.00, 168, 100, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05'),
 (32, 'Rau dền (Amaranth)', 23.00, 0.00, 199, 10, 0x4e68e1baad70206dc3b42074e1baa3206e67e1baaf6e2076c3b420c491c3a279206e686120f09f9898, 1, 1, '2023-11-05');
 
 -- --------------------------------------------------------
@@ -575,13 +572,13 @@ ALTER TABLE `rate`
 -- AUTO_INCREMENT cho bảng `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `account_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
+  MODIFY `cart_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=269;
 
 --
 -- AUTO_INCREMENT cho bảng `category`
@@ -605,7 +602,7 @@ ALTER TABLE `image_product`
 -- AUTO_INCREMENT cho bảng `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `mess_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=285;
+  MODIFY `mess_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=288;
 
 --
 -- AUTO_INCREMENT cho bảng `new`
@@ -617,13 +614,13 @@ ALTER TABLE `new`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `order_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `details_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+  MODIFY `details_id` int(123) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
 
 --
 -- AUTO_INCREMENT cho bảng `product`

@@ -91,11 +91,14 @@
                         echo $code_reduced;
                         $code_gift_text = '- Green-M Tài Trợ';
                         echo '<input type="hidden" id="code_gift" value="'. $code_gift .'">';
+                        echo '<input type="hidden" id="code_reduced" value="'. $code_reduced .'">';
                     } else {
                         $total_full = $total;
+                        $code_reduced = 0;
                         echo '0';
                         $code_gift_text = "";
                         echo '<input type="hidden" id="code_gift" value="0">';
+                        echo '<input type="hidden" id="code_reduced" value="'. $code_reduced .'">';
                     }
                 ?>% <?=$code_gift_text?></td>
             </tr>
@@ -186,7 +189,7 @@
                             <input type="checkbox" name="cash" id="cash">
                         </div>
                         <br>
-                        <a href="?act=profile">Thêm hình thức thanh toán ngân hàng</a>
+                        <a href="profile/index.php">Thêm hình thức thanh toán ngân hàng</a>
                     '; 
                 }
             ?>
@@ -220,7 +223,7 @@
             url: 'controllers/xuly_cart.php',
             method: "POST",
             data: {
-                check: "update_qty_cart",
+                checkQTY: "update_qty_cart",
                 value: value,
                 pro_id: pro_id,
                 cart_id: cart_id
@@ -249,7 +252,7 @@
             $(".error_noti").text("Hãy thêm địa chỉ và sđt, tự động chuyển hướng!");
             show_error();
             setTimeout(function() {
-                window.location.href = "?act=profile";
+                window.location.href = "profile/index.php";
             }, 2000)
         }
     });
@@ -257,7 +260,9 @@
         var cashChecked = $('#cash').is(':checked');
         var bankChecked = $('#bank').is(':checked');
         var order_note = $("#order-note").val();
+        var code_reduced = $("#code_reduced").val();
         var check_promo = $("#code_gift").val();
+        var totalBill = $("#totalBill").text();
         if(cashChecked) {
             var thanhtoan = "Tiền mặt"; 
             $.ajax({
@@ -267,7 +272,9 @@
                     check_promo: check_promo,
                     total: <?=$total_full?>,
                     thanhtoan: thanhtoan,
-                    order_note: order_note
+                    order_note: order_note,
+                    code_reduced: code_reduced,
+                    totalBill: totalBill
                 },
                 success: function() {
                     $(".success_noti").text("Thanh toán thành công!");
@@ -287,7 +294,9 @@
                     check_promo: check_promo,
                     total: <?=$total_full?>,
                     thanhtoan: thanhtoan,
-                    order_note: order_note
+                    order_note: order_note,
+                    code_reduced: code_reduced,
+                    totalBill: totalBill
                 },
                 success: function() {
                     $(".success_noti").text("Thanh toán thành công!");
@@ -305,7 +314,7 @@
         }
     });
     $(document).on("click", "#viewordernow", function() {
-    window.location.href = "index.php?act=profile";
+    window.location.href = "profile/index.php?brief=orderMe";
     });
 
     $(document).on("click", "#viewindexnow", function() {

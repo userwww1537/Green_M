@@ -108,7 +108,15 @@ if (isset($_SESSION['83x86'])) {
                                 <a href="?brief=orderMe">Đơn mua</a>
                                 <hr align="center">
                             </div>
-                        ';
+                            ';
+                            if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] == 'Khách hàng') {
+                                echo '
+                                    <div class="url">
+                                        <a href="?brief=settings">Cài đặt</a>
+                                        <hr align="center">
+                                    </div>
+                                ';
+                            }
                     } else if($brief == 'orderMe') {
                         echo '
                             <div class="url">
@@ -123,7 +131,15 @@ if (isset($_SESSION['83x86'])) {
                                 <a href="?brief=orderMe" class="active">Đơn mua</a>
                                 <hr align="center">
                             </div>
-                        ';
+                            ';
+                            if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] == 'Khách hàng') {
+                                echo '
+                                    <div class="url">
+                                        <a href="?brief=settings">Cài đặt</a>
+                                        <hr align="center">
+                                    </div>
+                                ';
+                            }
                     } else if($brief == 'orderDetails') {
                         echo '
                             <div class="url">
@@ -138,7 +154,38 @@ if (isset($_SESSION['83x86'])) {
                                 <a href="?brief=orderMe" class="active">Đơn mua</a>
                                 <hr align="center">
                             </div>
-                        ';
+                            ';
+                            if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] == 'Khách hàng') {
+                                echo '
+                                    <div class="url">
+                                        <a href="?brief=settings">Cài đặt</a>
+                                        <hr align="center">
+                                    </div>
+                                ';
+                            }
+                    } else if($brief == 'settings') {
+                        echo '
+                            <div class="url">
+                                <a href="?brief=info">Hồ sơ</a>
+                                <hr align="center">
+                            </div>
+                            <div class="url">
+                                <a href="?brief=changePass">Đổi mật khẩu</a>
+                                <hr align="center">
+                            </div>
+                            <div class="url">
+                                <a href="?brief=orderMe">Đơn mua</a>
+                                <hr align="center">
+                            </div>
+                            ';
+                            if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] == 'Khách hàng') {
+                                echo '
+                                    <div class="url">
+                                        <a href="?brief=settings" class="active">Cài đặt</a>
+                                        <hr align="center">
+                                    </div>
+                                ';
+                            }
                     } else {
                         echo '
                             <div class="url">
@@ -153,7 +200,15 @@ if (isset($_SESSION['83x86'])) {
                                 <a href="?brief=orderMe">Đơn mua</a>
                                 <hr align="center">
                             </div>
-                        ';
+                            ';
+                            if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] == 'Khách hàng') {
+                                echo '
+                                    <div class="url">
+                                        <a href="?brief=settings">Cài đặt</a>
+                                        <hr align="center">
+                                    </div>
+                                ';
+                            }
                     }
                 } else {
                     echo '
@@ -169,13 +224,17 @@ if (isset($_SESSION['83x86'])) {
                             <a href="?brief=orderMe">Đơn mua</a>
                             <hr align="center">
                         </div>
-                    ';
+                        ';
+                        if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] == 'Khách hàng') {
+                            echo '
+                                <div class="url">
+                                    <a href="?brief=settings">Cài đặt</a>
+                                    <hr align="center">
+                                </div>
+                            ';
+                        }
                 }
             ?>
-            <div class="url">
-                <a href="#settings">Cài đặt</a>
-                <hr align="center">
-            </div>
             <?php
                 if($_SESSION['83x86']['account_position'] == 'Quản trị viên') {
                     echo '

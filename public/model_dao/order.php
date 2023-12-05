@@ -5,9 +5,9 @@
     }
 
     class order_lass extends dao_con {
-        public function add_order($a, $b, $c, $d) {
-            $sql = "INSERT INTO orders(order_total, order_pay, order_note, account_id, shop_id) VALUES(?, ?, ?, ?, ?)";
-            return $this->conn_execute($sql, $a, $b, $c, $_SESSION['83x86']['account_id'], $d);
+        public function add_order($a, $b, $c, $d, $f) {
+            $sql = "INSERT INTO orders(order_total, order_pay, order_note, order_promo, account_id, shop_id) VALUES(?, ?, ?, ?, ?, ?)";
+            return $this->conn_execute($sql, $a, $b, $c, $f, $_SESSION['83x86']['account_id'], $d);
         }
 
         public function add_order_details($a, $b, $c, $d, $e) {

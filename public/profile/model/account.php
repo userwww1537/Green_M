@@ -32,5 +32,11 @@
             $sql = "UPDATE account SET account_pass = ? WHERE account_id = ? AND account_pass = ?";
             return $this->conn_execute($sql, $new, $_SESSION['83x86']['account_id'], $current);
         }
+
+        public function up_Shop() {
+            $now = date('d-m-Y');
+            $sql = "UPDATE account SET account_position = 'Shop', time_store = '$now' WHERE account_id = ?";
+            return $this->conn_execute($sql, $_SESSION['83x86']['account_id']); 
+        }
     }
 ?>

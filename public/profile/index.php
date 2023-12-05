@@ -12,6 +12,9 @@
             case 'changePass':
                 include 'view/changePass.php';
                 break;
+            case 'settings':
+                include 'view/settings.php';
+                break;
             case 'orderDetails':
                 if(isset($orderID)) {
                     $showAll = $order->showOrderDetails($orderID);
@@ -24,6 +27,9 @@
             case 'orderMe':
                 $countOrder = $order->countOrder();
                 $show = $order->showOrder();
+                if(isset($timKiem)) {
+                    $showSearch = $order->showSearch($search);
+                }
                 include 'view/orderMe.php';
                 break;
             default:

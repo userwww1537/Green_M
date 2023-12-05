@@ -67,11 +67,348 @@
                 </div>
         ';
         echo $ketqua;
+    } else if(isset($check) && $check == "duyetDon") {
+        $order = new order_lass();
+        $order->duyetDon($value);
+    } else if(isset($check) && $check == "searchIdOrder") {
+        $order = new order_lass();
+        $show = $order->show_id_order($value);
+        foreach($show as $items) {
+           extract($items);
+           $address = substr($account_address, 0, 16) . '...';
+           $order_total = $order_total * 0.97;
+           echo '
+              <tr>
+                 <td>ORDER-'.  $order_id.'</td>
+                 <td>'. $account_name .'</td>
+                 <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
+                 <td>'. $account_phone .'</td>
+                 <td>$'. $order_total .'</td>
+                 '; if($order_status == "Đang chờ duyệt") {
+                    echo '<td style="color: Yellow3; font-weight: 500;">'. $order_status .'</td>';
+                } else if($order_status == "Đang giao hàng") {
+                    echo '<td style="color: blue; font-weight: 500;">'. $order_status .'</td>';
+                } else if($order_status == "Đã hủy") {
+                    echo '<td style="color: red; font-weight: 500;">'. $order_status .'</td>';
+                } else {
+                    echo '<td style="color: green; font-weight: 500;">'. $order_status .'</td>';
+                } echo '
+                 <td>'. $time_reg .'</td>
+                 <td class="kkk2">
+                    <button class="view-order-details" data-order-id="'. $order_id .'" data-order-note="'. $order_note .'">
+                       <i class="fas fa-eye"></i>
+                    </button>';
+                       if($order_status == "Đang chờ duyệt") {
+                          echo '
+                             <button class="duyet-don" data-order-id="'. $order_id .'">
+                                <i class="fas">Duyệt</i></i>
+                             </button>
+                          ';
+                       } else if($order_status == "Đã hủy") {
+                          if($order_cancel == 1) {
+                             echo '
+                                <button>
+                                   <i class="fas fa-window-close">Khách hủy</i>
+                                </button>
+                             ';
+                          } else {
+                             echo '
+                                <button>
+                                   <i class="fas fa-window-close">Shop hủy</i>
+                                </button>
+                             ';
+                          }
+                       } else if($order_status == "Giao thành công") {
+                          echo '
+                             <button class="">
+                                <i class="fas fa-check">Hoàn thành</i>
+                             </button>
+                          ';
+                       }  else {
+                          echo '
+                             <button class="edit-order-details" data-order-id="'. $order_id .'">
+                                <i class="fas fa-pen"></i></i>
+                             </button>
+                          ';
+                       }
+                    echo '
+                 </td>
+              </tr>
+           ';
+        }
+    } else if(isset($check) && $check == "searchNameOrder") {
+        $order = new order_lass();
+        $show = $order->show_name_order($value);
+        foreach($show as $items) {
+           extract($items);
+           $address = substr($account_address, 0, 16) . '...';
+           $order_total = $order_total * 0.97;
+           echo '
+              <tr>
+                 <td>ORDER-'.  $order_id.'</td>
+                 <td>'. $account_name .'</td>
+                 <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
+                 <td>'. $account_phone .'</td>
+                 <td>$'. $order_total .'</td>
+                 '; if($order_status == "Đang chờ duyệt") {
+                    echo '<td style="color: Yellow3; font-weight: 500;">'. $order_status .'</td>';
+                } else if($order_status == "Đang giao hàng") {
+                    echo '<td style="color: blue; font-weight: 500;">'. $order_status .'</td>';
+                } else if($order_status == "Đã hủy") {
+                    echo '<td style="color: red; font-weight: 500;">'. $order_status .'</td>';
+                } else {
+                    echo '<td style="color: green; font-weight: 500;">'. $order_status .'</td>';
+                } echo '
+                 <td>'. $time_reg .'</td>
+                 <td class="kkk2">
+                    <button class="view-order-details" data-order-id="'. $order_id .'" data-order-note="'. $order_note .'">
+                       <i class="fas fa-eye"></i>
+                    </button>';
+                       if($order_status == "Đang chờ duyệt") {
+                          echo '
+                             <button class="duyet-don" data-order-id="'. $order_id .'">
+                                <i class="fas">Duyệt</i></i>
+                             </button>
+                          ';
+                       } else if($order_status == "Đã hủy") {
+                          if($order_cancel == 1) {
+                             echo '
+                                <button>
+                                   <i class="fas fa-window-close">Khách hủy</i>
+                                </button>
+                             ';
+                          } else {
+                             echo '
+                                <button>
+                                   <i class="fas fa-window-close">Shop hủy</i>
+                                </button>
+                             ';
+                          }
+                       } else if($order_status == "Giao thành công") {
+                          echo '
+                             <button class="">
+                                <i class="fas fa-check">Hoàn thành</i>
+                             </button>
+                          ';
+                       }  else {
+                          echo '
+                             <button class="edit-order-details" data-order-id="'. $order_id .'">
+                                <i class="fas fa-pen"></i></i>
+                             </button>
+                          ';
+                       }
+                    echo '
+                 </td>
+              </tr>
+           ';
+        }
+    } else if(isset($check) && $check == "searchStatusOrder") {
+        $order = new order_lass();
+        $show = $order->show_status_order($value);
+        foreach($show as $items) {
+           extract($items);
+           $address = substr($account_address, 0, 16) . '...';
+           $order_total = $order_total * 0.97;
+           echo '
+              <tr>
+                 <td>ORDER-'.  $order_id.'</td>
+                 <td>'. $account_name .'</td>
+                 <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
+                 <td>'. $account_phone .'</td>
+                 <td>$'. $order_total .'</td>
+                 '; if($order_status == "Đang chờ duyệt") {
+                    echo '<td style="color: Yellow3; font-weight: 500;">'. $order_status .'</td>';
+                } else if($order_status == "Đang giao hàng") {
+                    echo '<td style="color: blue; font-weight: 500;">'. $order_status .'</td>';
+                } else if($order_status == "Đã hủy") {
+                    echo '<td style="color: red; font-weight: 500;">'. $order_status .'</td>';
+                } else {
+                    echo '<td style="color: green; font-weight: 500;">'. $order_status .'</td>';
+                } echo '
+                 <td>'. $time_reg .'</td>
+                 <td class="kkk2">
+                    <button class="view-order-details" data-order-id="'. $order_id .'" data-order-note="'. $order_note .'">
+                       <i class="fas fa-eye"></i>
+                    </button>';
+                       if($order_status == "Đang chờ duyệt") {
+                          echo '
+                             <button class="duyet-don" data-order-id="'. $order_id .'">
+                                <i class="fas">Duyệt</i></i>
+                             </button>
+                          ';
+                       } else if($order_status == "Đã hủy") {
+                          if($order_cancel == 1) {
+                             echo '
+                                <button>
+                                   <i class="fas fa-window-close">Khách hủy</i>
+                                </button>
+                             ';
+                          } else {
+                             echo '
+                                <button>
+                                   <i class="fas fa-window-close">Shop hủy</i>
+                                </button>
+                             ';
+                          }
+                       } else if($order_status == "Giao thành công") {
+                          echo '
+                             <button class="">
+                                <i class="fas fa-check">Hoàn thành</i>
+                             </button>
+                          ';
+                       }  else {
+                          echo '
+                             <button class="edit-order-details" data-order-id="'. $order_id .'">
+                                <i class="fas fa-pen"></i></i>
+                             </button>
+                          ';
+                       }
+                    echo '
+                 </td>
+              </tr>
+           ';
+        }
+    } else if(isset($check) && $check == "searchPhoneOrder") {
+        $order = new order_lass();
+        $show = $order->show_phone_order($value);
+        foreach($show as $items) {
+           extract($items);
+           $address = substr($account_address, 0, 16) . '...';
+           $order_total = $order_total * 0.97;
+           echo '
+              <tr>
+                 <td>ORDER-'.  $order_id.'</td>
+                 <td>'. $account_name .'</td>
+                 <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
+                 <td>'. $account_phone .'</td>
+                 <td>$'. $order_total .'</td>
+                 '; if($order_status == "Đang chờ duyệt") {
+                    echo '<td style="color: Yellow3; font-weight: 500;">'. $order_status .'</td>';
+                } else if($order_status == "Đang giao hàng") {
+                    echo '<td style="color: blue; font-weight: 500;">'. $order_status .'</td>';
+                } else if($order_status == "Đã hủy") {
+                    echo '<td style="color: red; font-weight: 500;">'. $order_status .'</td>';
+                } else {
+                    echo '<td style="color: green; font-weight: 500;">'. $order_status .'</td>';
+                } echo '
+                 <td>'. $time_reg .'</td>
+                 <td class="kkk2">
+                    <button class="view-order-details" data-order-id="'. $order_id .'" data-order-note="'. $order_note .'">
+                       <i class="fas fa-eye"></i>
+                    </button>';
+                       if($order_status == "Đang chờ duyệt") {
+                          echo '
+                             <button class="duyet-don" data-order-id="'. $order_id .'">
+                                <i class="fas">Duyệt</i></i>
+                             </button>
+                          ';
+                       } else if($order_status == "Đã hủy") {
+                          if($order_cancel == 1) {
+                             echo '
+                                <button>
+                                   <i class="fas fa-window-close">Khách hủy</i>
+                                </button>
+                             ';
+                          } else {
+                             echo '
+                                <button>
+                                   <i class="fas fa-window-close">Shop hủy</i>
+                                </button>
+                             ';
+                          }
+                       } else if($order_status == "Giao thành công") {
+                          echo '
+                             <button class="">
+                                <i class="fas fa-check">Hoàn thành</i>
+                             </button>
+                          ';
+                       }  else {
+                          echo '
+                             <button class="edit-order-details" data-order-id="'. $order_id .'">
+                                <i class="fas fa-pen"></i></i>
+                             </button>
+                          ';
+                       }
+                    echo '
+                 </td>
+              </tr>
+           ';
+        }
+    } else if(isset($check) && $check == "searchAllOrder") {
+        $order = new order_lass();
+        $show = $order->show__order();
+        foreach($show as $items) {
+           extract($items);
+           $address = substr($account_address, 0, 16) . '...';
+           $order_total = $order_total * 0.97;
+           echo '
+              <tr>
+                 <td>ORDER-'.  $order_id.'</td>
+                 <td>'. $account_name .'</td>
+                 <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
+                 <td>'. $account_phone .'</td>
+                 <td>$'. $order_total .'</td>
+                 '; if($order_status == "Đang chờ duyệt") {
+                    echo '<td style="color: Yellow3; font-weight: 500;">'. $order_status .'</td>';
+                } else if($order_status == "Đang giao hàng") {
+                    echo '<td style="color: blue; font-weight: 500;">'. $order_status .'</td>';
+                } else if($order_status == "Đã hủy") {
+                    echo '<td style="color: red; font-weight: 500;">'. $order_status .'</td>';
+                } else {
+                    echo '<td style="color: green; font-weight: 500;">'. $order_status .'</td>';
+                } echo '
+                 <td>'. $time_reg .'</td>
+                 <td class="kkk2">
+                    <button class="view-order-details" data-order-id="'. $order_id .'" data-order-note="'. $order_note .'">
+                       <i class="fas fa-eye"></i>
+                    </button>';
+                       if($order_status == "Đang chờ duyệt") {
+                          echo '
+                             <button class="duyet-don" data-order-id="'. $order_id .'">
+                                <i class="fas">Duyệt</i></i>
+                             </button>
+                          ';
+                       } else if($order_status == "Đã hủy") {
+                          if($order_cancel == 1) {
+                             echo '
+                                <button>
+                                   <i class="fas fa-window-close">Khách hủy</i>
+                                </button>
+                             ';
+                          } else {
+                             echo '
+                                <button>
+                                   <i class="fas fa-window-close">Shop hủy</i>
+                                </button>
+                             ';
+                          }
+                       } else if($order_status == "Giao thành công") {
+                          echo '
+                             <button class="">
+                                <i class="fas fa-check">Hoàn thành</i>
+                             </button>
+                          ';
+                       }  else {
+                          echo '
+                             <button class="edit-order-details" data-order-id="'. $order_id .'">
+                                <i class="fas fa-pen"></i></i>
+                             </button>
+                          ';
+                       }
+                    echo '
+                 </td>
+              </tr>
+           ';
+        }
     }
 
     if(isset($upOrder)) {
         $order = new order_lass();
-        $order->up_order($status, $order_id);
+        if($status == "Giao thành công") {
+            $order->up_order_success($status, $order_id);
+        } else {
+           $order->up_order($status, $order_id);
+        }
         echo '
             <style>
                 .content {

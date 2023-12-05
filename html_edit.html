@@ -3,124 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
-    <style>
-        #game-board {
-            width: 400px;
-            height: 400px;
-            border: 1px solid black;
-            position: relative;
-            overflow: hidden;
-        }
-        .snake {
-            width: 20px;
-            height: 20px;
-            background-color: green;
-            position: absolute;
-        }
-        .food {
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            position: absolute;
-        }
-    </style>
+    <title>Document</title>
 </head>
 <body>
-    <h1>Snake Game</h1>
-    <div id="game-board">
+    <style>
+        .input-field-regShop {
+            margin-bottom: 20px;
+        }
+
+        .input-field-regShop label {
+            color: #333;
+            font-weight: bold;
+            display: block;
+        }
+
+        .input-field-regShop select {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-field-regShop input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .input-field-regShop input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        .alertDieuKhoan {
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .alertDieuKhoan h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .alertDieuKhoan ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        .alertDieuKhoan li {
+            color: #666;
+            margin-bottom: 5px;
+        }
+    </style>
+    <form action="" method="post">
+        <div class="input-field-regShop">
+            <label for="sel">Đăng ký trở thành Shop: </label>
+            <select name="sel" id="sel">
+                <option value="0">Chưa kích hoạt</option>
+                <option value="1">Đăng ký</option>
+            </select>
+            <input type="submit" value="Xác nhận" name="acceptShop">
+        </div>
+    </form>
+    
+    <div class="alertDieuKhoan">
+        <h3>Chính sách khi đăng ký thành Shop từ Green-m:</h3>
+        <ul>
+            <li>Có thể đăng bán sản phẩm</li>
+            <li>Có thể lên top sản phẩm trên trang chủ</li>
+            <li>Cập nhật thông tin mới nhất từ Admin</li>
+            <li>Chỉ mất 3% chiết khấu trên mỗi sản phẩm bán ra</li>
+        </ul>
     </div>
-
-    <script>
-        const gameBoard = document.getElementById('game-board');
-        const gridSize = 20;
-        const snakeSize = 20;
-        let snake = [{x: 0, y: 0}];
-        let food = {x: 0, y: 0};
-        let direction = 'right';
-        let gameInterval;
-
-        function createSnake() {
-            for (let i = 0; i < snake.length; i++) {
-                const snakeElement = document.createElement('div');
-                snakeElement.style.left = snake[i].x + 'px';
-                snakeElement.style.top = snake[i].y + 'px';
-                snakeElement.classList.add('snake');
-                gameBoard.appendChild(snakeElement);
-            }
-        }
-
-        function createFood() {
-            food.x = Math.floor(Math.random() * gridSize) * snakeSize;
-            food.y = Math.floor(Math.random() * gridSize) * snakeSize;
-
-            const foodElement = document.createElement('div');
-            foodElement.style.left = food.x + 'px';
-            foodElement.style.top = food.y + 'px';
-            foodElement.classList.add('food');
-            gameBoard.appendChild(foodElement);
-        }
-
-        function updateSnake() {
-            const snakeHead = {x: snake[0].x, y: snake[0].y};
-
-            if (direction === 'right') snakeHead.x += snakeSize;
-            if (direction === 'left') snakeHead.x -= snakeSize;
-            if (direction === 'up') snakeHead.y -= snakeSize;
-            if (direction === 'down') snakeHead.y += snakeSize;
-
-            snake.unshift(snakeHead);
-
-            if (snakeHead.x === food.x && snakeHead.y === food.y) {
-                const foodElement = document.querySelector('.food');
-                foodElement.remove();
-                createFood();
-            } else {
-                snake.pop();
-            }
-
-            const snakeElements = document.querySelectorAll('.snake');
-            snakeElements.forEach((element, index) => {
-                if (index === 0) return;
-                if (snakeHead.x === snake[index].x && snakeHead.y === snake[index].y) {
-                    clearInterval(gameInterval);
-                    alert('Game over! Your score: ' + (snake.length - 1));
-                }
-            });
-
-            snakeElements.forEach((element, index) => {
-                element.style.left = snake[index].x + 'px';
-                element.style.top = snake[index].y + 'px';
-            });
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === 'ArrowUp' && direction !== 'down') direction = 'up';
-            if (event.key === 'ArrowDown' && direction !== 'up') direction = 'down';
-            if (event.key === 'ArrowLeft' && direction !== 'right') direction = 'left';
-            if (event.key === 'ArrowRight' && direction !== 'left') direction = 'right';
-        }
-
-        function startGame() {
-            gameInterval = setInterval(updateSnake, 200);
-        }
-
-        function resetGame() {
-            clearInterval(gameInterval);
-            snake = [{x: 0, y: 0}];
-            direction = 'right';
-            gameBoard.innerHTML = '';
-            createSnake();
-            createFood();
-            startGame();
-        }
-
-        createSnake();
-        createFood();
-        startGame();
-        document.addEventListener('keydown', handleKeyPress);
-    </script>
-    <br>
-    <button onclick="resetGame()">Reset Game</button>
 </body>
 </html>
