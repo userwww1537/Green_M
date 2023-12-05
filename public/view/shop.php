@@ -191,7 +191,7 @@
                     <?php
                         $cate_id = $_GET['cate_id'];
                         $i = 1;
-                        foreach($show_product_shop as $items) {
+                        foreach($show_cate as $items) {
                             extract($items);
                             if($product_del == 0.00) {
                                 $giamgia = 0;

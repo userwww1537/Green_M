@@ -19,6 +19,9 @@
                 $phantrang = $product->show_product_home();
                 $show_left_shop = $product->show_product_home();
                 if(isset($start)) {
+                    if(isset($cate_id)) {
+                        $show_cate = $category->show_category_shop($start, $cate_id);
+                    }
                     $show_product_shop = $product->show_product_shop($start);
                 }
                 $show_category_shop = $category->show_category_home();
