@@ -5,9 +5,11 @@
     include_once "model/account.php";
     include_once "model/order.php";
     include_once "model/product.php";
+    include_once "model/category.php";
     $product = new product_lass();
     $account = new account_lass();
     $order = new order_lass();
+    $cate = new cate_lass();
     if(isset($act)){
         switch ($act){
             case 'user':
@@ -19,10 +21,12 @@
                 include_once 'view/shop.php';
                 break;
             case 'cate':
+                $show = $cate->show_cate();
                 include_once 'view/cate.php';
                 break;
             case 'order':
-                $show = $order->show_order();
+                $count = $order->show_order();
+                $show = $order->show_doanhthu();
                 include_once 'view/order.php';
                 break;
             case 'logout':

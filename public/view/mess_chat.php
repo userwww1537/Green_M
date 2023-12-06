@@ -338,23 +338,7 @@
     $(".send_btn").on('click', function() {
         var to = $("#to").val();
         var msg = $(".type_msg").val();
-        $.ajax({
-            url: "controllers/xuly_mess.php",
-            method: "POST",
-            data: {
-                msg: msg,
-                to: to
-            },
-            success: function() {
-                $(".type_msg").val("");
-            }
-        });
-    });
-
-    $(".type_msg").keypress(function(event) {
-        if (event.which === 13) {
-            var to = $("#to").val();
-            var msg = $(".type_msg").val();
+        if(msg != "") {
             $.ajax({
                 url: "controllers/xuly_mess.php",
                 method: "POST",
@@ -366,6 +350,32 @@
                     $(".type_msg").val("");
                 }
             });
+        } else {
+            $(".error_noti").text('Vui lòng nhập tin nhắn!');
+            show_error();
+        }
+    });
+
+    $(".type_msg").keypress(function(event) {
+        if (event.which === 13) {
+            var to = $("#to").val();
+            var msg = $(".type_msg").val();
+            if(msg != "") {
+                $.ajax({
+                    url: "controllers/xuly_mess.php",
+                    method: "POST",
+                    data: {
+                        msg: msg,
+                        to: to
+                    },
+                    success: function() {
+                        $(".type_msg").val("");
+                    }
+                });
+            } else {
+                $(".error_noti").text('Vui lòng nhập tin nhắn!');
+                show_error();
+            }
         }
     });
 

@@ -518,13 +518,14 @@ thead :is(tr, td, th) {
 .container {
   position: fixed;
   top: 10%;
-  right: 1%;
+  right: -100%;
   max-width: 500px;
   margin: 50px auto;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all .5s ease;
 }
 
 h2 {
@@ -703,6 +704,18 @@ select {
   background-color: #0056b3;
 }
 
+.box-category .calcel-add,
+.container .calcel-up {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: red;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
 #product_id {
   text-transform: uppercase;
 }
@@ -779,4 +792,9 @@ select {
   from {
     width: 100%;
   }
+}
+
+.fill-doanhthu {
+  display: grid;
+  margin-right: 100px;
 }

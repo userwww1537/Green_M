@@ -33,7 +33,9 @@
             return $this->conn_show_all($sql, $a);
         }
 
-        public function add_rate($a, $b, $c) {
+        public function add_rate($a, $b, $c, $d) {
+            $sqlCheckCMT = 'UPDATE order_details SET details_feedback = 1 WHERE order_id = ? AND product_id = ?';
+            $this->conn_execute($sqlCheckCMT, $d, $c);
             $sql = "INSERT INTO rate(rate_comment, rate_star, product_id, account_id) VALUES(?, ?, ?, ?)";
             return $this->conn_execute($sql, $a, $b, $c, $_SESSION['83x86']['account_id']);
         }

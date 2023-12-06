@@ -14,11 +14,14 @@
          }
          $time_now = date("Y-m-d");
          foreach ($show_order as $items) {
-           $count_order++;
-           $time_get = date("Y-m-d", strtotime($items['time_reg']));
-           if ($time_now == $time_get) {
-             $count_revenue += $items['order_total'];
-           }
+            $count_order++;
+            $time = strtotime($items['time_reg']);
+            $time_get = date("Y-m-d", $time);
+            if($items['order_status'] == "Giao thành công") {
+               if ($time_now == $time_get) {
+                  $count_revenue += $items['order_total'];
+               }
+            }
          }
          $total_revenue = $count_revenue * 0.03;
          ?>
