@@ -3,8 +3,21 @@
       <div class="projects-category">
          <div class="card-header flex flex-tinh2">
             <h3>Quản lý bình luận</h3>
-         </div>
+            <div class="fill-danhgia">
+                  <label for="fill-danhgia">Lọc doanh thu</label>
+                  <select name="fill-danhgia" class="fill-danhgia-btn">
+                     <option value="All">Tất cả</option>
+                     <option value="fivestar">5*</option>
+                     <option value="fourstar">4*</option>
+                     <option value="threestar">3*</option>
+                     <option value="twostar">2*</option>
+                     <option value="onestar">1*</option>
+             
+                  </select>
+               </div>
 
+         </div>
+        
          <table>
             <thead>
                <th>
@@ -51,7 +64,23 @@
       </div>
    </div>
 </main>
+<script>
+   $(".fill-danhgia-btn").on('change',function(){
+      var fill =$(this).val();
+      $.ajax({
+         url:"controllers/xuly_cate.php",
+         method: "POST",
+         data: {
+            check: "fill_danhgia",
+            fill:fill
+         },
+         success:function(data){
+            $("tbody").html(data);
+         }
+      });
 
+   });
+</script>
 <script>
    $(".up-cate").on('click', function() {
       $(".container").css("right", "1%");

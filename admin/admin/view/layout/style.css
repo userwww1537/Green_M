@@ -133,9 +133,27 @@ header h2 {
   cursor: pointer;
 }
 
+
 .search-box {
   position: relative;
 }
+
+.search-box .input-search {
+  position: relative;
+  width: 300px;
+}
+
+.search-box .input-search select {
+  position: absolute;
+  right: 0;
+  top: 1.5px;
+  width: 60px;
+  border-radius: 30px;
+  border: none;
+  box-shadow: var(--shadow);
+  transition: all .5s ease;
+}
+
 
 .flex-tinh2 h3 {
   background-color: #006eff;
@@ -178,6 +196,9 @@ header h2 {
   background-color: #006eff;
 }
 
+
+
+
 .search-box input {
   width: 100%;
   border: none;
@@ -194,7 +215,6 @@ header h2 {
   top: 50%;
   transform: translateY(-50%);
 }
-
 
 td img {
   cursor: pointer;
@@ -590,7 +610,7 @@ input[type="submit"]:hover {
 }
 
 .search-box input {
-  width: 60%;
+  width: 100%;
   transition: 0.6s;
   border: none;
   outline: none;
@@ -598,12 +618,6 @@ input[type="submit"]:hover {
   padding-left: 50px;
   border-radius: 30px;
   box-shadow: var(--shadow);
-}
-
-.search-box input:focus {
-  width: 100%;
-  padding: 10px 0px;
-  text-align: center;
 }
 
 .search-box:focus-within i {
@@ -618,7 +632,11 @@ input[type="submit"]:hover {
   left: 75px;
   top: 40%;
   transform: translateY(-50%);
-}
+}.search-box input:focus {
+  width: 100%;
+  padding: 10px 0px;
+  text-align: center;
+}   
 
 .not_verified {
   text-decoration: line-through;
@@ -648,7 +666,8 @@ tbody tr td:hover {
 }
 
 .box-log,
-.box-category {
+.box-category,
+.box-log-lock {
   position: fixed;
   top: 100px;
   max-width: 350px;
@@ -663,17 +682,20 @@ tbody tr td:hover {
 }
 
 .box-log h2,
+.box-log-lock h2,
 .box-category h2 {
   text-align: center;
   color: #006EFF;
 }
 
 .box-log .form-group,
+.box-log-lock .form-group,
 .box-category .form-group {
   margin-bottom: 20px;
 }
 
 .box-log label,
+.box-log-lock label,
 .box-category label {
   display: block;
   margin-bottom: 8px;
@@ -681,6 +703,8 @@ tbody tr td:hover {
 }
 
 .box-log input,
+select,
+.box-log-lock input,
 select,
 .box-category input,
 select {
@@ -693,6 +717,7 @@ select {
 }
 
 .box-log input[type="submit"],
+.box-log-lock input[type="submit"],
 .box-category input[type="submit"] {
   background-color: #006EFF;
   color: #fff;
@@ -700,6 +725,7 @@ select {
 }
 
 .box-log input[type="submit"]:hover,
+.box-log-lock input[type="submit"]:hover,
 .box-category input[type="submit"]:hover {
   background-color: #0056b3;
 }

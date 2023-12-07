@@ -823,6 +823,13 @@ select {
   margin-right: 100px;
 }
 
+.fill-danhgia {
+  display: grid;
+  margin-right: 100px;
+  width: 10%;
+  float: right;
+}
+
 .continue-end-product,
 .continue-end-up-product {
   position: fixed;

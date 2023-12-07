@@ -22,5 +22,27 @@
             ";
             return self::conn_show_all($sql);
         }
+        public static function searchNameorder($a){
+            $a = '%' . $a . '%';
+            $sql = "SELECT account.*, IFNULL(COUNT(orders.order_id), 0) AS soLuongDonHang
+            FROM account
+            LEFT JOIN orders ON account.account_id = orders.shop_id
+            WHERE account.account_position = 'Shop' AND account.account_name LIKE '$a'
+            GROUP BY account.account_id
+            ORDER BY soLuongDonHang DESC
+            ";
+            return self::conn_show_all($sql);
+        }
+        public static function searchPhoneorder($a){
+            $a = '%' . $a . '%';
+            $sql = "SELECT account.*, IFNULL(COUNT(orders.order_id), 0) AS soLuongDonHang
+            FROM account
+            LEFT JOIN orders ON account.account_id = orders.shop_id
+            WHERE account.account_position = 'Shop' AND account.account_phone LIKE '$a'
+            GROUP BY account.account_id
+            ORDER BY soLuongDonHang DESC
+            ";
+            return self::conn_show_all($sql);
+        }
     }
 ?>

@@ -19,13 +19,11 @@
                <thead>
                   <th>
                      <tr>
-                        <td>STT</td>
-                        <td>Người mua</td>
+                        <td>Shop</td>
                         <td>Địa chỉ</td>
                         <td>Số điện thoại</td>
                         <td>Tiền chiết khấu(-3%/Đơn)</td>
                         <td>Số đơn</td>
-                        <td>Thao tác</td>
                      </tr>
                   </th>
                </thead>
@@ -47,20 +45,11 @@
                         $address = substr($account_address, 0, 18) . '...';
                         echo '
                            <tr>
-                              <td>1</td>
                               <td>'. $account_name .'</td>
                               <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
                               <td>'. $account_phone .'</td>
                               <td>$'. $count_revenue .'</td>
                               <td>'. $order_count .'</td>
-                              <td class="kkk2">
-                                 <button>
-                                 <i class="fas fa-eye"></i>
-                                 </button>
-                                 <button>
-                                 <i class="fas fa-pen"></i></i>
-                                 </button>
-                              </td>
                            </tr>
                         ';
                      }

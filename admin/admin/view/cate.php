@@ -223,7 +223,70 @@
       </div>
    </div>
 </main>
+<SCript>
+   $(document).ready(function() {
+      $("#proDmSearch").on('change', function() {
+         var value = $(this).val();
+         if(value === '') {
+            $('.value-search-pro').prop('readonly', true);
+            $('.value-search-pro').attr('placeholder', 'Chọn chế độ tìm...');
+         } else {
+            if(value == 'name') {
+            $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền tên danh mục cần tìm...');
+            } else {
+            $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền status cần tìm...');
+            }
+         }
+      });
 
+      $(".value-search-pro").on('keyup', function() {
+         var value = $(this).val();
+         var check = $("#proDmSearch").val();
+         if(value != '') {   
+            if(check == "name") {
+               $.ajax({
+                  url: "controllers/xuly_cate.php",
+                  method: "POST",
+                  data: {
+                     check: "searchNameCate",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            } else {
+               $.ajax({
+                  url: "controllers/xuly_cate.php",
+                  method: "POST",
+                  data: {
+                     check: "searchStatusCate",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            }
+         } else {
+            $.ajax({
+               url: "controllers/xuly_cate.php",
+               method: "POST",
+               data: {
+                  check: "searchAllCate",
+                  value: value
+               },
+               success: function(data) {
+                  $('tbody').html(data);
+               }
+            });
+         }
+      });
+   });
+</SCript>
+ 
 <script>
    $(".up-cate").on('click', function() {
       $(".container").css("right", "1%");

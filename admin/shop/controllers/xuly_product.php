@@ -97,7 +97,7 @@
         }
         echo $hienThi;
     } else if(isset($check) && $check == "searchAllProduct") {
-        $show = $product->show_product($value);
+        $show = $product->show_product();
         $hienThi = "";
         $i = 0;
         foreach($show as $items) {

@@ -49,7 +49,17 @@
                                     echo '<span class="status offline"></span>'. $account_status .'';
                                  } echo'
                                  </td>
-                                 <td class="option-user">Tùy chọn</td>
+                                 ';
+                                    if($account_status == 'Khóa') {
+                                       echo '
+                                          <td class="option-user-lock">Tùy chọn</td>
+                                       ';
+                                    } else {
+                                       echo '
+                                          <td class="option-user">Tùy chọn</td>
+                                       ';
+                                    }
+                                 echo '
                               </tr>
                            ';
                         }
@@ -77,6 +87,21 @@
             <input type="submit" value="Khoá tài khoản" class="sent-lock-user">
          </div>
    </div>
+   <div class="box-log-lock">
+         <i class="fas fa-times daux"></i>
+         <input type="hidden" class="id-account-box">
+         <input type="hidden" class="email-account-box">
+         <div class="form-group">
+            <label>Gửi thông báo</label>
+            <input type="text" placeholder="Lời nhắn..." class="val-mess">
+            <input type="submit" value="Gửi" class="sent-notify-user">
+         </div>
+         <hr>
+         <div class="form-group">
+            <label>Mở khóa tài khoản:</label>
+            <input type="submit" value="Mở khóa tài khoản" class="unlock-lock-user">
+         </div>
+   </div>
    <div class="test-bug" style="font-size: 100px;"></div>
    <script>
       $(".address-user").on('click', function() {
@@ -93,8 +118,18 @@
          $(".box-log").css("right", "0px");
       });
 
+      $(".option-user-lock").on('click', function() {
+         var account_id = $(this).closest('tr').find(".account-id").val();
+         var account_email = $(this).closest('tr').find(".account-email").val();
+         var account_status = $(this).closest('tr').find(".account-status").val();
+         $(".id-account-box").val(account_id);
+         $(".email-account-box").val(account_email);
+         $(".box-log-lock").css("right", "0px");
+      });
+
       $(".daux").on('click', function() {
          $(".box-log").css("right", "-100%");
+         $(".box-log-lock").css("right", "-100%");
       });
 
       $(".sent-notify-user").on('click', function() {
@@ -147,4 +182,117 @@
             });
          }
       });
+
+      $(".unlock-lock-user").on('click', function() {
+         var account_id = $(".id-account-box").val();
+         $.ajax({
+            url: "controllers/xuly_user.php",
+            method: "POST",
+            data: {
+               check: "unl_lock",
+               account_id: account_id
+            },
+            success: function(data) {
+               $(".box-log-lock").css("right", "-100%");
+               $(".success_noti").text('Đã mở khóa tài khoản!');
+               show_success();    
+            }
+         });
+      });
    </script>
+   <script>
+
+   $(document).ready(function() {
+      $("#proDmSearch").on('change', function() {
+         var value = $(this).val();
+         if(value === '') {
+            $('.value-search-pro').prop('readonly', true);
+            $('.value-search-pro').attr('placeholder', 'Chọn chế độ tìm...');
+         } else {
+            if(value == 'name') {
+            $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền Tên KH shop cần tìm...');
+            } else if(value == 'email') {
+            $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền email cần tìm...');
+            }  else if(value= 'phone'){
+            $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền SĐT KH cần tìm...');
+            } else{
+               $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền trạng thái KH cần tìm...');
+            }
+         }
+      });
+
+      $(".value-search-pro").on('keyup', function() {
+         var value = $(this).val();
+         var check = $("#proDmSearch").val();
+         if(value != '') {   
+            if(check == "name") {
+               $.ajax({
+                  url: "controllers/xuly_user.php",
+                  method: "POST",
+                  data: {
+                     check: "searchNameuser",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            } else if(check == "email") {
+               $.ajax({
+                  url: "controllers/xuly_user.php",
+                  method: "POST",
+                  data: {
+                     check: "searchEmailuser",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            } else if(check == "phone") {
+               $.ajax({
+                  url: "controllers/xuly_user.php",
+                  method: "POST",
+                  data: {
+                     check: "searchPhoneuser",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            } 
+            else if(check == "status") {
+               $.ajax({
+                  url: "controllers/xuly_user.php",
+                  method: "POST",
+                  data: {
+                     check: "searchStatususer",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            } 
+         } else {
+            $.ajax({
+               url: "controllers/xuly_user.php",
+               method: "POST",
+               data: {
+                  check: "searchAlluser",
+                  value: value
+               },
+               success: function(data) {
+                  $('tbody').html(data);
+               }
+            });
+         }
+      });
+   });
+
+</script>

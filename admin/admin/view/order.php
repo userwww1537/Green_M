@@ -70,20 +70,129 @@
       </div>
    </div>
 
-   <script>
-      $(".fill-doanhthu-btn").on('change', function() {
-         var fill = $(this).val();
+
+ 
+<script>
+
+   $(document).ready(function() {
+      $("#proDmSearch").on('change', function() {
+         var value = $(this).val();
+         if(value === '') {
+            $('.value-search-pro').prop('readonly', true);
+            $('.value-search-pro').attr('placeholder', 'Chọn chế độ tìm...');
+         } else {
+             if(value == 'name') {
+            $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền tên KH cần tìm...');
+            }  else {
+            $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền SĐT KH cần tìm...');
+            }
+         }
+      });
+
+      $(".value-search-pro").on('keyup', function() {
+         var value = $(this).val();
+         var check = $("#proDmSearch").val();
+         if(value != '') {
+          if(check == "name") {
+               $.ajax({
+                  url: "controllers/xuly_order.php",
+                  method: "POST",
+                  data: {
+                     check: "searchNameOrder",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            } else if(check == "status") {
+               $.ajax({
+                  url: "controllers/xuly_order.php",
+                  method: "POST",
+                  data: {
+                     check: "searchPhoneOrder",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            } 
+         } else {
+            $.ajax({
+               url: "controllers/xuly_order.php",
+               method: "POST",
+               data: {
+                  check: "searchAllOrder",
+                  value: value
+               },
+               success: function(data) {
+                  $('tbody').html(data);
+               }
+            });
+         }
+      });
+   });
+
+
+      $(".duyet-don").on('click', function() {
+         var value = $(this).data('order-id');
          $.ajax({
-            url: "controllers/xuly_doanhthu.php",
+            url: "controllers/xuly_order.php",
             method: "POST",
             data: {
-               check: "Fill_doanhthu",
-               fill: fill
+               check: "duyetDon",
+               value: value
             },
             success: function(data) {
-               $("tbody").html(data);
+               location.reload();
             }
          });
+      });
+
+      $(".more-up-order").on('click', function() {
+         $(".more-cancel-up").css("display", "block");
+         $(this).text("");
+      });
+
+      $(".edit-order-details").on('click', function() {
+         var id = $(this).data("order-id");
+         $(".edit-order").css("top", "10px");
+         $("#edit-order-id-up").val(id);
+         $("#edit-order-id").val(id);
+      });
+
+      $(".close-edit-order").on('click', function() {
+         $(".edit-order").css("top", "-100%");
+         $(".more-cancel-up").css("display", "none");
+         $(".more-up-order").text("Xem thêm");
+         $("#edit-order-id").val("");
+         $("#edit-order-id-up").val("");
+      });
+
+      $(".view-order-details").click(function() {
+         var orderID = $(this).data("order-id");
+         var orderNote = $(this).data("order-note");
+         $.ajax({
+               url: "controllers/xuly_order.php",
+               method: "POST",
+               data: {
+                  check: "ShowOrderDetails",
+                  orderID: orderID,
+                  orderNote: orderNote
+               },
+               success: function(data) {
+                  $(".details-order").css("top", "50%");
+                  $(".details-order").html(data);
+                  $(".close-order").on('click', function() {
+                     $(".details-order").css("top", "-50%");
+                     $(".details-order").html('');
+                  });
+               }
+         });
+         $(".details-order").css("display", "block");
       });
 
       $(".address-user").on('click', function() {

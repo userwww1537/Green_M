@@ -11,6 +11,75 @@
     if(isset($check) && $check == "del-cate") {
         $cate = new cate_lass();
         $cate->del_cate($id_cate);
+    }else if(isset($check) && $check == "searchNameCate"){
+        $cate = new cate_lass();
+        $show=$cate->search_name($value);
+        $i = 0;
+        foreach($show as $items) {
+           extract($items);
+           $i++;
+           echo '
+              <tr>
+                 <td>'. $i .'</td>
+                 <td>'. $category_name .'</td>
+                 <td><img src="../../public/'. $category_img .'" alt="" width="70px"></td>
+                 <td>
+                    '. $category_status .'
+                 </td>
+                 <td class="kkk">
+                       <button class="del-cate" data-cate-id="'. $category_id .'" data-cate-name="'. $category_name .'">Xóa</button> 
+                       <button class="up-cate" data-cate-id="'. $category_id .'" data-cate-name="'. $category_name .'" data-cate-img="'. $category_img .'" data-cate-status="'. $category_status .'">Sửa</button>
+                 </td>
+              </tr>
+           ';
+        }
+        
+    }else if(isset($check) && $check == "searchStatusCate"){
+        $cate = new cate_lass();
+        $show=$cate->search_status($value);
+        $i = 0;
+        foreach($show as $items) {
+           extract($items);
+           $i++;
+           echo '
+              <tr>
+                 <td>'. $i .'</td>
+                 <td>'. $category_name .'</td>
+                 <td><img src="../../public/'. $category_img .'" alt="" width="70px"></td>
+                 <td>
+                    '. $category_status .'
+                 </td>
+                 <td class="kkk">
+                       <button class="del-cate" data-cate-id="'. $category_id .'" data-cate-name="'. $category_name .'">Xóa</button> 
+                       <button class="up-cate" data-cate-id="'. $category_id .'" data-cate-name="'. $category_name .'" data-cate-img="'. $category_img .'" data-cate-status="'. $category_status .'">Sửa</button>
+                 </td>
+              </tr>
+           ';
+        }
+        
+    }else if(isset($check) && $check == "searchAllCate"){
+        $cate = new cate_lass();
+        $show=$cate->show_cate();
+        $i = 0;
+        foreach($show as $items) {
+           extract($items);
+           $i++;
+           echo '
+              <tr>
+                 <td>'. $i .'</td>
+                 <td>'. $category_name .'</td>
+                 <td><img src="../../public/'. $category_img .'" alt="" width="70px"></td>
+                 <td>
+                    '. $category_status .'
+                 </td>
+                 <td class="kkk">
+                       <button class="del-cate" data-cate-id="'. $category_id .'" data-cate-name="'. $category_name .'">Xóa</button> 
+                       <button class="up-cate" data-cate-id="'. $category_id .'" data-cate-name="'. $category_name .'" data-cate-img="'. $category_img .'" data-cate-status="'. $category_status .'">Sửa</button>
+                 </td>
+              </tr>
+           ';
+        }
+        
     }
 
     if(isset($addcategory_submit)) {

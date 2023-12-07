@@ -30,6 +30,7 @@
                 include_once 'view/user.php';
                 break;
             case 'shop':
+              
                 $show = $account->show_shop();
                 include_once 'view/shop.php';
                 break;
