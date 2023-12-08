@@ -11,6 +11,7 @@
     $new = new new_lass();
     $product = new product_lass();
     $category = new category_lass();
+    $show_category_home = $category->show_category_home();
 ?>
 <?php
     if(isset($act)) {
@@ -103,14 +104,12 @@
             default:
                 $show_product_home = $product->show_product_home();
                 $show_product_top = $product->show_product_top();
-                $show_category_home = $category->show_category_home();
                 include_once "view/home.php";
                 break;
         }
     } else {
         $show_product_home = $product->show_product_home();
         $show_product_top = $product->show_product_top();
-        $show_category_home = $category->show_category_home();
         include_once "view/home.php";
     }
     include_once "view/footer.php";

@@ -49,9 +49,71 @@
                 echo '<h2>$'.$show['product_del'].'</h2>';
             }
         ?>
-        <input type="number" value="1" min="1" max="<?=$show['product_qty']?>" name="qty" id="quantity-input"> Kg
+        <style>
+        .quantity-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .quantity-input {
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+
+        .quantity-button {
+            width: 30px;
+            height: 30px;
+            margin: 0 5px;
+            border: none;
+            background-color: #ccc;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .quantity-button:hover {
+            background-color: #999;
+        }
+        </style>
+
+        <div class="quantity-wrapper">
+        <input type="number" value="1" min="1" max="<?=$show['product_qty']?>" name="qty" id="quantity-input" readonly>
+        <button onclick="increaseQuantity()" class="quantity-button">+</button>
+        <button onclick="decreaseQuantity()" class="quantity-button">-</button> <b>Kg</b>
+        </div>
+
         <script>
-            
+        function increaseQuantity() {
+            var input = document.getElementById("quantity-input");
+            var value = parseInt(input.value);
+            var max = parseInt(input.getAttribute("max"));
+            if (value < max) {
+            input.value = value + 1;
+            updateCartLink(input.value);
+            }
+        }
+
+        function decreaseQuantity() {
+            var input = document.getElementById("quantity-input");
+            var value = parseInt(input.value);
+            if (value > 1) {
+            input.value = value - 1;
+            updateCartLink(input.value);
+            }
+        }
+
+        function updateCartLink(quantity) {
+            var addToCartLink = document.getElementById('add-to-cart-link');
+            var currentURL = addToCartLink.href;
+            var newURL = currentURL.replace(/qty=\d+/, 'qty=' + quantity);
+            addToCartLink.href = newURL;
+        }
         </script>
         <?php
             if($show['product_qty'] == 0) {
@@ -64,20 +126,6 @@
                 }
             }
         ?>
-
-        <script>
-            document.getElementById('quantity-input').addEventListener('change', function() {
-                var quantity = this.value;
-                if(quantity == 0) {
-                    $("#error_noti").text('Số lượng phải hơn 0');
-                } else {
-                    var addToCartLink = document.getElementById('add-to-cart-link');
-                    var currentURL = addToCartLink.href;
-                    var newURL = currentURL.replace(/qty=\d+/, 'qty=' + quantity);
-                    addToCartLink.href = newURL;
-                }
-            });
-        </script>
         <h4 style="font-size: 18px;">Thông Tin Sản Phẩm</h4>
         <span style="font-size: 16px;">
             Tên sản phẩm: <b><?=$show['product_name']?></b> <br>

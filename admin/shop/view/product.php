@@ -152,7 +152,7 @@
          <div class="form-group">
             <label for="category_image">Danh mục</label>
             <div class="group-trangthai_cate">
-               <select id="status" name="status">
+               <select id="status-update-part1" name="status">
                   <option value="1">Rau</option>
                   <option value="2">Củ</option>
                   <option value="3">Quả</option>
@@ -418,7 +418,7 @@
 
    $(".continue-up-product").on('click', function() {
       var name = $("#name-up").val();
-      var status = $("#status").val();
+      var status = $("#status-update-part1").val();
       var price = $("#price-up").val();
       var del = $("#del-up").val();
       var qty = $("#qty-up").val();
@@ -438,6 +438,8 @@
                id: id
             },
             success: function(data) {
+               $(".success_noti").text("Cập nhập Success, Tiếp theo IMG nhé!");
+               show_success();
                $(".box-up-category").css("right", "-100%");
                $(".continue-end-up-product").css("right", "0px");
             }
