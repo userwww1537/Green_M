@@ -24,6 +24,11 @@
             $sql = "UPDATE category SET category_name = ?, category_img = ?, category_status = ? WHERE category_id = ?";
             return self::conn_execute($sql, $a, $b, $c, $d);
         }
+
+        public static function up_cate_not_image($a, $b, $c) {
+            $sql = "UPDATE category SET category_name = ?, category_status = ? WHERE category_id = ?";
+            return self::conn_execute($sql, $a, $b, $c);
+        }
         public static function search_name($a) {
             $a = '%' . $a . '%';
             $sql = "SELECT * FROM category WHERE category_name like '$a'  ";

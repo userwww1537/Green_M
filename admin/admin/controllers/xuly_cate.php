@@ -381,6 +381,7 @@
                 </div>
             ';
         } else {
+            $cate->up_cate_not_image($category_name, $category_status, $cate_id_up);
             echo '
                 <style>
                     .content {
@@ -469,8 +470,8 @@
                 <div id="popup">
                     <div class="content">
                     <h2>Green-M Thông Báo!</h2>
-                    <p>Danh mục sửa thất bại.</p>
-                    <span>- Error -</span>
+                    <p>Danh mục đã được sửa thành công.</p>
+                    <span>- Success -</span>
                     <a href="../index.php?act=cate" class="close">X</a>
                     </div>
                 </div>
