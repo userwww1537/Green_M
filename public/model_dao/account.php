@@ -77,7 +77,7 @@
         }
 
         public function check_email($a) {
-            $sql = "SELECT * FROM account WHERE account_email = ?";
+            $sql = "SELECT * FROM account WHERE account_email = ? AND account_verified_mail = 'Đã xác thực'";
             return $this->conn_show_one($sql, $a);
         }
     }
