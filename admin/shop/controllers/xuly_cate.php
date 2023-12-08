@@ -1,4 +1,5 @@
 <?php
+
     ob_start();
     extract($_REQUEST);
     if(session_status() == PHP_SESSION_NONE) {
@@ -8,10 +9,181 @@
         require "../model/category.php";
     }
 
+    if (file_exists('../model/rate.php')) {
+        require "../model/rate.php";
+    }
+
     if(isset($check) && $check == "del-cate") {
         $cate = new cate_lass();
         $cate->del_cate($id_cate);
     }
+
+    if(isset($check)&& $check == "fill_danhgia"){
+        $rate= new rate_lass();
+        $show=$rate->show_rate();
+       
+        if($fill == "All"){
+            $i = 0;
+            foreach($show as $items) {
+               extract($items);
+               $date = new DateTime($time_reg);
+               $formattedDate = $date->format('d-m-Y');
+               $i++;
+               echo '
+                  <tr>
+                     <td>'. $i .'</td>
+                     <td>'. $account_name .'</td>
+                     <td>'. $rate_comment .'</td>
+                     <td>
+                        '. $rate_star .'🌟
+                     </td>
+                     <td>
+                        '. $formattedDate .'
+                     </td>
+                     <td class="kkk">
+                           <a href="../../public/index.php?act=detail&product_id=' . $product_id . '&category='. $category_id .'"><i class="fad fa-eye"></i></a> |
+                           <a href="../../public/index.php?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$account_id.'"><i class="fas fa-comment"></i></a>
+                     </td>
+                  </tr>
+               ';
+            }
+        
+    }else if($fill == "fivestar"){
+        $show=$rate->show_fivetar();
+            $i = 0;
+            foreach($show as $items) {
+               extract($items);
+               $date = new DateTime($time_reg);
+               $formattedDate = $date->format('d-m-Y');
+               $i++;
+               echo '
+                  <tr>
+                     <td>'. $i .'</td>
+                     <td>'. $account_name .'</td>
+                     <td>'. $rate_comment .'</td>
+                     <td>
+                        '. $rate_star .'🌟
+                     </td>
+                     <td>
+                        '. $formattedDate .'
+                     </td>
+                     <td class="kkk">
+                           <a href="../../public/index.php?act=detail&product_id=' . $product_id . '&category='. $category_id .'"><i class="fad fa-eye"></i></a> |
+                           <a href="../../public/index.php?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$account_id.'"><i class="fas fa-comment"></i></a>
+                     </td>
+                  </tr>
+               ';
+            }
+    }else if($fill  == "fourstar"){
+        $i = 0;
+        $show=$rate->show_fourstar();
+        foreach($show as $items) {
+           extract($items);
+           $date = new DateTime($time_reg);
+           $formattedDate = $date->format('d-m-Y');
+           $i++;
+           echo '
+              <tr>
+                 <td>'. $i .'</td>
+                 <td>'. $account_name .'</td>
+                 <td>'. $rate_comment .'</td>
+                 <td>
+                    '. $rate_star .'🌟
+                 </td>
+                 <td>
+                    '. $formattedDate .'
+                 </td>
+                 <td class="kkk">
+                       <a href="../../public/index.php?act=detail&product_id=' . $product_id . '&category='. $category_id .'"><i class="fad fa-eye"></i></a> |
+                       <a href="../../public/index.php?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$account_id.'"><i class="fas fa-comment"></i></a>
+                 </td>
+              </tr>
+           ';
+        }
+    }else if($fill == "threestar"){
+        $i = 0;
+        $show=$rate->show_threestar();
+        foreach($show as $items) {
+           extract($items);
+           $date = new DateTime($time_reg);
+           $formattedDate = $date->format('d-m-Y');
+           $i++;
+           echo '
+              <tr>
+                 <td>'. $i .'</td>
+                 <td>'. $account_name .'</td>
+                 <td>'. $rate_comment .'</td>
+                 <td>
+                    '. $rate_star .'🌟
+                 </td>
+                 <td>
+                    '. $formattedDate .'
+                 </td>
+                 <td class="kkk">
+                       <a href="../../public/index.php?act=detail&product_id=' . $product_id . '&category='. $category_id .'"><i class="fad fa-eye"></i></a> |
+                       <a href="../../public/index.php?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$account_id.'"><i class="fas fa-comment"></i></a>
+                 </td>
+              </tr>
+           ';
+        }
+    }else if($fill == "twostar"){
+        $show=$rate->show_twostar();
+        $i = 0;
+        
+        foreach($show as $items) {
+           extract($items);
+           $date = new DateTime($time_reg);
+           $formattedDate = $date->format('d-m-Y');
+           $i++;
+           echo '
+              <tr>
+                 <td>'. $i .'</td>
+                 <td>'. $account_name .'</td>
+                 <td>'. $rate_comment .'</td>
+                 <td>
+                    '. $rate_star .'🌟
+                 </td>
+                 <td>
+                    '. $formattedDate .'
+                 </td>
+                 <td class="kkk">
+                       <a href="../../public/index.php?act=detail&product_id=' . $product_id . '&category='. $category_id .'"><i class="fad fa-eye"></i></a> |
+                       <a href="../../public/index.php?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$account_id.'"><i class="fas fa-comment"></i></a>
+                 </td>
+              </tr>
+           ';
+        }
+    }else if($fill == "onestar"){
+        $show=$rate->show_onestar();
+        $i = 0;
+        foreach($show as $items) {
+           extract($items);
+           $date = new DateTime($time_reg);
+           $formattedDate = $date->format('d-m-Y');
+           $i++;
+           echo '
+              <tr>
+                 <td>'. $i .'</td>
+                 <td>'. $account_name .'</td>
+                 <td>'. $rate_comment .'</td>
+                 <td>
+                    '. $rate_star .'🌟
+                 </td>
+                 <td>
+                    '. $formattedDate .'
+                 </td>
+                 <td class="kkk">
+                       <a href="../../public/index.php?act=detail&product_id=' . $product_id . '&category='. $category_id .'"><i class="fad fa-eye"></i></a> |
+                       <a href="../../public/index.php?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$account_id.'"><i class="fas fa-comment"></i></a>
+                 </td>
+              </tr>
+           ';
+        }
+}
+
+    }
+
+
 
     if(isset($addcategory_submit)) {
         $cate = new cate_lass();

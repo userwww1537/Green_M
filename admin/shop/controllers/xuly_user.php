@@ -10,6 +10,7 @@
     if (file_exists('../../app/mailer.php')) {
         require "../../app/mailer.php";
     }
+
     $mail = new Mailer();
     $account = new account_lass();
 

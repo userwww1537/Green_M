@@ -29,7 +29,7 @@
                         }
                     }
                 }
-                $total_revenue = $count_revenue * 0.03;
+                $total_revenue = $count_revenue * 0.97;
                 $address = substr($account_address, 0, 18) . '...';
                 echo '
                    <tr>
@@ -67,7 +67,7 @@
                         }
                     }
                 }
-                $total_revenue = $count_revenue * 0.03;
+                $total_revenue = $count_revenue * 0.97;
                 $address = substr($account_address, 0, 18) . '...';
                 echo '
                    <tr>
@@ -105,7 +105,7 @@
                         }
                     }
                 }
-                $total_revenue = $count_revenue * 0.03;
+                $total_revenue = $count_revenue * 0.97;
                 $address = substr($account_address, 0, 18) . '...';
                 echo '
                    <tr>
@@ -138,7 +138,7 @@
                         }
                     }
                 }
-                $total_revenue = $count_revenue * 0.03;
+                $total_revenue = $count_revenue * 0.97;
                 $address = substr($account_address, 0, 18) . '...';
                 echo '
                    <tr>

@@ -1,11 +1,11 @@
 <?php
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     class dao_con {
         public static function conn_db() {
-<<<<<<< HEAD
-            $sqlServer = "mysql:host=localhost; dbname=green_m8683";
-=======
             $sqlServer = "mysql:host=localhost; dbname=green_m8683;charset=utf8;collation=utf8_unicode_ci";
->>>>>>> bd174ab99adb975ecb64a6b12a9b7c8872218439
             $username = "root";
             $password = "";
     

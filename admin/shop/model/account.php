@@ -3,6 +3,7 @@
     if(session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+
     class account_lass extends dao_con {
         public static function show_account() {
             $sql = "SELECT * FROM account ORDER BY account_id DESC";

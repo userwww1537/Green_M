@@ -1,6 +1,19 @@
 <?php 
     session_start();
     extract($_REQUEST);
+    if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] != 'Shop') {
+        echo '
+            <script>
+                window.location.href = "../../public/";
+            </script>
+        ';
+    } else if(!isset($_SESSION['83x86'])) {
+        echo '
+            <script>
+                window.location.href = "../../public/";
+            </script>
+        ';
+    }
     include_once 'view/header.php';
     include_once "model/account.php";
     include_once "model/message.php";

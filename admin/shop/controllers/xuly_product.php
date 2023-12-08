@@ -7,6 +7,7 @@
     if (file_exists('../model/product.php')) {
         require "../model/product.php";
     }
+
     $product = new product_lass();
 
     if(isset($check) && $check == "del-pro") {
@@ -23,6 +24,114 @@
         } else {
             $product->up_p1($name, $price, '0.00', $qty, $status, $id);
         }
+    } else if(isset($check) && $check == "searchNameProduct") {
+        $show = $product->show_name_search($value);
+        $hienThi = "";
+        $i = 0;
+        foreach($show as $items) {
+            extract($items);
+            if ($product_del == 0.00) {
+                  $giamgia = 0;
+            } else {
+                  $giamgia = (($product_price - $product_del) / $product_price) * 100;
+            }
+            if ($i == 8) {
+                  break;
+            }
+            $giamgia = intval($giamgia);
+            $image = explode(',', $image_files);
+            $name = substr($product_name, 0, 10) . '...';
+            $hienThi .= '
+            <tr>
+                  <td>PRO-'. $product_id .'</td>
+                  <td>'. $name .'</td> 
+                  <td><img width="70px" src="../../public/'. $image[0] .'"></td>
+                  <td>'. $category_name .'</td>
+                  <td>$'. $product_price .'</td>
+                  <td>'. $giamgia .'%</td>
+                  <td>'. $product_qty .'</td>
+                  <td>'. $product_view .'</td>
+                  <td>'. $time_reg .'</td>
+                  <td class="kkk">
+                        <button class="del-pro" data-product-id="'. $product_id .'" data-product-name="'. $name .'">Xóa</button> 
+                        <button class="up-pro" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-price="'. $product_price .'" data-product-del="'. $product_del .'" data-product-qty="'. $product_qty .'">Sửa</button>
+                  </td>
+               </tr>
+            ';
+        }
+        echo $hienThi;
+    } else if(isset($check) && $check == "searchCateProduct") {
+        $show = $product->show_cate_search($value);
+        $hienThi = "";
+        $i = 0;
+        foreach($show as $items) {
+            extract($items);
+            if ($product_del == 0.00) {
+                  $giamgia = 0;
+            } else {
+                  $giamgia = (($product_price - $product_del) / $product_price) * 100;
+            }
+            if ($i == 8) {
+                  break;
+            }
+            $giamgia = intval($giamgia);
+            $image = explode(',', $image_files);
+            $name = substr($product_name, 0, 10) . '...';
+            $hienThi .= '
+            <tr>
+                  <td>PRO-'. $product_id .'</td>
+                  <td>'. $name .'</td> 
+                  <td><img width="70px" src="../../public/'. $image[0] .'"></td>
+                  <td>'. $category_name .'</td>
+                  <td>$'. $product_price .'</td>
+                  <td>'. $giamgia .'%</td>
+                  <td>'. $product_qty .'</td>
+                  <td>'. $product_view .'</td>
+                  <td>'. $time_reg .'</td>
+                  <td class="kkk">
+                        <button class="del-pro" data-product-id="'. $product_id .'" data-product-name="'. $name .'">Xóa</button> 
+                        <button class="up-pro" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-price="'. $product_price .'" data-product-del="'. $product_del .'" data-product-qty="'. $product_qty .'">Sửa</button>
+                  </td>
+               </tr>
+            ';
+        }
+        echo $hienThi;
+    } else if(isset($check) && $check == "searchAllProduct") {
+        $show = $product->show_product();
+        $hienThi = "";
+        $i = 0;
+        foreach($show as $items) {
+            extract($items);
+            if ($product_del == 0.00) {
+                  $giamgia = 0;
+            } else {
+                  $giamgia = (($product_price - $product_del) / $product_price) * 100;
+            }
+            if ($i == 8) {
+                  break;
+            }
+            $giamgia = intval($giamgia);
+            $image = explode(',', $image_files);
+            $name = substr($product_name, 0, 10) . '...';
+            $hienThi .= '
+            <tr>
+                  <td>PRO-'. $product_id .'</td>
+                  <td>'. $name .'</td> 
+                  <td><img width="70px" src="../../public/'. $image[0] .'"></td>
+                  <td>'. $category_name .'</td>
+                  <td>$'. $product_price .'</td>
+                  <td>'. $giamgia .'%</td>
+                  <td>'. $product_qty .'</td>
+                  <td>'. $product_view .'</td>
+                  <td>'. $time_reg .'</td>
+                  <td class="kkk">
+                        <button class="del-pro" data-product-id="'. $product_id .'" data-product-name="'. $name .'">Xóa</button> 
+                        <button class="up-pro" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-price="'. $product_price .'" data-product-del="'. $product_del .'" data-product-qty="'. $product_qty .'">Sửa</button>
+                  </td>
+               </tr>
+            ';
+        }
+        echo $hienThi;
     }
 
     if(isset($doneProductFull)) {
