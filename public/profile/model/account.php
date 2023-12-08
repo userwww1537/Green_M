@@ -9,6 +9,11 @@
             return $this->conn_execute($sql, $a, $_SESSION['83x86']['account_id']);
         }
 
+        public function checkEmailChange($email) {
+            $sql = "SELECT * FROM account WHERE account_email = ? AND account_verified_mail = 'Đã xác thực'";
+            return $this->conn_show_one($sql, $email);
+        }
+
         public function veri_mail() {
             $sql = "UPDATE account SET account_verified_mail = 'Đã xác thực' WHERE account_id = ?";
             return $this->conn_execute($sql, $_SESSION['83x86']['account_id']);
