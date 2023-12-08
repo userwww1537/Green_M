@@ -504,10 +504,14 @@
     }
 
     if(isset($check) && $check == "update_qty_cart") {
+<<<<<<< HEAD
+        $cart->up_qty_cart($value, $pro_id);
+=======
         if($value == 0) {
             $cart->del_cart($cart_id);
         } else {
             $cart->up_qty_cart($value, $pro_id);
         }
+>>>>>>> bd174ab99adb975ecb64a6b12a9b7c8872218439
     }
 ?>

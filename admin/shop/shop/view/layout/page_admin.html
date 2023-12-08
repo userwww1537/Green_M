@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Admin Dashboard - WebTech Gyan</title>
+
+   <!-- iconscout cdn path -->
+   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+   <!-- CSS File Link -->
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div class="sidebar" id="sidebar">
+      <div class="logo">
+            <img src="Images/logo-1.webp" alt="">
+      </div>
+
+      <div class="sidebar-menu">
+         <ul>
+            <li>
+               <i class="fas fa-chart-line"></i>
+               <a href="page_admin.html"><span>Tổng quan</span></a>
+            </li>
+            <li>
+               <i class="fas fa-users"></i>
+               <a href="ql_user_admin.html"><span>Quản lý người dùng</span></a>
+            </li>
+            <li>
+               <i class="fas fa-store-alt"></i>
+               <a href="ql_shop_admin.html"><span>Quản lý Shop</span></a>
+            </li>
+            <li>
+               <i class="fas fa-folder-minus"></i>
+               <a href="qlcate.html"><span>Quản lý danh mục</span></a>
+            </li>
+            <li>
+               <i class="uil uil-clipboard-notes"></i>
+               <a href="ql_donhang_admin.html"><span>Quản lý đơn hàng</span></a>
+            </li>
+            <li>
+               <i class="uil uil-signin"></i>
+               <a href=""><span>Đăng xuất</span></a>
+            </li>
+         </ul>
+      </div>
+   </div>
+
+   <div class="main-content" id="main-content">
+      <header class="flex">
+         <h2>
+            <i class="uil uil-bars" id="menu-icon"></i>
+            Tổng quan
+         </h2>
+
+         <div class="search-box">
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder="Search Here...">
+         </div>
+
+         <div class="admin-box flex" >
+            <img src="images/user.jpeg" width="30px" height="30px">
+            <div>
+               <h4>Naseem Khan</h4>
+               <small>Admin</small>
+            </div>
+         </div>
+      </header>
+
+      <main>
+         <div class="cards">
+            <div class="single-card">
+               <div>
+                  <span>Người dùng</span>
+                  <h2>2</h2>
+               </div>
+               <i class="fas fa-users"></i>
+            </div>
+            <div class="single-card">
+               <div>
+                  <span>SHOP</span>
+                  <h2>3</h2>
+               </div>
+               <i class="fas fa-store-alt"></i>
+            </div>
+            <div class="single-card">
+               <div>
+                  <span>Đơn hàng</span>
+                  <h2>500</h2>
+               </div>
+               <i class="uil uil-clipboard-notes"></i>
+
+            </div>
+            <div class="single-card">
+               <div>
+                  <span>Doanh thu/ Ngày</span>
+                  <h2>180$</h2>
+               </div>
+               <i class="fas fa-dollar-sign"></i>
+            </div>
+         </div>
+
+
+         <div class="wrapper flex">
+            <div class="projects">
+               <div class="card-header flex">
+                  <h3>SHOP XU HƯỚNG</h3>
+                  <!-- <button>Xem thêm <i class="uil uil-angle-right"></i></button> -->
+               </div>
+
+               <table>
+                  <thead>
+                     <th>
+                        <tr>
+                           <td>Hình ảnh</td>
+                           <td>Tên Shop</td>
+                           <td>Địa chỉ</td>
+                           <td>Số điện thoại</td>
+                           <td>Đánh giá</td>
+                           <td>Trạng thái</td>
+                        </tr>
+                     </th>
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td>img</td>
+                        <td>GREEN_M</td>
+                        <td>123/hcm</td>
+                        <td>0324235253</td>
+                        <td>5 sao</td>
+                        <td class="status-box">
+                           <span class="status review"></span>Đang hoạt động
+                        </td>
+                     </tr>      
+                  </tbody>
+               </table>
+            </div>
+
+            <div class="customers">
+               <div class="card-header flex">
+                  <h3>Sản phẩm nổi bật</h3>
+                  <!-- <button>Xem thêm <i class="uil uil-angle-right"></i></button> -->
+               </div>
+
+               <table>
+                  
+                  <tr class="flex">
+                     <td class="flex">
+                        <img src="images/user.jpeg" width="30px" height="30px" alt="">
+                        <div>
+                           <h5>Tên sản phẩm</h5>
+                           <small>2000$</small>
+                        </div>
+                     </td>
+
+                     <td>Lượt xem
+                        <span>2k</span>
+                     </td>
+                  </tr>
+                  <tr class="flex">
+                     <td class="flex">
+                        <img src="images/user.jpeg" width="30px" height="30px" alt="">
+                        <div>
+                           <h5>Tên sản phẩm</h5>
+                           <small>2000$</small>
+                        </div>
+                     </td>
+
+                     <td>Lượt xem
+                        <span>2k</span>
+                     </td>
+                  </tr> <tr class="flex">
+                     <td class="flex">
+                        <img src="images/user.jpeg" width="30px" height="30px" alt="">
+                        <div>
+                           <h5>Tên sản phẩm</h5>
+                           <small>2000$</small>
+                        </div>
+                     </td>
+
+                     <td>Lượt xem
+                        <span>2k</span>
+                     </td>
+                  </tr> <tr class="flex">
+                     <td class="flex">
+                        <img src="images/user.jpeg" width="30px" height="30px" alt="">
+                        <div>
+                           <h5>Tên sản phẩm</h5>
+                           <small>2000$</small>
+                        </div>
+                     </td>
+
+                     <td>Lượt xem
+                        <span>2k</span>
+                     </td>
+                  </tr> <tr class="flex">
+                     <td class="flex">
+                        <img src="images/user.jpeg" width="30px" height="30px" alt="">
+                        <div>
+                           <h5>Tên sản phẩm</h5>
+                           <small>2000$</small>
+                        </div>
+                     </td>
+
+                     <td>Lượt xem
+                        <span>2k</span>
+                     </td>
+                  </tr>
+                 
+               </table>
+            </div>
+         </div>
+      </main>
+   </div>
+
+   <script>
+      let sideBar = document.getElementById('sidebar');
+      let menuIcon = document.getElementById('menu-icon');
+      let mainContent = document.getElementById('main-content');
+
+      menuIcon.onclick = () => {
+         sideBar.classList.toggle('toggleMenu');
+         mainContent.classList.toggle('toggleContent');
+      }
+
+      const listItems = document.querySelectorAll('li');
+
+listItems.forEach(item => {
+  item.addEventListener('click', () => {
+    // Xóa class 'active' khỏi tất cả các <li>
+    listItems.forEach(li => li.classList.remove('active'));
+
+    // Thêm class 'active' vào <li> được click
+    item.classList.add('active');
+  });
+});
+   </script>
+</body>
+</html>

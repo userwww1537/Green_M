@@ -1,0 +1,89 @@
+/* .box3-header {
+    border-bottom: -1px solid black;
+}
+.box-chitiet{
+   height: 500px;
+}
+.box_chitiet1 {
+   display: flex;
+   align-items: center;
+   padding: 10px;
+   border-bottom: 1px solid #ddd;
+   margin-bottom: 20px;
+}
+
+.box_chitiet1  img {
+   width: 100px;
+   height: 100px;
+   margin-right: 10px;
+}
+
+.box_chitiet1  .name {
+   flex-grow: 1;
+}
+
+.box_chitiet1  .name h3 {
+   margin: 0;
+}
+
+.box_chitiet1  .name span {
+   font-size: 14px;
+   color: #888;
+}
+
+.box_chitiet1  .price {
+   font-weight: bold;
+   padding: 0 50px;
+}
+
+.box_chitiet1  .price del {
+   margin: 0 10px;
+   color: #888;
+   text-decoration: line-through;
+}
+.star label{
+   margin: 0 5px;
+}
+
+.box_chitiet2 {
+   display: flex;
+   flex-direction: column;
+   padding: 10px;
+}
+
+.label-name {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 10px;
+   border-bottom: 1px solid #ddd;
+}
+
+.label-name .name {
+   margin-left: 50%;
+}
+
+.label-name .name span {
+   font-size: 14px;
+   color: #888;
+   line-height: 30px;
+}
+
+.label-name .name div {
+   font-weight: bold;
+}
+
+.please{
+   padding: 15px;
+   border: 1px solid rgb(255, 200, 0);
+}
+.please span{
+   color: red;
+} */
+/* .vien{
+   height: 0.1875rem;
+    width: 100%;
+    background-position-x: -1.875rem;
+    background-size: 7.25rem 0.1875rem;
+    background-image: repeating-linear-gradient(45deg,#6fa6d6,#6fa6d6 33px,transparent 0,transparent 41px,#f18d9b 0,#f18d9b 74px,transparent 0,transparent 82px);
+} */

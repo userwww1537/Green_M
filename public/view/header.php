@@ -346,11 +346,14 @@
                         },
                         success: function(data) {
                             $(".verified_username_reg").html(data);
+<<<<<<< HEAD
+=======
                             if(data != '') {
                                 checkUsername = false;
                             } else {
                                 checkUsername = true;
                             }
+>>>>>>> bd174ab99adb975ecb64a6b12a9b7c8872218439
                         }
                     });
                 } else {
@@ -369,11 +372,14 @@
                         },
                         success: function(data) {
                             $(".verified_email_reg").html(data);
+<<<<<<< HEAD
+=======
                             if(data != '') {
                                 checkEmail = false;
                             } else {
                                 checkEmail = true;
                             }
+>>>>>>> bd174ab99adb975ecb64a6b12a9b7c8872218439
                         }
                     });
                 } else {
@@ -385,6 +391,15 @@
                 var passwordLength = $(this).val().length;
                 
                 if (passwordLength == 0) {
+<<<<<<< HEAD
+                    $(".line-pass").css({'background': '', 'width': ''});
+                    $(".verified_password_reg").html("");
+                } else if (passwordLength < 8) {
+                    $(".line-pass").css({'background': 'red', 'width': '30%'});
+                } else if (passwordLength >= 8 && passwordLength < 12) {
+                    $(".line-pass").css({'background': 'yellow', 'width': '60%'});
+                } else {
+=======
                     checkPass = false;
                     $(".line-pass").css({'background': '', 'width': ''});
                     $(".verified_password_reg").html("");
@@ -396,6 +411,7 @@
                     $(".line-pass").css({'background': 'yellow', 'width': '60%'});
                 } else {
                     checkPass = true;
+>>>>>>> bd174ab99adb975ecb64a6b12a9b7c8872218439
                     $(".line-pass").css({'background': 'green', 'width': '100%'});
                 }
             });

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<style>
+    body {
+        background-color: bisque;
+    }
+
+    .box {
+        transform: translateY(35%);
+        max-width: 70%;
+        margin: 0 auto;
+        background-color: rgb(255, 255, 255);
+    }
+
+    .box-header {
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid black;
+    }
+
+    .box-header div:nth-child(1) {
+        margin-left: 25px;
+    }
+
+    .box-header div:nth-child(2) {
+        margin-right: 25px;
+    }
+
+    .box-header div:nth-child(1) button {
+        background-color: inherit;
+        border: none;
+    }
+
+    .madon {
+        display: flex;
+    }
+
+    .madon p:nth-child(2) {
+        margin-left: 10px;
+        color: rgb(8, 0, 255);
+    }
+
+    .box-content {
+        margin: 70px 0;
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        justify-content: space-around;
+
+    }
+
+    .box-content .cart .cart-icon i {
+        color: rgb(0, 186, 43);
+        border: 5px solid rgb(0, 186, 43);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin-bottom: 2px;
+        font-size: 25px;
+        line-height: 50px;
+    }
+
+
+    .cart {
+        text-align: center;
+
+    }
+
+    .box-footer {
+        height: 60px;
+        background-color: rgba(255, 228, 196, 0.438);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .box-footer div:nth-child(1) {
+        margin-left: 20px;
+    }
+
+    .box-footer div:nth-child(2) {
+        margin-right: 20px;
+    }
+
+    .box-footer div button {
+        border: none;
+        background-color: #d73211;
+        color: white;
+        padding: 10px 30px;
+        border-radius: 5px;
+        z-index: 1;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .box-footer div button::before {
+        content: " ";
+        position: absolute;
+        height: 35px;
+        top: 0;
+        width: 0;
+        left: 0;
+        border-radius: 5px;
+        transition: all .5s ease;
+    }
+
+    .box-footer div button:hover::before {
+        background-color: #ff2a008c;
+        width: 100%;
+        color: white;
+        z-index: -1;
+    }
+
+    .vien {
+        height: 0.1875rem;
+        width: 100%;
+        background-position-x: -1.875rem;
+        background-size: 7.25rem 0.1875rem;
+        background-image: repeating-linear-gradient(45deg, #6fa6d6, #6fa6d6 33px, transparent 0, transparent 41px, #f18d9b 0, #f18d9b 74px, transparent 0, transparent 82px);
+    }
+
+    /*box 2*/
+    .box-2 {
+        display: grid;
+        grid-template-columns: 38% 58%;
+        border-bottom: 1px solid black;
+    }
+
+    .content1 {
+        padding: 20px;
+    }
+
+    .content2 {
+        margin: 20px 0;
+        transform: translateX(20px);
+    }
+
+    .content2 .reg {
+        padding: 0 10px;
+        display: flex;
+
+    }
+
+    .content2 .reg div {
+        margin: 10px 10px;
+    }
+
+    .content2 .reg div:nth-child(1) i {
+        /* background-color: rgb(0, 187, 255); */
+        /* color: white; */
+        padding: 10px;
+        border-radius: 100%;
+    }
+
+    /*box3*/
+    .box3-header {
+        background-color: rgb(239, 239, 239);
+        height: 50px;
+        display: flex;
+    }
+
+    .box3-header button:nth-child(1) {
+        height: 20px;
+        border-radius: 5px;
+        background-color: #d73211;
+        color: white;
+        border: none;
+        margin: 15px 20px;
+        z-index: 1;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .box3-header button:nth-child(1)::before {
+        content: " ";
+        position: absolute;
+        height: 20px;
+        top: 0;
+        width: 0;
+        left: 0;
+        border-radius: 5px;
+        transition: all .5s ease;
+    }
+
+    .box3-header button:nth-child(1):hover::before {
+        background-color: #ff2a008c;
+        width: 100%;
+        color: white;
+        z-index: -1;
+    }
+
+    .box3-header button:nth-child(3),
+    .box3-header button:nth-child(4) {
+        height: 25px;
+        border-radius: 5px;
+        background-color: #d73211;
+        color: white;
+        border: none;
+        margin: 12px 5px;
+        padding: 0 10px;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    .box3-header button:nth-child(3)::before,
+    .box3-header button:nth-child(4)::before {
+        content: " ";
+        position: absolute;
+        height: 25px;
+        top: 0;
+        width: 0;
+        left: 0;
+        border-radius: 5px;
+        transition: all .5s ease;
+    }
+
+    .box3-header button:nth-child(3):hover::before,
+    .box3-header button:nth-child(4):hover::before {
+        background-color: #ff2a008c;
+        width: 100%;
+        color: white;
+        z-index: -1;
+    }
+
+    .box3-header button i {
+        padding: 0 5px;
+    }
+
+    .box3-header p {
+        font-weight: bold;
+        margin-left: -10px;
+    }
+
+    .box3-header {
+        border-bottom: -1px solid black;
+    }
+
+    .box-chitiet {
+        height: 500px;
+    }
+
+    .box_chitiet1 {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 20px;
+    }
+
+    .box_chitiet1 img {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+    }
+
+    .box_chitiet1 .name {
+        flex-grow: 1;
+    }
+
+    .box_chitiet1 .name h3 {
+        margin: 0;
+    }
+
+    .box_chitiet1 .name span {
+        font-size: 14px;
+        color: #888;
+    }
+
+    .box_chitiet1 .price {
+        font-weight: bold;
+        padding: 0 50px;
+    }
+
+    .box_chitiet1 .price del {
+        margin: 0 10px;
+        color: #888;
+        text-decoration: line-through;
+    }
+
+    .box_chitiet1 button {
+        padding: 10px;
+        background-color: #d73211;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        position: relative;
+        cursor: pointer;
+        z-index: 1;
+
+    }
+
+    .box_chitiet1 button::before {
+        content: " ";
+        position: absolute;
+        height: 36px;
+        top: 0;
+        width: 0;
+        left: 0;
+        border-radius: 5px;
+        transition: all .5s ease;
+    }
+
+    .box_chitiet1 button:hover::before {
+        background-color: #ff2a008c;
+        width: 100%;
+        color: white;
+        z-index: -1;
+    }
+
+    .box_chitiet2 {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .label-name {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .label-name .name {
+        margin-left: 50%;
+    }
+
+    .label-name .name span {
+        font-size: 14px;
+        color: #888;
+        line-height: 30px;
+    }
+
+    .label-name .name div {
+        font-weight: bold;
+    }
+
+    .please {
+        padding: 15px;
+        border: 1px solid rgb(255, 200, 0);
+    }
+
+    .please span {
+        color: red;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="box-header">
+            <div><i class="fa-solid fa-chevron-left"></i><button>TRỞ LẠI</button></div>
+            <div class="madon">
+                <p>MÃ ĐƠN HÀNG 113 |</p>
+                <p>ĐƠN HÀNG ĐÃ HOÀN THÀNH</p>
+            </div>
+        </div>
+        <div class="box-content">
+            <div class="cart">
+                <div class="cart-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <div class="cart-content">
+                    Đơn hàng đã đặt
+                </div>
+                <div class="cart-day">
+                    <small> 20:24 06-10-2023</small>
+                </div>
+            </div>
+            <div class="cart">
+                <div class="cart-icon">
+                    <i class="fas fa-money-bill-alt"></i>
+                </div>
+                <div class="cart-content">
+                    Đơn hàng đã thanh toán 200đ
+                </div>
+                <div class="cart-day">
+                    <small> 20:24 06-10-2023</small>
+                </div>
+            </div>
+            <div class="cart">
+                <div class="cart-icon">
+                    <i class="fas fa-truck-moving"></i>
+                </div>
+                <div class="cart-content">
+                    Đơn giao cho ĐVVC
+                </div>
+                <div class="cart-day">
+                    <small> 20:24 06-10-2023</small>
+                </div>
+            </div>
+            <div class="cart">
+                <div class="cart-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <div class="cart-content">
+                    Đã nhận được hàng
+                </div>
+                <div class="cart-day">
+                    <small> 20:24 06-10-2023</small>
+                </div>
+            </div>
+            <div class="cart">
+                <div class="cart-icon">
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="cart-content">
+                    Đơn hàng hoàn thành
+                </div>
+                <div class="cart-day">
+                    <small> 20:24 06-10-2023</small>
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <div>
+                Cảm ơn bạn đã mua sắm tại grenn-m!
+            </div>
+            <div>
+                <button>MUA LẠI</button>
+                <button>LIÊN HỆ</button>
+            </div>
+        </div>
+        <div class="vien"></div>
+        <div class="box-2">
+            <div class="content1">
+                <div>
+                    <h3>ĐỊA CHỈ NHẬN HÀNG</h3>
+                </div>
+                <div class="name">
+                    LƯƠNG CHÍ TÍNH
+                </div>
+                <div class="phone">
+                    <small>
+                        67987
+                    </small>
+                </div>
+                <div class="adress">
+                    <small>1331/2/53 tổ 33A-kp.5 lê đức thọ, P.14, gò vấp, Phường 14, Quận Gò Vấp, TP. Hồ Chí
+                        Minh</small>
+                </div>
+            </div>
+            <div class="content2">
+                <div class="reg">
+                    <div class="reg-icon">
+                        <i class="fas fa-check-circle" style="color: #00ff88;"></i>
+                    </div>
+                    <div class="reg-time">
+                        <small>200021asdf5asdf</small>
+                    </div>
+                    <div class="reg-trangthai">
+                        <b style="color: rgb(0, 187, 255);">Đã giao <br> Đơn hàng đã được giao thành công</b> <br>
+                        <a href="" style="text-decoration: none;">Xem hình ảnh giao hàng.</a>
+                    </div>
+                </div>
+                <div class="reg">
+                    <div class="reg-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="reg-time">
+                        <small>200021asdf5asdf</small>
+                    </div>
+                    <div class="reg-trangthai">
+                        <b style="color: rgb(0, 187, 255);">Đã giao <br> Đơn hàng đã được giao thành công</b> <br>
+
+                    </div>
+                </div>
+                <div class="reg">
+                    <div class="reg-icon">
+                        <i class="fas fa-circle" style="color: #a5a6a7;"></i>
+                    </div>
+                    <div class="reg-time">
+                        <small>200021asdf5asdf</small>
+                    </div>
+                    <div class="reg-trangthai">
+                        Đơn hàng đã được giao đến trạm trung chueern tại <small>thành phố HỒ CHÍ MINH</small>
+                    </div>
+                </div>
+                <div class="reg">
+                    <div class="reg-icon">
+                        <i class="fas fa-circle" style="color: #a5a6a7;"></i>
+
+                    </div>
+                    <div class="reg-time">
+                        <small>200021asdf5asdf</small>
+                    </div>
+                    <div class="reg-trangthai">
+                        Đơn hàng đã được giao đến trạm trung chueern tại <small>thành phố HỒ CHÍ MINH</small>
+                    </div>
+                </div>
+                <div class="reg">
+                    <div class="reg-icon">
+                        <i class="fas fa-circle" style="color: #a5a6a7;"></i>
+
+                    </div>
+                    <div class="reg-time">
+                        <small>200021asdf5asdf</small>
+                    </div>
+                    <div class="reg-trangthai">
+                        Đơn hàng đã được giao đến trạm trung chueern tại <small>thành phố HỒ CHÍ MINH</small>
+                    </div>
+                </div>
+                <div class="reg">
+                    <div class="reg-icon">
+                        <i class="fas fa-circle" style="color: #a5a6a7;"></i>
+
+                    </div>
+                    <div class="reg-time">
+                        <small>200021asdf5asdf</small>
+                    </div>
+                    <div class="reg-trangthai">
+                        Đơn hàng đã được giao đến trạm trung chueern tại <small>thành phố HỒ CHÍ MINH</small>
+                    </div>
+                </div>
+                <div class="reg">
+                    <div class="reg-icon">
+                        <i class="fas fa-circle" style="color: #a5a6a7;"></i>
+
+                    </div>
+                    <div class="reg-time">
+                        <small>200021asdf5asdf</small>
+                    </div>
+                    <div class="reg-trangthai">
+                        Đơn hàng đã được giao đến trạm trung chueern tại <small>thành phố HỒ CHÍ MINH</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-3">
+            <div class="box3-header">
+                <button>Yêu thích </button>
+                <p>SHOPGAuBONGgIAre namle</p>
+                <button><i class="fas fa-envelope-open-text"></i>chat</button>
+                <button><i class="fas fa-store"></i>xem shop</button>
+            </div>
+            <div class="box-chitiet">
+                <div class="box_chitiet1">
+                    <img src="public/view/images/1.png" alt="">
+                    <div class="name">
+                        <h3>Tên sản phẩm</h3>
+                        <span>X1</span>
+                    </div>
+                    <div class="price"><del>1000đ</del><span>500đ</span></div>
+                    <button> Đánh giá ngay</button>
+                </div>
+                <div class="box_chitiet1">
+                    <img src="public/view/images/1.png" alt="">
+                    <div class="name">
+                        <h3>Tên sản phẩm</h3>
+                        <span>X1</span>
+                    </div>
+                    <div class="price"><del>1000đ</del><span>500đ</span></div>
+                    <button> Đánh giá ngay</button>
+                </div>
+                <div class="box_chitiet2">
+                    <div class="label-name">
+                        <div class="name">
+                            <span>Tổng tiền hàng:</span>
+                        </div>
+                        <div>2000đ</div>
+                    </div>
+                    <br>
+                    <div class="label-name">
+                        <div class="name">
+                            <span>Phí vận chuyển:</span>
+                        </div>
+                        <div>2000đ</div>
+                    </div>
+                    <br>
+                    <div class="label-name">
+                        <div class="name">
+                            <span>Giảm giá phí vẫn chuyển:</span>
+                        </div>
+                        <div>2000đ</div>
+                    </div>
+                    <br>
+                    <div class="label-name">
+                        <div class="name">
+                            <span>Thành tiền:</span>
+                        </div>
+                        <div>2000đ</div>
+                    </div>
+                </div>
+                <div class="please">
+                    <i class="fas fa-bell" style="color: #ffea00;"></i>
+                    <label>Vui lòng thanh toán <span>5000đ</span> khi nhận hàng</label>
+                </div>
+                <div class="label-name">
+                    <div class="name">
+                        <span>Phương thức thanh toán:</span>
+                    </div>
+                    <div style="padding: 15px;">Thanh toán khi nhận hàng</div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

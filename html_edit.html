@@ -1,6 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+<script>
+if ('Notification' in window) {
+  Notification.requestPermission().then(function(permission) {
+    if (permission === 'granted') {
+        var notification = new Notification('Thông báo từ Green-M!', {
+        body: 'Bạn có tin nhắn mới.',
+      });
+    }
+  });
+}
+</script>
+=======
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Game</title>
@@ -124,3 +146,4 @@
     <button onclick="resetGame()">Reset Game</button>
 </body>
 </html>
+>>>>>>> bd174ab99adb975ecb64a6b12a9b7c8872218439

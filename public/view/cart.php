@@ -48,7 +48,11 @@
                                 <td><img id="cart_img" src="'. $cart_img .'" alt=""></td>
                                 <td id="cart_name">'. $cart_name .'</td>
                                 <td id="cart_price">$'. $cart_price .'</td>
+<<<<<<< HEAD
+                                <td id="cart_qty"><input type="number" class="cart_qty_up" min="1" value="'. $cart_qty .'"></td>
+=======
                                 <td id="cart_qty"><input type="number" class="cart_qty_up" min="0" value="'. $cart_qty .'"></td>
+>>>>>>> bd174ab99adb975ecb64a6b12a9b7c8872218439
                                 <td id="cart_qty">'. $shop_name .'</td>
                                 <td>$'. $tong_sl .'</td>
                             </tr>
@@ -215,15 +219,22 @@
     $(".cart_qty_up").on("change", function() {
         var value = $(this).val();
         var pro_id = $(this).closest('tr').find("#product_id").val();
+<<<<<<< HEAD
+=======
         var cart_id = $(this).closest('tr').find("#cart_id").val();
+>>>>>>> bd174ab99adb975ecb64a6b12a9b7c8872218439
         $.ajax({
             url: 'controllers/xuly_cart.php',
             method: "POST",
             data: {
                 check: "update_qty_cart",
                 value: value,
+<<<<<<< HEAD
+                pro_id: pro_id
+=======
                 pro_id: pro_id,
                 cart_id: cart_id
+>>>>>>> bd174ab99adb975ecb64a6b12a9b7c8872218439
             },
             success: function() {
                 location.reload();
