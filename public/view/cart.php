@@ -7,7 +7,13 @@
                 <td>Tên</td>
                 <td>Giá</td>
                 <td>Số lượng</td>
-                <td>Cửa hàng</td>
+                <?php
+                    if(isset($_SESSION['cart_live'])) {
+                        echo '';
+                    } else if(isset($show_cart_log) && count($show_cart_log) > 0) {
+                        echo '<td>Cửa hàng</td>';
+                    }
+                ?>
                 <td>Tổng giá</td>
             </tr>
         </thead>
@@ -28,7 +34,6 @@
                                 <td id="cart_name">'. $product_name .'</td>
                                 <td id="cart_price">$'. $product_price .'</td>
                                 <td id="cart_qty">'. $product_qty .'</td>
-                                <td id="cart_qty">'. $shop_id .'</td>
                                 <td>$'. $tong_sl .'</td>
                             </tr>
                         ';

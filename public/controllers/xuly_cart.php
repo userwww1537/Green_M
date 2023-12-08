@@ -74,6 +74,7 @@
                         'product_img' => $product_img,
                         'product_price' => $product_price,
                         'product_qty' => $product_qty,
+                        'shop_id' => $shop_id
                     )
                 );
                 echo '

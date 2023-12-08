@@ -49,10 +49,13 @@
                 echo '<h2>$'.$show['product_del'].'</h2>';
             }
         ?>
-        <input type="number" value="0" min="0" max="<?=$show['product_qty']?>" name="qty" id="quantity-input"> Kg
+        <input type="number" value="1" min="1" max="<?=$show['product_qty']?>" name="qty" id="quantity-input"> Kg
+        <script>
+            
+        </script>
         <?php
             if($show['product_qty'] == 0) {
-                echo '<a class="normal loadkkk" id="add-to-cart-link" style="background-color: red;">Hết hàng</a>';
+                echo '<a class="normal" style="background-color: red;">Hết hàng</a>';
             } else {
                 if($show['product_del'] == 0.00) {
                     echo '<a href="controllers/xuly_cart.php?add_cart_detail=true&shop_id='. $show['account_id'] .'&product_name='. $show['product_name'] .'&product_price='. $show['product_price'] .'&product_id='.$show['product_id'].'&product_img='.$image[0].'&product_qty=1" class="normal loadkkk" id="add-to-cart-link">Thêm giỏ hàng</a>';
@@ -65,10 +68,14 @@
         <script>
             document.getElementById('quantity-input').addEventListener('change', function() {
                 var quantity = this.value;
-                var addToCartLink = document.getElementById('add-to-cart-link');
-                var currentURL = addToCartLink.href;
-                var newURL = currentURL.replace(/qty=\d+/, 'qty=' + quantity);
-                addToCartLink.href = newURL;
+                if(quantity == 0) {
+                    $("#error_noti").text('Số lượng phải hơn 0');
+                } else {
+                    var addToCartLink = document.getElementById('add-to-cart-link');
+                    var currentURL = addToCartLink.href;
+                    var newURL = currentURL.replace(/qty=\d+/, 'qty=' + quantity);
+                    addToCartLink.href = newURL;
+                }
             });
         </script>
         <h4 style="font-size: 18px;">Thông Tin Sản Phẩm</h4>
