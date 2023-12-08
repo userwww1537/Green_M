@@ -224,3 +224,158 @@ if (!isset($act) || $act == "home") {
             countdown();
     });
 </script>
+
+
+<style>
+    .chat-icon {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-image: url(path/to/chat-icon.png);
+        background-size: cover;
+        cursor: pointer;
+        z-index: 9999;
+        font-size: 28px;
+        border-radius: 45%;
+    }
+
+    #chat-popup {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 300px;
+        height: 400px;
+        background-color: #f1f1f1;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        display: none;
+        z-index: 9999;
+    }
+
+    .chat-header {
+        padding: 10px;
+        background-color: #333;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .close-btn {
+        color: #fff;
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .chat-body {
+        padding: 10px;
+        height: 300px;
+        overflow-y: scroll;
+    }
+
+    .chat-footer {
+        padding: 10px;
+        display: flex;
+    }
+
+    input[type="text"] {
+        flex-grow: 1;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .send-btn {
+        margin-left: 10px;
+        padding: 5px 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+<button class="chat-icon" onclick="openChat()"><i class="fas fa-comment"></i></button>
+<div id="chat-popup">
+    <div class="chat-header">
+        <h3>Chat với Green-Chat</h3>
+        <button class="close-btn" onclick="closeChat()">&times;</button>
+    </div>
+    <div class="chat-body">
+        <div class="message received">
+            <p><b>Green-Chat:</b> Xin chào! Có gì tôi có thể giúp bạn?</p>
+        </div>
+        <!-- <div class="message sent">
+            <p>Tôi đang gặp sự cố với trang web của tôi. Bạn có thể giúp tôi không?</p>
+        </div>
+        <div class="message received">x`
+            <p>Tất nhiên! Tôi sẽ cố gắng giúp bạn giải quyết vấn đề của bạn.</p>
+        </div> -->
+    </div>
+    <div class="chat-footer">
+        <input type="text" id="value-ai-chat" placeholder="Nhập tin nhắn" />
+        <button class="send-btn-ai-chat">Gửi</button>
+    </div>
+</div>
+<script>
+    $(".send-btn-ai-chat").on('click', function() {
+        var value = $("#value-ai-chat").val();
+        if(value == '') {
+            $(".error_noti").text('Vui lòng điền nội dung!');
+            show_error();
+        } else {
+            $.ajax({
+                url: "controllers/chatAi.php",
+                method: "POST",
+                data: {
+                    check: "AiChat",
+                    value: value
+                },
+                success: function(data) {
+                    $(".chat-body").append(data);
+                    $("#value-ai-chat").val("");
+                    var chatBody = $(".chat-body");
+                    var scrollHeight = chatBody.prop("scrollHeight");
+                    chatBody.scrollTop(scrollHeight);
+                }
+            });
+        }
+    });
+
+    $("#value-ai-chat").keyup(function(event) {
+        if (event.keyCode === 13) {
+            var value = $("#value-ai-chat").val();
+            if(value == '') {
+                $(".error_noti").text('Vui lòng điền nội dung!');
+                show_error();
+            } else {
+                $.ajax({
+                    url: "controllers/chatAi.php",
+                    method: "POST",
+                    data: {
+                        check: "AiChat",
+                        value: value
+                    },
+                    success: function(data) {
+                        $(".chat-body").append(data);
+                        $("#value-ai-chat").val("");
+                        var chatBody = $(".chat-body");
+                        var scrollHeight = chatBody.prop("scrollHeight");
+                        chatBody.scrollTop(scrollHeight);
+                    }
+                });
+            }
+        }
+    });
+
+    function openChat() {
+        document.getElementById("chat-popup").style.display = "block";
+    }
+
+    function closeChat() {
+        document.getElementById("chat-popup").style.display = "none";
+    }
+</script>
