@@ -35,6 +35,12 @@
                         <p><b>Green-Chat:</b>Xin lỗi, Tôi không có quyền truy cập vào tài khoản, xin vui lòng hỏi câu hỏi khác!</p>
                     </div>
                 ';
+            } else if(stripos($value, 'ơ') !== false) {
+                echo '
+                    <div class="message received">
+                        <p><b>Green-Chat:</b>Ơ cái nịt bụng!</p>
+                    </div>
+                ';
             } else if(stripos($value, 'mấy giờ') !== false) {
                 date_default_timezone_set('Asia/Ho_Chi_Minh');
                 $now = date('H \G\iờ\ i \P\hú\t\ s \G\i\â\y');
