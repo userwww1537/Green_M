@@ -100,6 +100,16 @@
             $sql="SELECT * FROM account WHERE account_status LIKE '$a'";
             return self::conn_show_all($sql);
         }
+
+        public static function notiUserAll($value) {
+            $sql = "UPDATE account SET account_notify = ?";
+            return self::conn_execute($sql, $value);
+        }
+
+        public static function notiShopAll($value) {
+            $sql = "UPDATE account SET account_notify = ? WHERE account_position = 'Shop'";
+            return self::conn_execute($sql, $value);
+        }
     
     }
 ?>
