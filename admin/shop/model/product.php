@@ -75,12 +75,22 @@
             return self::conn_execute($sql, $a, $b);
         }
 
-        public static function add_p2($a) {
-            $sql = "INSERT INTO image_product (image_file, product_id)
+        // public static function add_p2($a) {
+        //     $sql = "INSERT INTO image_product (image_file, product_id)
+        //             SELECT ? AS image_file, product_id
+        //             FROM product
+        //             ORDER BY product_id DESC
+        //             LIMIT 1
+        //     ";
+        //     return self::conn_execute($sql, $a);
+        // }
+
+        public static function add_p2($a){
+            $sql ="INSERT INTO image_product (image_file, product_id)
                     SELECT ? AS image_file, product_id
                     FROM product
                     ORDER BY product_id DESC
-                    LIMIT 1
+                    LIMIT 1 
             ";
             return self::conn_execute($sql, $a);
         }
