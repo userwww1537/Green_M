@@ -3,7 +3,7 @@
     if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] == "Quản trị viên") {
         echo '
             <style>
-                body {
+                body { 
                     display: flex;
                     justify-content: center;
                     align-items: center;
