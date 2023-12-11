@@ -21,5 +21,9 @@
         $account->sent_notify($mess, $account_id);
     } else if(isset($check) && $check == "sent_lock") {
         $account->sent_lock("Khóa", $lido, $account_id);
+    } else if(isset($check) && $check == "Online") {
+        $account->update_status('Online', $_SESSION['83x86']['account_id']);
+    } else if(isset($check) && $check == "Offline") {
+        $account->update_status('Offline', $_SESSION['83x86']['account_id']);
     }
 ?>

@@ -21,6 +21,46 @@
     include_once "model/rate.php";
     include_once "model/product.php";
     include_once "model/category.php";
+
+    if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_status'] != 'Khóa') {
+        echo '
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            function checkOnlineStatus() {
+            if (navigator.onLine) {
+                $.ajax({
+                    url: "controllers/xuly_user.php",
+                    method: "POST",
+                    data: {
+                        check: "Online"
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: "controllers/xuly_user.php",
+                    method: "POST",
+                    data: {
+                        check: "Offline"
+                    }
+                });
+            }
+            }
+
+            window.addEventListener("load", checkOnlineStatus);
+
+            window.addEventListener("beforeunload", function () {
+                $.ajax({
+                    url: "controllers/xuly_user.php",
+                    method: "POST",
+                    data: {
+                        check: "Offline"
+                    }
+                });
+            });
+        </script>
+        ';
+    }
+    
     $product = new product_lass();
     $message = new mess_lass();
     $account = new account_lass();

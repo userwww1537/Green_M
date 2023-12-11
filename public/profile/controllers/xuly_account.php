@@ -975,5 +975,9 @@
                 </div>
             ';
         }
+    } else if(isset($check) && $check == "Online") {
+        $acc->update_status('Online', $_SESSION['83x86']['account_id']);
+    } else if(isset($check) && $check == "Offline") {
+        $acc->update_status('Offline', $_SESSION['83x86']['account_id']);
     }
 ?>

@@ -1,0 +1,8 @@
+[08-Dec-2023 11:50:14 UTC] PHP Notice:  Undefined index: 83x86 in /home/rg04p2bcvkex/public_html/public/profile/controllers/xuly_account.php on line 7
+[08-Dec-2023 11:50:14 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/rg04p2bcvkex/public_html/public/profile/controllers/xuly_account.php on line 7
+[08-Dec-2023 11:50:14 UTC] PHP Notice:  Undefined index: 83x86 in /home/rg04p2bcvkex/public_html/public/profile/model/account.php on line 28
+[08-Dec-2023 11:50:14 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/rg04p2bcvkex/public_html/public/profile/model/account.php on line 28
+[08-Dec-2023 12:23:12 UTC] PHP Notice:  Undefined index: 83x86 in /home/rg04p2bcvkex/public_html/public/profile/controllers/xuly_mail.php on line 15
+[08-Dec-2023 12:23:12 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/rg04p2bcvkex/public_html/public/profile/controllers/xuly_mail.php on line 15
+[08-Dec-2023 12:23:12 UTC] PHP Notice:  Undefined index: 83x86 in /home/rg04p2bcvkex/public_html/public/profile/controllers/xuly_mail.php on line 116
+[08-Dec-2023 12:23:12 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/rg04p2bcvkex/public_html/public/profile/controllers/xuly_mail.php on line 116
