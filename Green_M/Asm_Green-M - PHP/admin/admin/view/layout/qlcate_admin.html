@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Admin Dashboard - WebTech Gyan</title>
+
+   <!-- iconscout cdn path -->
+   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+   <!-- CSS File Link -->
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div class="sidebar" id="sidebar">
+      <div class="logo">
+            <img src="Images/logo-1.webp" alt="">
+      </div>
+
+      <div class="sidebar-menu">
+         <ul>
+            <li>
+               <i class="fas fa-chart-line"></i>
+               <a href="page_admin.html"><span>Tổng quan</span></a>
+            </li>
+            <li>
+               <i class="fas fa-users"></i>
+               <a href="ql_user_admin.html"><span>Quản lý người dùng</span></a>
+            </li>
+            <li>
+               <i class="fas fa-store-alt"></i>
+               <a href="ql_shop_admin.html"><span>Quản lý Shop</span></a>
+            </li>
+            <li>
+               <i class="fas fa-folder-minus"></i>
+               <a href="qlcate_admin.html"><span>Quản lý danh mục</span></a>
+            </li>
+            <li>
+               <i class="uil uil-clipboard-notes"></i>
+               <a href="ql_donhang_admin.html"><span>Quản lý đơn hàng</span></a>
+            </li>
+            <li>
+               <i class="uil uil-signin"></i>
+               <a href=""><span>Đăng xuất</span></a>
+            </li>
+         </ul>
+      </div>
+   </div>
+
+   <div class="main-content" id="main-content">
+      <header class="flex">
+        <h2>
+            <i class="uil uil-bars" id="menu-icon"></i>
+         </h2>
+
+         <div class="search-box">
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder="Tìm kiếm...">
+         </div>
+
+         <div class="admin-box flex" >
+            <img src="images/user.jpeg" width="30px" height="30px">
+            <div>
+               <h4>Nguyễn Tấn Ý</h4>
+               <small>Admin</small>
+            </div>
+         </div>
+      </header>
+
+      <main>
+         <div class="wrapper flex">
+            <div class="projects-category">
+               <div class="card-header flex">
+                  <h3>Quản lý danh mục</h3>
+                  <button>Thêm danh mục <i class="fas fa-plus"></i></button>
+               </div>
+
+               <table>
+                  <thead>
+                     <th>
+                        <tr>
+                           <td>STT</td>
+                           <td>Tên danh mục</td>
+                           <td>Hình ảnh</td>
+                           <td>Trạng thái</td>
+                           <td>Thao tác</td>
+                        </tr>
+                     </th>
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td>1</td>
+                        <td>Trái cây</td>
+                        <td>IMG</td>
+                        <td class="status-box">
+                           <span class="status review"></span>review
+                        </td>
+                        <td>
+                            <a href="">Xóa</a>/
+                            <a href="">Sửa</a>
+                        </td>
+                     </tr>      
+                     <tr>
+                        <td>1</td>
+                        <td>Trái cây</td>
+                        <td>IMG</td>
+                        <td class="status-box">
+                           <span class="status review"></span>review
+                        </td>
+                        <td>
+                            <a href="">Xóa</a>/
+                            <a href="">Sửa</a>
+                        </td>
+                     </tr>     
+                     <tr>
+                        <td>1</td>
+                        <td>Trái cây</td>
+                        <td>IMG</td>
+                        <td class="status-box">
+                           <span class="status review"></span>review
+                        </td>
+                        <td>
+                            <a href="">Xóa</a>/
+                            <a href="">Sửa</a>
+                        </td>
+                     </tr>      <tr>
+                        <td>1</td>
+                        <td>Trái cây</td>
+                        <td>IMG</td>
+                        <td class="status-box">
+                           <span class="status review"></span>review
+                        </td>
+                        <td>
+                            <a href="">Xóa</a>/
+                            <a href="">Sửa</a>
+                        </td>
+                     </tr>      <tr>
+                        <td>1</td>
+                        <td>Trái cây</td>
+                        <td>IMG</td>
+                        <td class="status-box">
+                           <span class="status review"></span>review
+                        </td>
+                        <td>
+                            <a href="">Xóa</a>/
+                            <a href="">Sửa</a>
+                        </td>
+                     </tr>     
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </main>
+   </div>
+
+   <script>
+      let sideBar = document.getElementById('sidebar');
+      let menuIcon = document.getElementById('menu-icon');
+      let mainContent = document.getElementById('main-content');
+
+      menuIcon.onclick = () => {
+         sideBar.classList.toggle('toggleMenu');
+         mainContent.classList.toggle('toggleContent');
+      }
+
+      const listItems = document.querySelectorAll('li');
+
+listItems.forEach(item => {
+  item.addEventListener('click', () => {
+    // Xóa class 'active' khỏi tất cả các <li>
+    listItems.forEach(li => li.classList.remove('active'));
+
+    // Thêm class 'active' vào <li> được click
+    item.classList.add('active');
+  });
+});
+   </script>
+</body>
+</html>

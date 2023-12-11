@@ -1,84 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Popup thông báo</title>
-
+    <title>Document</title>
+</head>
+<body>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
+        .input-field-regShop {
+            margin-bottom: 20px;
+        }
 
-      body {
-        font-family: sans-serif;
-        background-color: #ffffff;
-      }
+        .input-field-regShop label {
+            color: #333;
+            font-weight: bold;
+            display: block;
+        }
 
-      #popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 400px;
-        height: 300px;
-        background-color: #ffffff;
-        z-index: 9999;
-      }
+        .input-field-regShop select {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-      .container {
-        padding: 20px;
-        border-radius: 10px;
-        background-color: #0099ff;
-      }
+        .input-field-regShop input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-      .header {
-        background-color: #ffffff;
-        padding: 20px;
-      }
+        .input-field-regShop input[type="submit"]:hover {
+            background-color: #555;
+        }
 
-      .content {
-        padding: 20px;
-      }
+        .alertDieuKhoan {
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+        }
 
-      .footer {
-        background-color: #ffffff;
-        padding: 20px;
-      }
+        .alertDieuKhoan h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
 
-      .close {
-        color: #ffffff;
-        background-color: #ff0000;
-        font-size: 16px;
-        border-radius: 50%;
-        padding: 10px;
-        cursor: pointer;
-      }
+        .alertDieuKhoan ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
 
-      .close:hover {
-        background-color: #ff3333;
-      }
-
-  </style>
-  </head>
-  <body>
-
-    <div id="popup">
-      <div class="header">
-        <h2>Thông báo từ admin</h2>
-      </div>
-      <div class="content">
-        <p>
-          Để nâng cao chất lượng dịch vụ, website [tên website] sẽ tạm ngừng
-          hoạt động từ ngày [ngày] đến ngày [ngày].
-        </p>
-      </div>
-      <div class="footer">
-        <a href="#close" class="close">Đóng</a>
-      </div>
+        .alertDieuKhoan li {
+            color: #666;
+            margin-bottom: 5px;
+        }
+    </style>
+    <form action="" method="post">
+        <div class="input-field-regShop">
+            <label for="sel">Đăng ký trở thành Shop: </label>
+            <select name="sel" id="sel">
+                <option value="0">Chưa kích hoạt</option>
+                <option value="1">Đăng ký</option>
+            </select>
+            <input type="submit" value="Xác nhận" name="acceptShop">
+        </div>
+    </form>
+    
+    <div class="alertDieuKhoan">
+        <h3>Chính sách khi đăng ký thành Shop từ Green-m:</h3>
+        <ul>
+            <li>Có thể đăng bán sản phẩm</li>
+            <li>Có thể lên top sản phẩm trên trang chủ</li>
+            <li>Cập nhật thông tin mới nhất từ Admin</li>
+            <li>Chỉ mất 3% chiết khấu trên mỗi sản phẩm bán ra</li>
+        </ul>
     </div>
-
-    <script src="script.js"></script>
-  </body>
+</body>
 </html>
+<script>
+    $("# product").click(function(){
+        var product=$(this).val();
+        $.ajax({
+            url: "",
+            method : "post",
+            data:{
+                check: "sori"
+            },
+            success:function(data){
+                $("sndhs").text(data);
+                show_success();
+            }
+        })
+    })
+</script>

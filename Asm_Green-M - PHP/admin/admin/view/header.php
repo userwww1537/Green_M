@@ -180,11 +180,73 @@
          <h2>
             <i class="uil uil-bars" id="menu-icon"></i>
          </h2>
+         <?php
+            if(isset($act)) {
+                  if($act == 'shop') {
+                  echo '
+                     <div class="search-box">
+                        <div class="input-search">
+                           <input type="text" placeholder="Chọn chế độ tìm..." class="value-search-pro" readonly>
+                           <select id="proDmSearch">
+                              <option value="">...</option>
+                              <option value="name">Tên</option>
+                              <option value="email">email</option>
+                              <option value="phone">Số điện thoại</option>
+                              <option value="status">trạng thái</option>
+                           </select>
+                        </div>
+                     </div>
+                  ';
+               } else if($act == 'cate') {
+                  echo '
+                     <div class="search-box">
+                        <div class="input-search">
+                           <input type="text" placeholder="Chọn chế độ tìm..." class="value-search-pro" readonly>
+                           <select id="proDmSearch">
+                              <option value="">...</option>
+                              <option value="name">Tên KH</option>
+                              <option value="status">Trạng thái</option>
+                           
+                           </select>
+                        </div>
+                     </div>
+                  ';
+               } else if($act == 'user') {
+                  echo '
+                     <div class="search-box">
+                        <div class="input-search">
+                           <input type="text" placeholder="Chọn chế độ tìm..." class="value-search-pro" readonly>
+                           <select id="proDmSearch">
+                              <option value="">...</option>
+                              <option value="name">Tên KH</option>
+                              <option value="email">Email</option>
+                              <option value="status">Trạng thái</option>
+                              <option value="phone">Số điện thoại</option>
+                           
+                           </select>
+                        </div>
+                     </div>
+                  ';
+               }else if($act == 'order') {
+                  echo '
+                     <div class="search-box">
+                        <div class="input-search">
+                           <input type="text" placeholder="Chọn chế độ tìm..." class="value-search-pro" readonly>
+                           <select id="proDmSearch">
+                              <option value="">...</option>
+                          
+                              <option value="name">Tên KH</option>
+                              <option value="phone">Số điện thoại</option>
+                           </select>
+                        </div>
+                     </div>
+                  ';
+               }
+            }
+           
+         ?>
 
-         <div class="search-box">
-            <i class="uil uil-search"></i>
-            <input type="text" placeholder="Tìm kiếm...">
-         </div>
+
 
          <div class="admin-box flex">
             <img src="../../public/<?= $_SESSION['83x86']['account_avt'] ?>" width="30px" height="30px">

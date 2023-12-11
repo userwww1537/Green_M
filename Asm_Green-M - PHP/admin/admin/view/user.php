@@ -148,3 +148,99 @@
          }
       });
    </script>
+   <script>
+
+   $(document).ready(function() {
+      $("#proDmSearch").on('change', function() {
+         var value = $(this).val();
+         if(value === '') {
+            $('.value-search-pro').prop('readonly', true);
+            $('.value-search-pro').attr('placeholder', 'Chọn chế độ tìm...');
+         } else {
+            if(value == 'name') {
+            $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền Tên KH shop cần tìm...');
+            } else if(value == 'email') {
+            $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền email cần tìm...');
+            }  else if(value= 'phone'){
+            $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền SĐT KH cần tìm...');
+            } else{
+               $('.value-search-pro').prop('readonly', false);
+            $('.value-search-pro').attr('placeholder', 'Điền trạng thái KH cần tìm...');
+            }
+         }
+      });
+
+      $(".value-search-pro").on('keyup', function() {
+         var value = $(this).val();
+         var check = $("#proDmSearch").val();
+         if(value != '') {   
+            if(check == "name") {
+               $.ajax({
+                  url: "controllers/xuly_user.php",
+                  method: "POST",
+                  data: {
+                     check: "searchNameuser",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            } else if(check == "email") {
+               $.ajax({
+                  url: "controllers/xuly_user.php",
+                  method: "POST",
+                  data: {
+                     check: "searchEmailuser",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            } else if(check == "phone") {
+               $.ajax({
+                  url: "controllers/xuly_user.php",
+                  method: "POST",
+                  data: {
+                     check: "searchPhoneuser",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            } 
+            else if(check == "status") {
+               $.ajax({
+                  url: "controllers/xuly_user.php",
+                  method: "POST",
+                  data: {
+                     check: "searchStatususer",
+                     value: value
+                  },
+                  success: function(data) {
+                     $('tbody').html(data);
+                  }
+               });
+            } 
+         } else {
+            $.ajax({
+               url: "controllers/xuly_user.php",
+               method: "POST",
+               data: {
+                  check: "searchAlluser",
+                  value: value
+               },
+               success: function(data) {
+                  $('tbody').html(data);
+               }
+            });
+         }
+      });
+   });
+
+</script>

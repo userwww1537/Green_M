@@ -21,6 +21,7 @@
         $chua = $account->log_account($username, $username, $password);
         if ($chua > 0) {
             $_SESSION['83x86'] = $chua;
+            setcookie("accountsave", $_SESSION['83x86']['account_id'], time() + (86000*7));
             $account->update_status("Online", $chua['account_id']);
             $response = array(
             'success' => true,
@@ -47,17 +48,195 @@
             $duongdan = "view/images/account/" . $images;
             $account->update_info_account($Fullname, $sex, $address, $duongdan, $username, $email, $phone, $position, $_SESSION['83x86']['account_id'], $check);
             echo '
-                <script>
-                    window.location.href = "../index.php?act=profile";
-                </script>
+                <style>
+                    .content {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 400px;
+                        height: 200px;
+                        border-radius: 10px;
+                        background-color: white;
+                    }
+                    
+                    .content {
+                        animation: slide-in 1.5s ease-in-out;
+                    }
+                    
+                    @keyframes slide-in {
+                        0% {
+                        top: -100%;
+                        }
+                    
+                        100% {
+                        top: 50%;
+                        }
+                    }
+                    #popup {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.6);
+                        z-index: 1000;
+                    }
+                    
+                    .content {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 400px;
+                        height: 200px;
+                        border-radius: 10px;
+                        background-color: white;
+                        text-align: center;
+                    }
+                
+                    #popup .content span {
+                        font-size: 40px;
+                        line-height: 75px;
+                        font-weight: 700;
+                        color: rgb(44, 69, 7);
+                    }
+                    
+                    h2 {
+                        font-size: 24px;
+                        text-align: center;
+                    }
+                    
+                    p {
+                        font-size: 16px;
+                        text-align: center;
+                    }
+                    
+                    .close {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        width: 30px;
+                        height: 30px;
+                        line-height: 30px;
+                        border-radius: 50%;
+                        background-color: red;
+                        cursor: pointer;
+                        text-decoration: none;
+                        color: white;
+                        font-weight: 600;
+                    }
+                    
+                    .close:hover {
+                        background-color: #000000;
+                        color: white;
+                    }                
+                </style>
+                <div id="popup">
+                    <div class="content">
+                    <h2>Green-M Thông Báo!</h2>
+                    <p>Cập nhật thông tin thành công!.</p>
+                    <span>- Success -</span>
+                    <a href="../index.php?act=profile" class="close">X</a>
+                    </div>
+                </div>
             ';
         } else {
             $check = "notImg";
             $account->update_info_account($Fullname, $sex, $address, $duongdan, $username, $email, $phone, $position, $_SESSION['83x86']['account_id'], $check);
             echo '
-                <script>
-                    window.location.href = "../index.php?act=profile";
-                </script>
+                <style>
+                    .content {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 400px;
+                        height: 200px;
+                        border-radius: 10px;
+                        background-color: white;
+                    }
+                    
+                    .content {
+                        animation: slide-in 1.5s ease-in-out;
+                    }
+                    
+                    @keyframes slide-in {
+                        0% {
+                        top: -100%;
+                        }
+                    
+                        100% {
+                        top: 50%;
+                        }
+                    }
+                    #popup {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.6);
+                        z-index: 1000;
+                    }
+                    
+                    .content {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 400px;
+                        height: 200px;
+                        border-radius: 10px;
+                        background-color: white;
+                        text-align: center;
+                    }
+                
+                    #popup .content span {
+                        font-size: 40px;
+                        line-height: 75px;
+                        font-weight: 700;
+                        color: rgb(44, 69, 7);
+                    }
+                    
+                    h2 {
+                        font-size: 24px;
+                        text-align: center;
+                    }
+                    
+                    p {
+                        font-size: 16px;
+                        text-align: center;
+                    }
+                    
+                    .close {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        width: 30px;
+                        height: 30px;
+                        line-height: 30px;
+                        border-radius: 50%;
+                        background-color: red;
+                        cursor: pointer;
+                        text-decoration: none;
+                        color: white;
+                        font-weight: 600;
+                    }
+                    
+                    .close:hover {
+                        background-color: #000000;
+                        color: white;
+                    }                
+                </style>
+                <div id="popup">
+                    <div class="content">
+                    <h2>Green-M Thông Báo!</h2>
+                    <p>Cập nhật thông tin thành công!.</p>
+                    <span>- Success -</span>
+                    <a href="../index.php?act=profile" class="close">X</a>
+                    </div>
+                </div>
             ';
         }
     } else if(isset($saveinfoPay)) {
@@ -67,7 +246,100 @@
         } else {
             $account->change_info_pay($account_number_pay, $account_pay);
         }
-        header('location: ../index.php?act=profile');
+        echo '
+            <style>
+                .content {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 400px;
+                    height: 200px;
+                    border-radius: 10px;
+                    background-color: white;
+                }
+                
+                .content {
+                    animation: slide-in 1.5s ease-in-out;
+                }
+                
+                @keyframes slide-in {
+                    0% {
+                    top: -100%;
+                    }
+                
+                    100% {
+                    top: 50%;
+                    }
+                }
+                #popup {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.6);
+                    z-index: 1000;
+                }
+                
+                .content {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 400px;
+                    height: 200px;
+                    border-radius: 10px;
+                    background-color: white;
+                    text-align: center;
+                }
+            
+                #popup .content span {
+                    font-size: 40px;
+                    line-height: 75px;
+                    font-weight: 700;
+                    color: rgb(44, 69, 7);
+                }
+                
+                h2 {
+                    font-size: 24px;
+                    text-align: center;
+                }
+                
+                p {
+                    font-size: 16px;
+                    text-align: center;
+                }
+                
+                .close {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    width: 30px;
+                    height: 30px;
+                    line-height: 30px;
+                    border-radius: 50%;
+                    background-color: red;
+                    cursor: pointer;
+                    text-decoration: none;
+                    color: white;
+                    font-weight: 600;
+                }
+                
+                .close:hover {
+                    background-color: #000000;
+                    color: white;
+                }                
+            </style>
+            <div id="popup">
+                <div class="content">
+                <h2>Green-M Thông Báo!</h2>
+                <p>Cập nhật phương thức thanh toán thành công!.</p>
+                <span>- Success -</span>
+                <a href="../index.php?act=profile" class="close">X</a>
+                </div>
+            </div>
+        ';
     } else if(isset($send_mail_forgot)) {
         if($email != "") {
             $ketqua = $account->forgot_password($email);
@@ -981,5 +1253,23 @@
         $account->change_pass_account($pass_new, $pass_old);
     } else if(isset($check) && $check == "close-noti-update") {
         $account->update_noti();
+    } else if(isset($check) && $check == "checkUsernameReg") {
+        $ketqua = $account->check_username($input);
+        if($ketqua > 0) {
+            echo '<div class="verified_username_reg" style="color: red;">Username đã tồn tại!</div>';
+        } else {
+            echo '';
+        }
+    } else if(isset($check) && $check == "checkEmailReg") {
+        $ketqua = $account->check_email($input);
+        if($ketqua > 0) {
+            echo '<div class="verified_email_reg" style="color: red;">Email đã tồn tại!</div>';
+        } else {
+            echo '';
+        }
+    }
+
+    if(isset($cancel_info)) {
+        header('location: ../index.php?act=profile');
     }
 ?>

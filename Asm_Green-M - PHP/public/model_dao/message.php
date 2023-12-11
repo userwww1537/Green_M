@@ -51,5 +51,21 @@
             ";
             return $this->conn_execute($sql, $a, $b, $b, $a);
         }
+
+        function search_user($a) {
+            $a = '%' . $a . '%';
+            $sql = "SELECT * FROM account WHERE account_name LIKE ?";
+            return $this->conn_show_all($sql, $a);
+        }
+
+        function update_status_mess() {
+            $sql = "UPDATE messages SET mess_status = 'Đã xem' WHERE account_to = ?";
+            return $this->conn_execute($sql, $_SESSION['83x86']['account_id']);
+        }
+
+        function check_seen() {
+            $sql = "SELECT COUNT(*) as message_count FROM messages WHERE account_to = ? AND mess_status = 'Chưa xem';";
+            return $this->conn_show_one($sql, $_SESSION['83x86']['account_id']);
+        }
     }
 ?>

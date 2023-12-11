@@ -1,33 +1,71 @@
-<?php
-
-include_once("view/header.php");
-extract($_REQUEST);
-if(isset($act)){
-    switch($act){
-            case "list":
-                include_once("view/home.php");
-                    break;
-            case "product":
-                include_once("view/ql_product_shop.php");
-                    break;
-            case "order":
-                include_once("view/ql_donhang_shop.php");
-                    break;
-            case "messenger":
-                include_once("view/ql_tinnhan_shop.php");
-                    break;
-            case "rate":
-                include_once("view/ql_danhgia_shop.php");
-       default:
-       include_once("view/home.php");
-       break;
-       
-    }  
-}else{
-    include_once("view/home.php");
-
-}
-include_once("view/footer.php");
-
-
+<?php 
+    session_start();
+    extract($_REQUEST);
+    if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] != 'Shop') {
+        echo '
+            <script>
+                window.location.href = "../../public/";
+            </script>
+        ';
+    } else if(!isset($_SESSION['83x86'])) {
+        echo '
+            <script>
+                window.location.href = "../../public/";
+            </script>
+        ';
+    }
+    include_once 'view/header.php';
+    include_once "model/account.php";
+    include_once "model/message.php";
+    include_once "model/order.php";
+    include_once "model/rate.php";
+    include_once "model/product.php";
+    include_once "model/category.php";
+    $product = new product_lass();
+    $message = new mess_lass();
+    $account = new account_lass();
+    $order = new order_lass();
+    $cate = new cate_lass();
+    $rate = new rate_lass();
+    if(isset($act)){
+        switch ($act){
+            case 'product':
+                $show = $product->show_product();
+                include_once 'view/product.php';
+                break;
+            case 'shop':
+                $show = $account->show_shop();
+                include_once 'view/shop.php';
+                break;
+            case 'review':
+                $show = $rate->show_rate();
+                include_once 'view/cate.php';
+                break;
+            case 'order':
+                $show = $order->show__order();
+                include_once 'view/order.php';
+                break;
+            case 'doanhthu':
+                $count = $order->show_order();
+                $show = $order->show_doanhthu();
+                include_once 'view/doanhthu.php';
+                break;
+            default:
+                $show_product = $product->show_product();
+                $show_mess = $message->show_mess();
+                $show_order = $order->show_order_home();
+                $show_shop = $account->show_shop();
+                $show_account = $account->show_account();
+                include_once 'view/home.php';
+                break;
+        }
+    } else {
+        $show_product = $product->show_product();
+        $show_order = $order->show_order_home();
+        $show_mess = $message->show_mess();
+        $show_shop = $account->show_shop();
+        $show_account = $account->show_account();
+        include_once 'view/home.php';
+    }
+    include_once 'view/footer.php';
 ?>

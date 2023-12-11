@@ -1,6 +1,19 @@
 <?php 
     session_start();
     extract($_REQUEST);
+    if(isset($_SESSION['83x86']) && $_SESSION['83x86']['account_position'] != 'Quản trị viên') {
+        echo '
+            <script>
+                window.location.href = "../../public/";
+            </script>
+        ';
+    } else if(!isset($_SESSION['83x86'])) {
+        echo '
+            <script>
+                window.location.href = "../../public/";
+            </script>
+        ';
+    }
     include_once 'view/header.php';
     include_once "model/account.php";
     include_once "model/order.php";
@@ -17,6 +30,7 @@
                 include_once 'view/user.php';
                 break;
             case 'shop':
+              
                 $show = $account->show_shop();
                 include_once 'view/shop.php';
                 break;
@@ -25,7 +39,8 @@
                 include_once 'view/cate.php';
                 break;
             case 'order':
-                $show = $order->show_order();
+                $count = $order->show_order();
+                $show = $order->show_doanhthu();
                 include_once 'view/order.php';
                 break;
             case 'logout':

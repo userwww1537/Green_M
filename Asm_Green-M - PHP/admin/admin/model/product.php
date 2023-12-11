@@ -3,6 +3,7 @@
     if(session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+
     class product_lass extends dao_con {
         public static function show_product() {
             $sql = "SELECT y.*, grouped_images.image_files

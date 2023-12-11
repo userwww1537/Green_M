@@ -45,7 +45,7 @@
                     }
                 }
                 unset($items);
-                if ($check_qty == "done") {
+                if (isset($check_qty) && $check_qty == "done") {
                     echo '
                         <script>
                             window.location.href = "../index.php?act=cart";
@@ -112,7 +112,7 @@
                     }
                 }
                 unset($items);
-                if ($check_qty == "done") {
+                if (isset($check_qty) && $check_qty == "done") {
                     echo 'Cập nhật số lượng giỏ hàng!';
                     return;
                 } else {
@@ -207,7 +207,307 @@
         $response['tong_tien'] = $tong_tien;
         
         echo json_encode($response);
-    } else if(isset($promo)) {
-        
+    }
+    
+    if(isset($promo)) {
+        include_once "../model_dao/discount_code.php";
+        $code = new code_lass();
+        $giamgia = $code->check_promo($textDiscount);
+        if($giamgia > 0) {
+            if($giamgia['code_qty'] <= "0") {
+                echo '
+                    <style>
+                        .content {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 400px;
+                            height: 200px;
+                            border-radius: 10px;
+                            background-color: white;
+                        }
+                        
+                        .content {
+                            animation: slide-in 1.5s ease-in-out;
+                        }
+                        
+                        @keyframes slide-in {
+                            0% {
+                            top: -100%;
+                            }
+                        
+                            100% {
+                            top: 50%;
+                            }
+                        }
+                        #popup {
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(0, 0, 0, 0.6);
+                            z-index: 1000;
+                        }
+                        
+                        .content {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 400px;
+                            height: 200px;
+                            border-radius: 10px;
+                            background-color: white;
+                            text-align: center;
+                        }
+                    
+                        #popup .content span {
+                            font-size: 40px;
+                            line-height: 75px;
+                            font-weight: 700;
+                            color: rgb(44, 69, 7);
+                        }
+                        
+                        h2 {
+                            font-size: 24px;
+                            text-align: center;
+                        }
+                        
+                        p {
+                            font-size: 16px;
+                            text-align: center;
+                        }
+                        
+                        .close {
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            width: 30px;
+                            height: 30px;
+                            line-height: 30px;
+                            border-radius: 50%;
+                            background-color: red;
+                            cursor: pointer;
+                            text-decoration: none;
+                            color: white;
+                            font-weight: 600;
+                        }
+                        
+                        .close:hover {
+                            background-color: #000000;
+                            color: white;
+                        }                
+                    </style>
+                    <div id="popup">
+                        <div class="content">
+                        <h2>Green-M Thông Báo!</h2>
+                        <p>Mã giảm giá đã hết!.</p>
+                        <span>- Error -</span>
+                        <a href="../index.php?act=cart" class="close">X</a>
+                        </div>
+                    </div>
+                ';
+            } else {            
+                echo '
+                    <style>
+                        .content {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 400px;
+                            height: 200px;
+                            border-radius: 10px;
+                            background-color: white;
+                        }
+                        
+                        .content {
+                            animation: slide-in 1.5s ease-in-out;
+                        }
+                        
+                        @keyframes slide-in {
+                            0% {
+                            top: -100%;
+                            }
+                        
+                            100% {
+                            top: 50%;
+                            }
+                        }
+                        #popup {
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(0, 0, 0, 0.6);
+                            z-index: 1000;
+                        }
+                        
+                        .content {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 400px;
+                            height: 200px;
+                            border-radius: 10px;
+                            background-color: white;
+                            text-align: center;
+                        }
+                    
+                        #popup .content span {
+                            font-size: 40px;
+                            line-height: 75px;
+                            font-weight: 700;
+                            color: rgb(44, 69, 7);
+                        }
+                        
+                        h2 {
+                            font-size: 24px;
+                            text-align: center;
+                        }
+                        
+                        p {
+                            font-size: 16px;
+                            text-align: center;
+                        }
+                        
+                        .close {
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            width: 30px;
+                            height: 30px;
+                            line-height: 30px;
+                            border-radius: 50%;
+                            background-color: red;
+                            cursor: pointer;
+                            text-decoration: none;
+                            color: white;
+                            font-weight: 600;
+                        }
+                        
+                        .close:hover {
+                            background-color: #000000;
+                            color: white;
+                        }                
+                    </style>
+                    <div id="popup">
+                        <div class="content">
+                        <h2>Green-M Thông Báo!</h2>
+                        <p>Mã giảm giá chính xác!.</p>
+                        <span>- Success -</span>
+                        <a href="../index.php?act=cart&giamgia=1&code_reduced='. $giamgia['code_reduced'] .'&code_gift='. $giamgia['code_gift'] .'" class="close">X</a>
+                        </div>
+                    </div>
+                ';
+            }
+        } else {
+            echo '
+                <style>
+                    .content {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 400px;
+                        height: 200px;
+                        border-radius: 10px;
+                        background-color: white;
+                    }
+                    
+                    .content {
+                        animation: slide-in 1.5s ease-in-out;
+                    }
+                    
+                    @keyframes slide-in {
+                        0% {
+                        top: -100%;
+                        }
+                    
+                        100% {
+                        top: 50%;
+                        }
+                    }
+                    #popup {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.6);
+                        z-index: 1000;
+                    }
+                    
+                    .content {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 400px;
+                        height: 200px;
+                        border-radius: 10px;
+                        background-color: white;
+                        text-align: center;
+                    }
+                
+                    #popup .content span {
+                        font-size: 40px;
+                        line-height: 75px;
+                        font-weight: 700;
+                        color: rgb(44, 69, 7);
+                    }
+                    
+                    h2 {
+                        font-size: 24px;
+                        text-align: center;
+                    }
+                    
+                    p {
+                        font-size: 16px;
+                        text-align: center;
+                    }
+                    
+                    .close {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        width: 30px;
+                        height: 30px;
+                        line-height: 30px;
+                        border-radius: 50%;
+                        background-color: red;
+                        cursor: pointer;
+                        text-decoration: none;
+                        color: white;
+                        font-weight: 600;
+                    }
+                    
+                    .close:hover {
+                        background-color: #000000;
+                        color: white;
+                    }                
+                </style>
+                <div id="popup">
+                    <div class="content">
+                    <h2>Green-M Thông Báo!</h2>
+                    <p>Mã giảm giá không hợp lệ!.</p>
+                    <span>- Error -</span>
+                    <a href="../index.php?act=cart" class="close">X</a>
+                    </div>
+                </div>
+            ';
+        }
+    }
+
+    if(isset($checkQTY) && $checkQTY == "update_qty_cart") {
+        if($value == 0) {
+            $cart->del_cart($cart_id);
+        } else {
+            $cart->up_qty_cart($value, $pro_id);
+        }
     }
 ?>

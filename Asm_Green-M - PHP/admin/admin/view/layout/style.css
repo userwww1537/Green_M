@@ -133,9 +133,27 @@ header h2 {
   cursor: pointer;
 }
 
+
 .search-box {
   position: relative;
 }
+
+.search-box .input-search {
+  position: relative;
+  width: 300px;
+}
+
+.search-box .input-search select {
+  position: absolute;
+  right: 0;
+  top: 1.5px;
+  width: 60px;
+  border-radius: 30px;
+  border: none;
+  box-shadow: var(--shadow);
+  transition: all .5s ease;
+}
+
 
 .flex-tinh2 h3 {
   background-color: #006eff;
@@ -178,6 +196,9 @@ header h2 {
   background-color: #006eff;
 }
 
+
+
+
 .search-box input {
   width: 100%;
   border: none;
@@ -194,7 +215,6 @@ header h2 {
   top: 50%;
   transform: translateY(-50%);
 }
-
 
 td img {
   cursor: pointer;
@@ -518,13 +538,14 @@ thead :is(tr, td, th) {
 .container {
   position: fixed;
   top: 10%;
-  right: 1%;
+  right: -100%;
   max-width: 500px;
   margin: 50px auto;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all .5s ease;
 }
 
 h2 {
@@ -589,7 +610,7 @@ input[type="submit"]:hover {
 }
 
 .search-box input {
-  width: 60%;
+  width: 100%;
   transition: 0.6s;
   border: none;
   outline: none;
@@ -597,12 +618,6 @@ input[type="submit"]:hover {
   padding-left: 50px;
   border-radius: 30px;
   box-shadow: var(--shadow);
-}
-
-.search-box input:focus {
-  width: 100%;
-  padding: 10px 0px;
-  text-align: center;
 }
 
 .search-box:focus-within i {
@@ -617,7 +632,11 @@ input[type="submit"]:hover {
   left: 75px;
   top: 40%;
   transform: translateY(-50%);
-}
+}.search-box input:focus {
+  width: 100%;
+  padding: 10px 0px;
+  text-align: center;
+}   
 
 .not_verified {
   text-decoration: line-through;
@@ -703,7 +722,8 @@ select {
   background-color: #0056b3;
 }
 
-.box-category .calcel-add {
+.box-category .calcel-add,
+.container .calcel-up {
   display: flex;
   text-align: center;
   justify-content: center;
@@ -790,4 +810,9 @@ select {
   from {
     width: 100%;
   }
+}
+
+.fill-doanhthu {
+  display: grid;
+  margin-right: 100px;
 }

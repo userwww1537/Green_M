@@ -14,13 +14,6 @@
             <script>
                 window.location.href = "shop/index.php";
             </script>
-        ';
-    } else {
-        echo '
-            <script>
-                alert("Bạn không có quyền truy vập trang này, Tự động chuyển hướng!");
-                window.location.href = "../public/index.php";
-            </script>
-        ';
+        '; 
     }
 ?>

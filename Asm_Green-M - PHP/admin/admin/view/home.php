@@ -17,8 +17,10 @@
             $count_order++;
             $time = strtotime($items['time_reg']);
             $time_get = date("Y-m-d", $time);
-            if ($time_now == $time_get) {
-               $count_revenue += $items['order_total'];
+            if($items['order_status'] == "Giao thành công") {
+               if ($time_now == $time_get) {
+                  $count_revenue += $items['order_total'];
+               }
             }
          }
          $total_revenue = $count_revenue * 0.03;
@@ -38,7 +40,7 @@
       </div>
       <div class="single-card cc2">
          <div>
-            <span>Đơn hàng</span>
+            <span>Đơn Hang</span>
             <h2><?= $count_order ?></h2>
          </div>
          <i class="uil uil-clipboard-notes"></i>
