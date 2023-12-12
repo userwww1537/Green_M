@@ -9,24 +9,25 @@
     }
     $cart = new cart_lass();
     extract($_REQUEST);
-
-    if(isset($add_cart_detail)) {
-        if(isset($_SESSION['83x86'])) {
-            $check = false;
-            $ketqua = $cart->show_cart($_SESSION['83x86']['account_id']);
-            foreach($ketqua as $items) {
-                if($items['product_id'] == $product_id) {
-                    $chua = $items['cart_qty'] + $product_qty;
-                    $cart->up_qty_cart($chua, $product_id);
-                    $check = true;
-                    echo '
-                        <script>
-                            window.location.href = "../index.php?act=cart";
-                        </script>
-                    ';
-                    break;
-                }
+// add cartdetail
+   
+if(isset($add_cart_detail)) {
+    if(isset($_SESSION['83x86'])) {
+        $check = false;
+        $ketqua = $cart->show_cart($_SESSION['83x86']['account_id']);
+        foreach($ketqua as $items) {
+            if($items['product_id'] == $product_id) {
+                $chua = $items['cart_qty'] + $product_qty;
+                $cart->up_qty_cart($chua, $product_id);
+                $check = true;
+                echo '
+                    <script>
+                        window.location.href = "../index.php?act=cart";
+                    </script>
+                ';
+                break;
             }
+        }
             if($check == false) {
                 echo '
                     <script>

@@ -177,7 +177,8 @@
                             }
                         
 
-                            echo'                            <button type="button" class="btn addtocart" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-img="'. $image[0] .'" data-product-del="'. $product_del .'" data-product-price="'. $product_price .'" data-product-qty="1">Thêm giỏ hàng</button>
+                            echo'   <button type="button" class="btn addtocart" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-img="'. $image[0] .'" data-product-del="'. $product_del .'" data-product-price="'. $product_price .'" data-product-qty="1">Thêm giỏ hàng</button>
+
                         </div>
                     ';
                     $i++;
