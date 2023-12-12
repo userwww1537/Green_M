@@ -63,6 +63,12 @@
             ";
             return self::conn_show_all($sql);
         }
+      
+        public static function searchStatususer($a){
+            $a = '%' . $a . '%';
+            $sql="SELECT * FROM account WHERE account_status LIKE '$a'";
+            return self::conn_show_all($sql);
+        }
         public static function searchStatus($a){
             $a = '%' . $a . '%';
             $sql = "SELECT account.*, IFNULL(COUNT(orders.order_id), 0) AS soLuongDonHang
@@ -89,11 +95,5 @@
             $sql="SELECT * FROM account WHERE account_phone LIKE '$a'";
             return self::conn_show_all($sql);
         }
-        public static function searchStatususer($a){
-            $a = '%' . $a . '%';
-            $sql="SELECT * FROM account WHERE account_status LIKE '$a'";
-            return self::conn_show_all($sql);
-        }
-    
     }
 ?>

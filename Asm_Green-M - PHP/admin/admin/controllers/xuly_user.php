@@ -21,37 +21,6 @@
         $account->sent_notify($mess, $account_id);
     } else if(isset($check) && $check == "sent_lock") {
         $account->sent_lock("Khóa", $lido, $account_id);
-    } else if(isset($check)&& $check == "searchNameshop"){
-        $show=$account->searchUSER($value);
-        $i = 0;
-        foreach($show as $items) {
-           extract($items);
-           $address = substr($account_address, 0, 12) . '...';
-           $i++;
-           echo '
-           <tr>
-                 <input type="hidden" value="'. $account_id .'" class="account-id">
-                 <input type="hidden" value="'. $account_email .'" class="account-email">
-                 <input type="hidden" value="'. $account_status .'" class="account-status">
-                 <td>'. $i .'</td>
-                 <td>'. $account_name .'</td> 
-                 <td id="verified-mail">'; echo ($account_verified_mail == "Đã xác thực") ? $account_email : '<del class="not_verified">' . $account_email . '</del>'; echo '</td>
-                 <td>'. $account_phone .'</td>
-                 <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
-                 <td class="status-box">
-                 '; if($account_status == "Khóa") {
-                    echo '<span class="status pending"></span>Đã bị khóa';
-                 }  else if($account_status == "Online") {
-                    echo '<span class="status online"></span>'. $account_status .'';
-                 } else {
-                    echo '<span class="status offline"></span>'. $account_status .'';
-                 } echo'
-                 </td>
-                 <td>'. $soLuongDonHang .'</td>
-                 <td class="option-user">Tùy chọn</td>
-              </tr>
-           ';
-        }
     } else if(isset($check)&& $check == "searchEmailshop"){
         $show=$account->searchemail($value);
         $i = 0;
@@ -83,7 +52,39 @@
               </tr>
            ';
         }
-    }else if(isset($check)&& $check == "searchPhoneshop"){
+    } else if(isset($check)&& $check == "searchNameshop"){
+      $show=$account->searchUSER($value);
+      $i = 0;
+      foreach($show as $items) {
+         extract($items);
+         $address = substr($account_address, 0, 12) . '...';
+         $i++;
+         echo '
+         <tr>
+               <input type="hidden" value="'. $account_id .'" class="account-id">
+               <input type="hidden" value="'. $account_email .'" class="account-email">
+               <input type="hidden" value="'. $account_status .'" class="account-status">
+               <td>'. $i .'</td>
+               <td>'. $account_name .'</td> 
+               <td id="verified-mail">'; echo ($account_verified_mail == "Đã xác thực") ? $account_email : '<del class="not_verified">' . $account_email . '</del>'; echo '</td>
+               <td>'. $account_phone .'</td>
+               <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
+               <td class="status-box">
+               '; if($account_status == "Khóa") {
+                  echo '<span class="status pending"></span>Đã bị khóa';
+               }  else if($account_status == "Online") {
+                  echo '<span class="status online"></span>'. $account_status .'';
+               } else {
+                  echo '<span class="status offline"></span>'. $account_status .'';
+               } echo'
+               </td>
+               <td>'. $soLuongDonHang .'</td>
+               <td class="option-user">Tùy chọn</td>
+            </tr>
+         ';
+      }
+  }
+    else if(isset($check)&& $check == "searchPhoneshop"){
         $show=$account->searchPhone($value);
         $i = 0;
         foreach($show as $items) {

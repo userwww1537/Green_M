@@ -40,7 +40,7 @@
             LEFT JOIN orders ON account.account_id = orders.shop_id
             WHERE account.account_position = 'Shop' AND account.account_phone LIKE '$a'
             GROUP BY account.account_id
-            ORDER BY soLuongDonHang ASC
+            ORDER BY soLuongDonHang DESC
             ";
             return self::conn_show_all($sql);
         }
