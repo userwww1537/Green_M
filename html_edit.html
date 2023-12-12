@@ -13,8 +13,14 @@ $(window).on("load", function() {
   alert("Xin chào! Chào mừng bạn đến với trang web của tôi.");
 });
 
-$(window).on("beforeunload", function() {
-  return "Tạm biệt! Bạn có muốn rời khỏi trang web của tôi?";
+$(window).on("beforeunload", function(e) {
+  e.preventDefault(); // Ngăn chặn trình duyệt thoát trang mặc định
+  e.returnValue = ''; // Không cần thiết cho các trình duyệt hiện đại
+
+  // Hiển thị thông báo xác nhận
+  var confirmationMessage = "Bạn có chắc chắn muốn thoát khỏi trang web?";
+  (e || window.event).returnValue = confirmationMessage; // For legacy browsers
+  return confirmationMessage;
 });
 </script>
 </body>

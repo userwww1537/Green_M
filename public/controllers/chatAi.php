@@ -384,7 +384,7 @@
                 $top_p = 1;
                 $frequency_penalty = 0.0;
                 $presence_penalty = 0.0;
-                $OPENAI_API_KEY = "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";
+                $OPENAI_API_KEY = "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";
                 $sModel = "text-davinci-003";
                 $prompt = $value;
                 $ch = curl_init();
