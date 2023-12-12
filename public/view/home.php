@@ -53,10 +53,11 @@
             } else {
                 echo '<div class="price"><span>$' . $product_price . '</span>$' . $product_del . '</div>';
             }
-            echo '
-                        <button type="button" class="btn addtocart" data-shop-id="' . $account_id . '" data-product-id="' . $product_id . '" data-product-name="' . $product_name . '" data-product-img="' . $image[0] . '" data-product-del="' . $product_del . '" data-product-price="' . $product_price . '" data-product-qty="1">Thêm giỏ hàng</button>
+            echo 
+            '<button type="button" class="btn addtocart" data-shop-id="' . $account_id . '" data-product-id="' . $product_id . '" data-product-name="' . $product_name . '" data-product-img="' . $image[0] . '" data-product-del="' . $product_del . '" data-product-price="' . $product_price . '" data-product-qty="1">Thêm giỏ hàng</button>
                     </div>
-                ';
+                '
+            ;
             $i++;
         }
         ?>
@@ -102,7 +103,7 @@
                 }
                 echo '
                 <button type="button" class="btn addtocart" data-shop-id="' . $account_id . '" data-product-id="' . $product_id . '" data-product-name="' . $product_name . '" data-product-img="' . $image[0] . '" data-product-del="' . $product_del . '" data-product-price="' . $product_price . '" data-product-qty="1">Thêm giỏ hàng</button>
-                </div>
+                </div> 
                     ';
                 $i++;
             }
