@@ -12,6 +12,7 @@
                     GROUP BY category.category_id
             ";
             return $this->conn_show_all($sql);
+            
         }
     }
 ?>
