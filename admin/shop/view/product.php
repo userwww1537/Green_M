@@ -207,7 +207,7 @@
                </thead>
 
                <tbody>
-                  <?php
+               <?php
                      $i = 0;
                      foreach($show as $items) {
                         extract($items);
@@ -240,7 +240,7 @@
                            </tr>
                         ';
                      }
-                  ?>            
+                  ?>    
                </tbody>
             </table>
          </div>
