@@ -42,18 +42,18 @@
 
                   <tbody>
                      <?php
-                        $i = 0;
-                        foreach($show as $items) {
-                           extract($items);
-                           $address = substr($account_address, 0, 12) . '...';
-                           $i++;
-                           echo '
-                           <tr>
-                                 <input type="hidden" value="'. $account_id .'" class="account-id">
-                                 <input type="hidden" value="'. $account_email .'" class="account-email">
-                                 <input type="hidden" value="'. $account_status .'" class="account-status">
-                                 <td>'. $i .'</td>
-                                 <td>'. $account_name .'</td> 
+                         $i = 0;
+                         foreach($show as $items) {
+                            extract($items);
+                            $address = substr($account_address, 0, 12) . '...';
+                            $i++;
+                            echo '
+                            <tr>
+                                  <input type="hidden" value="'. $account_id .'" class="account-id">
+                                  <input type="hidden" value="'. $account_email .'" class="account-email">
+                                  <input type="hidden" value="'. $account_status .'" class="account-status">
+                                  <td>'. $i .'</td>
+                                  <td>'. $account_name .'</td> 
                                  <td id="verified-mail">'; echo ($account_verified_mail == "Đã xác thực") ? $account_email : '<del class="not_verified">' . $account_email . '</del>'; echo '</td>
                                  <td>'. $account_phone .'</td>
                                  <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
