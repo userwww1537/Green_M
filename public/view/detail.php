@@ -30,7 +30,7 @@
         <hr>
         <?php
             if(isset($_SESSION['83x86']['account_id'])) {
-                echo '<a href="?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$show['account_id'].'"><button class="mess-shop">Nhắn tin</button></a>';
+              echo '<a href="?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$show['account_id'].'"><button class="mess-shop">Nhắn tin</button></a>';
             } else {
                 echo '<a><button class="mess-shop">Nhắn tin</button></a>';
             }
@@ -175,8 +175,9 @@
                             } else {
                                 echo '<div class="price"><span>$'. $product_price .'</span>$'. $product_del .'</div>';
                             }
-                            echo '
-                            <button type="button" class="btn addtocart" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-img="'. $image[0] .'" data-product-del="'. $product_del .'" data-product-price="'. $product_price .'" data-product-qty="1">Thêm giỏ hàng</button>
+                        
+
+                            echo'                            <button type="button" class="btn addtocart" data-product-id="'. $product_id .'" data-product-name="'. $product_name .'" data-product-img="'. $image[0] .'" data-product-del="'. $product_del .'" data-product-price="'. $product_price .'" data-product-qty="1">Thêm giỏ hàng</button>
                         </div>
                     ';
                     $i++;
