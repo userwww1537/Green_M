@@ -14,6 +14,7 @@
             $offset = intval($a);
             $sql = "SELECT * FROM new ORDER BY new_id DESC LIMIT $offset, 3";
             return $this->conn_show_all($sql);
+            
         }
     }
 ?>
