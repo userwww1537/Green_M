@@ -129,11 +129,10 @@
     }else if($fill == "twostar"){
         $show=$rate->show_twostar();
         $i = 0;
-        
         foreach($show as $items) {
            extract($items);
-           $date = new DateTime($time_reg);
            $formattedDate = $date->format('d-m-Y');
+           $date = new DateTime($time_reg);
            $i++;
            echo '
               <tr>
