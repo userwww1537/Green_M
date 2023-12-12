@@ -9,7 +9,7 @@
             $sql = "SELECT * FROM account ORDER BY account_id DESC";
             return self::conn_show_all($sql);
         }
-
+        
         public static function show_shop() {
             $sql = "SELECT account.*, IFNULL(COUNT(orders.order_id), 0) AS soLuongDonHang
                     FROM account

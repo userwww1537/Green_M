@@ -1,4 +1,3 @@
-
    <style>
       @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
@@ -88,9 +87,7 @@
          <i class="fad fa-trash-alt" style="--fa-primary-color: #f50000; --fa-secondary-color: #b13e3e;"></i>
          <h5>Bạn muốn xóa?</h5>
          </div>
-
          <p class="content-del"></p>
-
          <div class="dialog-buttons">
          <button
             class="dialog-button cancel-button">
@@ -243,8 +240,7 @@
                            </tr>
                         ';
                      }
-                  ?>      
-                  
+                  ?>            
                </tbody>
             </table>
          </div>
@@ -268,7 +264,6 @@
       </div>
 </div>
 <div class="test-bug" style="font-size: 100px;"></div>
-
 <script>
    $(document).ready(function() {
       $("#proDmSearch").on('change', function() {

@@ -10,7 +10,7 @@
             $count_product++;
          }
 
-         foreach($show_mess as $items) {
+         foreach ($show_mess as $items) {
             $count_mess++;
          }
 
@@ -19,7 +19,7 @@
             $count_order++;
             $time = strtotime($items['time_reg']);
             $time_get = date("Y-m-d", $time);
-            if($items['order_status'] == "Giao thành công") {
+            if ($items['order_status'] == "Giao thành công") {
                if ($time_now == $time_get) {
                   $count_revenue += $items['order_total'];
                }
@@ -36,14 +36,14 @@
       <div class="single-card cc1">
          <div>
             <span>Tin nhắn</span>
-            <h2><?=$count_mess?> Tin nhắn</h2>
+            <h2><?= $count_mess ?> Tin nhắn</h2>
          </div>
          <i class="fas fa-store-alt"></i>
       </div>
       <div class="single-card cc2">
          <div>
             <span>Đơn hàng</span>
-            <h2><?=$count_order?> Đơn</h2>
+            <h2><?= $count_order ?> Đơn</h2>
          </div>
          <i class="uil uil-clipboard-notes"></i>
 
@@ -51,7 +51,7 @@
       <div class="single-card cc3">
          <div>
             <span>Doanh thu/ Ngày</span>
-            <h2>$<?=$total_revenue?></h2>
+            <h2>$<?= $total_revenue ?></h2>
          </div>
          <i class="fas fa-dollar-sign"></i>
       </div>

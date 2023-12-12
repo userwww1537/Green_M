@@ -15,9 +15,7 @@
              
                   </select>
                </div>
-
          </div>
-        
          <table>
             <thead>
                <th>
@@ -48,6 +46,7 @@
                            <td>
                               '. $rate_star .'🌟
                            </td>
+
                            <td>
                               '. $formattedDate .'
                            </td>
@@ -61,9 +60,13 @@
                ?>
             </tbody>
          </table>
+
       </div>
    </div>
 </main>
+
+
+
 <script>
    $(".fill-danhgia-btn").on('change',function(){
       var fill =$(this).val();

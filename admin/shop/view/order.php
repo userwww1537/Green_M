@@ -21,11 +21,10 @@
                      </tr>
                   </th>
                </thead>
-
                <tbody>
                   <?php
                      foreach($show as $items) {
-                        extract($items);
+                        extract ($items);
                         $address = substr($account_address, 0, 16) . '...';
                         $order_total = $order_total * 0.97;
                         echo '

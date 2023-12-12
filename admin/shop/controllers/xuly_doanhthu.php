@@ -11,7 +11,7 @@
     if(isset($check) && $check == "Fill_doanhthu") {
         $order = new order_lass();
         $count = $order->show_order();
-        $show = $order->show_doanhthu();
+        $show = $order->show_doanhthu();    
         if($fill == "day") {
             $time_now = date("Y-m-d");
             foreach($show as $items) {
