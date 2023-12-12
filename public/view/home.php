@@ -111,9 +111,8 @@
         ?>
     </div>
 </section>
-
 <script>
-    $(".addtocart").click(function() {
+     $(".addtocart").click(function() {
         var product_id = $(this).data("product-id");
         var product_name = $(this).data("product-name");
         var product_img = $(this).data("product-img");
@@ -159,4 +158,5 @@
             });
         }
     });
+
 </script>
