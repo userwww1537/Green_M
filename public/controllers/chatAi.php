@@ -388,7 +388,7 @@
                 $sModel = "text-davinci-003";
                 $prompt = $value;
                 $ch = curl_init();
-                $headers  = [
+                $headers  = [ 
                     'Accept: application/json',
                     'Content-Type: application/json',
                     'Authorization: Bearer ' . $OPENAI_API_KEY . ''
