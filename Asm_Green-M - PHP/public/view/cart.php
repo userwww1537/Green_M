@@ -75,6 +75,7 @@
     <div id="subtotal">
         <h3>Tổng Giỏ Hàng</h3>
         <table>
+            
             <tr>
                 <td>Tiền Hàng</td>
                 <td style="color: red;">-$<?php echo isset($total) ? $total : 0; ?></td>
