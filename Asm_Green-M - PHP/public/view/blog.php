@@ -22,7 +22,7 @@
                             </div>
                         </div>
                     ';
-            }
+            } 
             ?>
             <div class="next-page">
                 <?php
