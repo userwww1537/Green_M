@@ -1,3 +1,4 @@
+
 <?php $image = explode(',', $show['image_files']); ?>
 <section id="prodetails" class="section-p1">
     <div class="single-pro-image">
