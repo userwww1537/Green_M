@@ -43,7 +43,7 @@
             echo '
                     <div class="box">
                         <span class="discount">-' . intval($giamgia) . '%</span>
-                        <div class="corner-box">'. $product_view .'<span><a href="?act=detail&product_id=' . $product_id . '&category='. $category_id .'" class="loadkkk"><i class="fas fa-eye"></i></a></span></div>
+                        <div class="corner-box">' . $product_view . '<span><a href="?act=detail&product_id=' . $product_id . '&category=' . $category_id . '" class="loadkkk"><i class="fas fa-eye"></i></a></span></div>
                         <img width="250px" height="250px" src="' . $image[0] . '" alt="">
                         <h3>' . $product_name . '</h3>
                         <p>Số lượng còn lại- <span>' . $product_qty . '</span>kg</p>
@@ -54,7 +54,7 @@
                 echo '<div class="price"><span>$' . $product_price . '</span>$' . $product_del . '</div>';
             }
             echo '
-                        <button type="button" class="btn addtocart" data-shop-id="'. $account_id .'" data-product-id="' . $product_id . '" data-product-name="' . $product_name . '" data-product-img="' . $image[0] . '" data-product-del="' . $product_del . '" data-product-price="' . $product_price . '" data-product-qty="1">Thêm giỏ hàng</button>
+                        <button type="button" class="btn addtocart" data-shop-id="' . $account_id . '" data-product-id="' . $product_id . '" data-product-name="' . $product_name . '" data-product-img="' . $image[0] . '" data-product-del="' . $product_del . '" data-product-price="' . $product_price . '" data-product-qty="1">Thêm giỏ hàng</button>
                     </div>
                 ';
             $i++;
@@ -90,7 +90,7 @@
                 echo '
                         <div class="box">
                             <span class="discount">-' . intval($giamgia) . '%</span>
-                            <div class="corner-box"><span><a href="?act=detail&product_id=' . $product_id . '&category='. $category_id .'" class="loadkkk"><i class="fas fa-eye"></i></a></span></div>
+                            <div class="corner-box"><span><a href="?act=detail&product_id=' . $product_id . '&category=' . $category_id . '" class="loadkkk"><i class="fas fa-eye"></i></a></span></div>
                             <img width="250px" height="250px" src="' . $image[0] . '" alt="">
                             <h3>' . $product_name . '</h3>
                             <p>Số lượng còn lại- <span>' . $product_qty . '</span>kg</p>
@@ -101,8 +101,8 @@
                     echo '<div class="price"><span>$' . $product_price . '</span>$' . $product_del . '</div>';
                 }
                 echo '
-                            <button type="button" class="btn addtocart" data-shop-id="'. $account_id .'" data-product-id="' . $product_id . '" data-product-name="' . $product_name . '" data-product-img="' . $image[0] . '" data-product-del="' . $product_del . '" data-product-price="' . $product_price . '" data-product-qty="1">Thêm giỏ hàng</button>
-                        </div>
+                <button type="button" class="btn addtocart" data-shop-id="' . $account_id . '" data-product-id="' . $product_id . '" data-product-name="' . $product_name . '" data-product-img="' . $image[0] . '" data-product-del="' . $product_del . '" data-product-price="' . $product_price . '" data-product-qty="1">Thêm giỏ hàng</button>
+                </div>
                     ';
                 $i++;
             }
