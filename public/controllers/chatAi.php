@@ -35,12 +35,6 @@
                         <p><b>Green-Chat:</b>Xin lỗi, Tôi không có quyền truy cập vào tài khoản, xin vui lòng hỏi câu hỏi khác!</p>
                     </div>
                 ';
-            } else if(stripos($value, 'ơ') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b>Ơ cái nịt bụng!</p>
-                    </div>
-                ';
             } else if(stripos($value, 'mấy giờ') !== false) {
                 date_default_timezone_set('Asia/Ho_Chi_Minh');
                 $now = date('H \G\iờ\ i \P\hú\t\ s \G\i\â\y');
@@ -197,49 +191,7 @@
                         <p><b>Green-Chat:</b> Cảm ơn, Quá khen rồi đấy!</p>
                     </div>
                 ';
-            } else if(stripos($value, 'tôi là') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b> Kệ mẹ mày!</p>
-                    </div>
-                ';
-            } else if(stripos($value, 'Lồn') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b> Vui lòng không sử dụng từ ngữ tục tĩu!</p>
-                    </div>
-                ';
-            } else if(stripos($value, 'cặc') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b> Vui lòng không sử dụng từ ngữ tục tĩu!</p>
-                    </div>
-                ';
-            } else if(stripos($value, 'bướm') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b> Vui lòng không sử dụng từ ngữ tục tĩu!</p>
-                    </div>
-                ';
-            } else if(stripos($value, 'chim') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b> Vui lòng không sử dụng từ ngữ tục tĩu!</p>
-                    </div>
-                ';
-            } else if(stripos($value, 'cu') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b> Vui lòng không sử dụng từ ngữ tục tĩu!</p>
-                    </div>
-                ';
             } else if(stripos($value, 'bạn ngu') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b> Ngu thì hỏi làm gì?</p>
-                    </div>
-                ';
-            } else if(stripos($value, 'ngu') !== false) {
                 echo '
                     <div class="message received">
                         <p><b>Green-Chat:</b> Ngu thì hỏi làm gì?</p>
@@ -384,36 +336,6 @@
                         <p><b>Green-Chat:</b> bạn quá tuyệt vời rồi, đừng suy nghĩ về ngoại hình của mình nữa!</p>
                     </div>
                 ';
-            } else if(stripos($value, 'helo') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b> Chào thằng ngu, hello còn viết sai!</p>
-                    </div>
-                ';
-            } else if(stripos($value, 'heloo') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b> Chào thằng ngu, hello còn viết sai!</p>
-                    </div>
-                ';
-            } else if(stripos($value, 'heloo') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b> Chào thằng ngu, hello còn viết sai!</p>
-                    </div>
-                ';
-            } else if(stripos($value, 'helloo') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b> Chào thằng ngu, hello còn viết sai!</p>
-                    </div>
-                ';
-            } else if(stripos($value, 'hi') !== false) {
-                echo '
-                    <div class="message received">
-                        <p><b>Green-Chat:</b> Người việt sử dụng tiếng việt, NEXT!</p>
-                    </div>
-                ';
             } else if(stripos($value, 'Bất đầu') !== false) {
                 echo '
                     <div class="message received">
@@ -457,9 +379,44 @@
                     </div>
                 ';
             } else {
+                $dTemperature = 0.9;
+                $iMaxTokens = 1000;
+                $top_p = 1;
+                $frequency_penalty = 0.0;
+                $presence_penalty = 0.0;
+                $OPENAI_API_KEY = "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";
+                $sModel = "text-davinci-003";
+                $prompt = $value;
+                $ch = curl_init();
+                $headers  = [
+                    'Accept: application/json',
+                    'Content-Type: application/json',
+                    'Authorization: Bearer ' . $OPENAI_API_KEY . ''
+                ];
+
+                $postData = [
+                    'model' => $sModel,
+                    'prompt' => str_replace('"', '', $prompt),
+                    'temperature' => $dTemperature,
+                    'max_tokens' => $iMaxTokens,
+                    'top_p' => $top_p,
+                    'frequency_penalty' => $frequency_penalty,
+                    'presence_penalty' => $presence_penalty,
+                    'stop' => '[" Human:", " AI:"]',
+                ];
+
+                curl_setopt($ch, CURLOPT_URL, 'https://api.openai.com/v1/completions');
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
+
+                $result = curl_exec($ch);
+                $decoded_json = json_decode($result, true);
+
                 echo '
                     <div class="message received">
-                        <p><b>Green-Chat:</b> Tôi không hiểu, vui lòng đặt câu hỏi khác!</p>
+                        <p><b>Green-Chat:</b> "'. $decoded_json['choices'][0]['text'] .'"</p>
                     </div>
                 ';
             }

@@ -252,6 +252,7 @@ if (!isset($act) || $act == "home") {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         display: none;
         z-index: 9999999;
+        font-size: 16px;
     }
 
     .chat-header {
