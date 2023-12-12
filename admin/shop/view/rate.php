@@ -20,7 +20,7 @@
             <thead>
                <th>
                   <tr>
-                     <td>STT</td>
+           ha          <td>STT</td>
                      <td>Người đánh giá</td>
                      <td>Nội dung</td>
                      <td>Số sao</td>
