@@ -111,7 +111,7 @@
          </div>
 
          <table>
-            <?php
+         <?php
             $i = 0;
             foreach ($show_product as $items) {
                extract($items);
