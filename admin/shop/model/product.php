@@ -20,7 +20,6 @@
             ";
             return self::conn_show_all($sql, $_SESSION['83x86']['account_id']);
         }
-
         public static function show_name_search($a) {
             $a = '%' . $a . '%';
             $sql = "SELECT y.*, grouped_images.image_files, category.category_name
@@ -37,7 +36,6 @@
             ";
             return self::conn_show_all($sql, $_SESSION['83x86']['account_id']);
         }
-
         public static function show_cate_search($a) {
             $a = '%' . $a . '%';
             $sql = "SELECT y.*, grouped_images.image_files, category.category_name
@@ -54,22 +52,18 @@
             ";
             return self::conn_show_all($sql, $_SESSION['83x86']['account_id']);
         }
-
         public static function del_pro($a) {
             $sql = "DELETE FROM product WHERE product_id = ?";
             return self::conn_execute($sql, $a);
         }
-
         public static function add_p1($a, $b, $c, $d, $e) {
             $sql = "INSERT INTO product(product_name, product_price, product_del, product_qty, category_id, account_id) VALUES(?, ?, ?, ?, ?, ?)";
             return self::conn_execute($sql, $a, $b, $c, $d, $e, $_SESSION['83x86']['account_id']);
         }
-
         public static function up_p1($a, $b, $c, $d, $e, $f) {
             $sql = "UPDATE product SET product_name = ?, product_price = ?, product_del = ?, product_qty = ?, category_id = ? WHERE product_id = ?";
             return self::conn_execute($sql, $a, $b, $c, $d, $e, $f);
         }
-
         public static function up_p2($a, $b) {
             $sql = "UPDATE image_product SET image_file = ? WHERE product_id = ?";
             return self::conn_execute($sql, $a, $b);
