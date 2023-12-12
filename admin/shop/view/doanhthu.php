@@ -57,9 +57,11 @@
                </tbody>
             </table>
          </div>
+
          </table>
       </div>
    </div>
+
    <script>
       $(".fill-doanhthu-btn").on('change', function() {
          var fill = $(this).val();
