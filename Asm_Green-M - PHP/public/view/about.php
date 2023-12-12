@@ -151,7 +151,6 @@
                     <span>Back End Dev</span>
                 </div>
             </div>    
-
         </div>
 
     </div>
