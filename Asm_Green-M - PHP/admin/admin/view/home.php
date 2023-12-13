@@ -81,10 +81,10 @@
                $i = 0;
                foreach ($show_shop as $items) {
                   $i++;
-                  if ($i == 3) {
+                  if ($i == 3){
                      break;
                   }
-                  extract($items);   
+                  extract($items);  
                   echo '
                            <tr>
                               <td>' . $account_name . '</td>
