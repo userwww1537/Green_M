@@ -45,7 +45,7 @@
                               }
                            }
                            $total_revenue = $count_revenue * 0.03;
-                           $address = substr($account_address, 0, 18) . '...';
+                           $address = mb_substr($account_address, 0, 18, 'UTF-8') . '...';
                            $i++;
                            echo '
                               <tr>

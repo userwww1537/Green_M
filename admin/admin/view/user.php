@@ -111,7 +111,7 @@
                $i = 0;
                foreach ($show as $items) {
                   extract($items);
-                  $address = substr($account_address, 0, 12) . '...';
+                  $address = mb_substr($account_address, 0, 12, 'UTF-8') . '...';
                   $i++;
                   echo '
                            <tr>

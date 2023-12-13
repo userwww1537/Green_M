@@ -118,7 +118,7 @@
                if ($i == 6) {
                   break;
                }
-               $name_product = substr($product_name, 0, 9) . '...';
+               $name_product = mb_substr($product_name, 0, 9, 'UTF-8') . '...';
                echo '
                   <tr class="flex">
                      <td class="flex">
