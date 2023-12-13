@@ -83,7 +83,7 @@
                $i = 0;
                foreach ($show_order as $items) {
                   $i++;
-                  if ($i == 3) {
+                  if ($i == 4) {
                      break;
                   }
                   extract($items);
@@ -120,7 +120,7 @@
                if ($i == 6) {
                   break;
                }
-               $name_product = substr($product_name, 0, 9) . '...';
+               $name_product = mb_substr($product_name, 0, 9, 'UTF-8') . '...';
                echo '
                   <tr class="flex">
                      <td class="flex">
