@@ -7,6 +7,11 @@
     if (file_exists('../model/order.php')) {
         require "../model/order.php";
     }
+    if (file_exists('../../app/mailer.php')) {
+        require "../../app/mailer.php";
+    }
+
+    $mail = new Mailer();
 
     if(isset($check) && $check == "ShowOrderDetails") {
         $order = new order_lass();
@@ -70,12 +75,19 @@
     } else if(isset($check) && $check == "duyetDon") {
         $order = new order_lass();
         $order->duyetDon($value);
+        $infoUser = $order->get_mail_user($value);
+        $title = "Green-M -> Thông báo tới bạn trạng thái đơn hàng!";
+        $content = "<h1>Đơn hàng có Id: Order-$value</h1> <br>
+                     <h3>Đơn hàng đã được duyệt</h3>
+                  ";
+         $mail->sendMail($title, $content, $infoUser['account_email']);
+
     } else if(isset($check) && $check == "searchIdOrder") {
         $order = new order_lass();
         $show = $order->show_id_order($value);
         foreach($show as $items) {
            extract($items);
-           $address = substr($account_address, 0, 16) . '...';
+           $address = mb_substr($account_address, 0, 16, 'UTF-8') . '...';
            $order_total = $order_total * 0.97;
            echo '
               <tr>
@@ -141,7 +153,7 @@
         $show = $order->show_name_order($value);
         foreach($show as $items) {
            extract($items);
-           $address = substr($account_address, 0, 16) . '...';
+           $address = mb_substr($account_address, 0, 16, 'UTF-8') . '...';
            $order_total = $order_total * 0.97;
            echo '
               <tr>
@@ -207,7 +219,7 @@
         $show = $order->show_status_order($value);
         foreach($show as $items) {
            extract($items);
-           $address = substr($account_address, 0, 16) . '...';
+           $address = mb_substr($account_address, 0, 16, 'UTF-8') . '...';
            $order_total = $order_total * 0.97;
            echo '
               <tr>
@@ -273,7 +285,7 @@
         $show = $order->show_phone_order($value);
         foreach($show as $items) {
            extract($items);
-           $address = substr($account_address, 0, 16) . '...';
+           $address = mb_substr($account_address, 0, 16, 'UTF-8') . '...';
            $order_total = $order_total * 0.97;
            echo '
               <tr>
@@ -339,7 +351,7 @@
         $show = $order->show__order();
         foreach($show as $items) {
            extract($items);
-           $address = substr($account_address, 0, 16) . '...';
+           $address = mb_substr($account_address, 0, 16, 'UTF-8') . '...';
            $order_total = $order_total * 0.97;
            echo '
               <tr>
@@ -404,11 +416,22 @@
 
     if(isset($upOrder)) {
         $order = new order_lass();
+        $infoUser = $order->get_mail_user($order_id);
         if($status == "Giao thành công") {
             $order->up_order_success($status, $order_id);
+            $title = "Green-M -> Thông báo tới bạn trạng thái đơn hàng!";
+            $content = "<h1>Đơn hàng có Id: Order-$order_id</h1> <br>
+                         <h3>Đơn hàng đã được: <b>$status</b></h3> <br>
+                         <h6>Cảm ơn bạn đã tin tưởng và đặt hàng tại Green-M. Have A Good Day 😘😘😘😘</h6>
+                      ";
         } else {
            $order->up_order($status, $order_id);
+           $title = "Green-M -> Thông báo tới bạn trạng thái đơn hàng!";
+           $content = "<h1>Đơn hàng có Id: Order-$order_id</h1> <br>
+                        <h3>Đơn hàng đang trong quá trình: $status</h3>
+                     ";
         }
+        $mail->sendMail($title, $content, $infoUser['account_email']);
         echo '
             <style>
                 .content {

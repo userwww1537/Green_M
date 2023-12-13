@@ -39,7 +39,7 @@
         }
 
         public function up_Shop() {
-            $now = date('d-m-Y');
+            $now = date('Y-m-d');
             $sql = "UPDATE account SET account_position = 'Shop', time_store = '$now' WHERE account_id = ?";
             return $this->conn_execute($sql, $_SESSION['83x86']['account_id']); 
         }

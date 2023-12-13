@@ -14,6 +14,15 @@
             return self::conn_show_all($sql, $_SESSION['83x86']['account_id']);
         }
 
+        public static function get_mail_user($id) {
+            $sql = "SELECT orders.*, account.account_email
+                    FROM orders
+                    JOIN account ON orders.account_id = account.account_id
+                    WHERE orders.order_id = ?
+            ";
+            return self::conn_show_one($sql, $id);
+        }
+
         public static function show_name_order($a) {
             $a = '%' . $a . '%';
             $sql = "SELECT orders.*, account.account_name, account.account_id, account.account_phone, account.account_address

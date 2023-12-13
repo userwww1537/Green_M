@@ -26,7 +26,7 @@
                   <?php
                      foreach($show as $items) {
                         extract($items);
-                        $address = substr($account_address, 0, 16) . '...';
+                        $address = mb_substr($account_address, 0, 16, 'UTF-8') . '...';
                         $order_total = $order_total * 0.97;
                         echo '
                            <tr>
