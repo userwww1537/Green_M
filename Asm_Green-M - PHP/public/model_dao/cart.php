@@ -13,7 +13,7 @@
             $sql = "SELECT cart.*, account.account_name as shop_name
                     FROM cart
                     JOIN account ON cart.shop_id = account.account_id
-                    WHERE cart.account_id = ?
+                    WHERE cart.account_id=?
             ";
             return $this->conn_show_all($sql, $a);
         }
