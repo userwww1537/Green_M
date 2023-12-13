@@ -41,6 +41,7 @@
                 <a href="public/index.php">Truy cập Website</a>
             </div>
         ';
+        
     } else {
         header('location: public/index.php');
     }
