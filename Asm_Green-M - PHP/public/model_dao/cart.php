@@ -31,6 +31,7 @@
         public function del_cart($a) {
             $sql = "DELETE FROM cart WHERE cart_id = ?";
             return $this->conn_execute($sql, $a);
+            
         }
     }
 ?>
