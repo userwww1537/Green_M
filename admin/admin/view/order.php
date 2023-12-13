@@ -32,6 +32,7 @@
 
                <tbody>
                   <?php
+                     $i = 0;
                      foreach($show as $items) {
                         extract($items);
                         $total_revenue = 0;
@@ -45,9 +46,10 @@
                            }
                            $total_revenue = $count_revenue * 0.03;
                            $address = substr($account_address, 0, 18) . '...';
+                           $i++;
                            echo '
                               <tr>
-                                 <td>1</td>
+                                 <td>'. $i .'</td>
                                  <td>'. $account_name .'</td>
                                  <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
                                  <td>'. $account_phone .'</td>
@@ -193,6 +195,27 @@
                }
          });
          $(".details-order").css("display", "block");
+      });
+
+      $(".address-user").on('click', function() {
+         var address = $(this).find('input').val();
+         window.open("https://www.google.com/maps/place/" + address, "_blank");
+      });
+   </script>
+   <script>
+      $(".fill-doanhthu-btn").on('change', function() {
+         var fill = $(this).val();
+         $.ajax({
+            url: "controllers/xuly_doanhthu.php",
+            method: "POST",
+            data: {
+               check: "Fill_doanhthu",
+               fill: fill
+            },
+            success: function(data) {
+               $("tbody").html(data);
+            }
+         });
       });
 
       $(".address-user").on('click', function() {

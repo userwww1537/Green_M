@@ -112,6 +112,7 @@
         $count = $order->show_order();
         $show = $order->show_doanhthu();
         if($fill == "day") {
+            $i = 0;
             $time_now = date("Y-m-d");
             foreach($show as $items) {
                 extract($items);
@@ -130,9 +131,10 @@
                 }
                 $total_revenue = $count_revenue * 0.03;
                 $address = substr($account_address, 0, 18) . '...';
+                $i++;
                 echo '
                    <tr>
-                      <td>1</td>
+                      <td>'. $i .'</td>
                       <td>'. $account_name .'</td>
                       <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
                       <td>'. $account_phone .'</td>
@@ -140,10 +142,7 @@
                       <td>'. $order_count .'</td>
                       <td class="kkk2">
                          <button>
-                         <i class="fas fa-eye"></i>
-                         </button>
-                         <button>
-                         <i class="fas fa-pen"></i></i>
+                         <a href="../../public/index.php?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$account_id.'"><i class="fab fa-facebook-messenger"></i></a>
                          </button>
                       </td>
                    </tr>
@@ -151,6 +150,7 @@
              }
         } else if($fill == "month") {
             $time_now = date("Y-m");
+            $i = 0;
             foreach($show as $items) {
                 extract($items);
                 $total_revenue = 0;
@@ -168,9 +168,10 @@
                 }
                 $total_revenue = $count_revenue * 0.03;
                 $address = substr($account_address, 0, 18) . '...';
+                $i++;
                 echo '
                    <tr>
-                      <td>1</td>
+                      <td>'. $i .'</td>
                       <td>'. $account_name .'</td>
                       <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
                       <td>'. $account_phone .'</td>
@@ -178,10 +179,7 @@
                       <td>'. $order_count .'</td>
                       <td class="kkk2">
                          <button>
-                         <i class="fas fa-eye"></i>
-                         </button>
-                         <button>
-                         <i class="fas fa-pen"></i></i>
+                         <a href="../../public/index.php?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$account_id.'"><i class="fab fa-facebook-messenger"></i></a>
                          </button>
                       </td>
                    </tr>
@@ -189,6 +187,7 @@
              }
         } else if($fill == "year") {
             $time_now = date("Y");
+            $i = 0;
             foreach($show as $items) {
                 extract($items);
                 $total_revenue = 0;
@@ -206,9 +205,10 @@
                 }
                 $total_revenue = $count_revenue * 0.03;
                 $address = substr($account_address, 0, 18) . '...';
+                $i++;
                 echo '
                    <tr>
-                      <td>1</td>
+                      <td>'. $i .'</td>
                       <td>'. $account_name .'</td>
                       <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
                       <td>'. $account_phone .'</td>
@@ -216,16 +216,14 @@
                       <td>'. $order_count .'</td>
                       <td class="kkk2">
                          <button>
-                         <i class="fas fa-eye"></i>
-                         </button>
-                         <button>
-                         <i class="fas fa-pen"></i></i>
+                         <a href="../../public/index.php?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$account_id.'"><i class="fab fa-facebook-messenger"></i></a>
                          </button>
                       </td>
                    </tr>
                 ';
              }
         } else {
+            $i = 0;
             foreach($show as $items) {
                 extract($items);
                 $total_revenue = 0;
@@ -239,9 +237,10 @@
                 }
                 $total_revenue = $count_revenue * 0.03;
                 $address = substr($account_address, 0, 18) . '...';
+                $i++;
                 echo '
                    <tr>
-                      <td>1</td>
+                      <td>'. $i .'</td>
                       <td>'. $account_name .'</td>
                       <td class="address-user">'. $address .'.<input type="hidden" value="'. $account_address .'"></td>
                       <td>'. $account_phone .'</td>
@@ -249,10 +248,7 @@
                       <td>'. $order_count .'</td>
                       <td class="kkk2">
                          <button>
-                         <i class="fas fa-eye"></i>
-                         </button>
-                         <button>
-                         <i class="fas fa-pen"></i></i>
+                         <a href="../../public/index.php?act=mess_chat&from='.$_SESSION['83x86']['account_id'].'&to='.$account_id.'"><i class="fab fa-facebook-messenger"></i></a>
                          </button>
                       </td>
                    </tr>
