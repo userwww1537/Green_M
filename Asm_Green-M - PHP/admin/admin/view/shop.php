@@ -67,7 +67,7 @@
                                  } echo'
                                  </td>
                                  <td>'. $soLuongDonHang .'</td>
-                                 <td class="option-user">Tùy chọn</td>
+                                 <td class="option-user">Tuỳ chọn</td>
                               </tr>
                            ';
                         }

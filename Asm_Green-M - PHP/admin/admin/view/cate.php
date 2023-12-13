@@ -226,7 +226,7 @@
                               '. $category_status .'
                            </td>
                            <td class="kkk">
-                           
+
                                  <button class="del-cate" data-cate-id="'. $category_id .'" data-cate-name="'. $category_name .'">Xóa</button> 
                                  <button class="up-cate" data-cate-id="'. $category_id .'" data-cate-name="'. $category_name .'" data-cate-img="'. $category_img .'" data-cate-status="'. $category_status .'">Sửa</button>
                            </td>
